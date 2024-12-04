@@ -67,9 +67,8 @@ class _SignInScreenState extends State<SignInScreen> {
                         hintText: 'Enter mobile nomber',
                         hintStyle: const TextStyle(color: Colors.grey),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey)
-                        ),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                       ),
                       /*validator: (value){
                         if (value == null || value.isEmpty) {
@@ -78,9 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         return null;
                       },*/
                       onChanged: (value) {
-                        setState(() {
-
-                        });
+                        setState(() {});
                       },
                     ),
                   )),
@@ -91,18 +88,21 @@ class _SignInScreenState extends State<SignInScreen> {
                 margin: EdgeInsets.only(right: 24),
                 width: MediaQuery.of(context).size.width,
                 height: 52,
-                child: ElevatedButton(onPressed: () {
-                  if(_formKey.currentState!.validate()){
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Enter Valid Number')));
-                  }
-                }, child: Text("Continue"),
-          
-                style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF95622D),
-                  textStyle: CustomUiText.size16,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  foregroundColor: Colors.white,
-                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Enter Valid Number')));
+                    }
+                  },
+                  child: Text("Continue"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF95622D),
+                    textStyle: CustomUiText.size16,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    foregroundColor: Colors.white,
+                  ),
                 ),
               ),
               Gap.gapH24,
@@ -110,19 +110,36 @@ class _SignInScreenState extends State<SignInScreen> {
                 margin: EdgeInsets.only(right: 24),
                 width: MediaQuery.of(context).size.width,
                 height: 52,
-                child: ElevatedButton(onPressed: () {}, child: Text("Continue as Guest"),
-          
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Continue as Guest"),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Color(0xFF95622D)),
+                        side: BorderSide(color: Color(0xFF95622D)),
                         borderRadius: BorderRadius.circular(10)),
                     foregroundColor: Color(0xFF95622D),
                   ),
-          
                 ),
               ),
+              /* Stack(
+                // alignment: Alignment.bottomCenter,
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                      child: Text(
+                          "By continuing, I agree to the Terms of Use & \nPrivacy Policy")),
+                ],
+              ),*/
+              Center(
+                child: RichText(
+                    text: TextSpan(
+                      children: [TextSpan(
+                        text: "hello"
+                      )],
+                        text:
+                            "By continuing, I agree to the Terms of Use & \nPrivacy Policy")),
+              )
               // CustomDarkButton(onpress: () {})
-          
             ],
           ),
         ),

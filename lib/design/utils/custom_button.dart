@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
 
+import '../../core/constant/app_images.dart';
 import 'colors_sources.dart';
 
 class CustomButton extends StatelessWidget {
@@ -67,7 +69,7 @@ class CustomSlider extends StatelessWidget {
       // width: MediaQuery.of(context).size.width,
       // width: 300,
       child: Padding(
-        padding: const EdgeInsets.only(left: 24.0,right: 24),
+        padding: const EdgeInsets.only(left: 24.0, right: 24),
         child: CarouselView(
           itemExtent: 400,
           // shrinkExtent: 200,
@@ -78,15 +80,21 @@ class CustomSlider extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           children: [
-            Image.network(
+            Image.asset(
               width: MediaQuery.of(context).size.width,
-                'https://media.istockphoto.com/id/593331954/photo/orange-luxury-sport-car-lamborghini-aventador.jpg?s=612x612&w=0&k=20&c=YZmILGk1mxLrB8U0HubIHsAOllc7Hh0yGNzWWAkQO08=',fit: BoxFit.cover,),
-            Image.network(
+              AppImages.imgCar,
+              fit: BoxFit.cover,
+            ),
+            Image.asset(
               width: MediaQuery.of(context).size.width,
-                'https://media.istockphoto.com/id/593331954/photo/orange-luxury-sport-car-lamborghini-aventador.jpg?s=612x612&w=0&k=20&c=YZmILGk1mxLrB8U0HubIHsAOllc7Hh0yGNzWWAkQO08=',fit: BoxFit.cover),
-            Image.network(
+              AppImages.imgCar,
+              fit: BoxFit.cover,
+            ),
+            Image.asset(
               width: MediaQuery.of(context).size.width,
-                'https://media.istockphoto.com/id/593331954/photo/orange-luxury-sport-car-lamborghini-aventador.jpg?s=612x612&w=0&k=20&c=YZmILGk1mxLrB8U0HubIHsAOllc7Hh0yGNzWWAkQO08=',fit: BoxFit.cover),
+              AppImages.imgCar,
+              fit: BoxFit.cover,
+            ),
           ],
         ),
       ),
@@ -115,13 +123,12 @@ class CustomProducts extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.grey.shade300),
-                child: const ImageIcon(
-                    AssetImage(
-                      'assets/images/ic_sofa.png',
-                    ),
-                    size: 26,
-                  ),
+                    shape: BoxShape.circle, color: Colors.grey.shade200),
+                child: SvgPicture.asset(
+                  AppIcons.icChair,
+                  height: 30,
+                  // width: 30,
+                ),
               ),
               Gap.gapH8,
               const Text('Sofa'),
@@ -132,6 +139,7 @@ class CustomProducts extends StatelessWidget {
     );
   }
 }
+
 class CustomMobileTextField extends StatelessWidget {
   const CustomMobileTextField({super.key});
 
@@ -139,27 +147,24 @@ class CustomMobileTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       // margin: const EdgeInsets.only(left: 24, right: 24),
-      height: 44,
+      // height: 44,
       width: MediaQuery.of(context).size.width,
-      child: TextFormField(
+      child: TextField(
         keyboardType: TextInputType.number,
         textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           hintText: 'Enter Mobile Number',
-
           hintStyle: const TextStyle(color: Colors.grey),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.grey)
-          ),
+              borderSide: BorderSide(color: Colors.grey)),
         ),
-
         onChanged: (value) {},
       ),
     );
   }
 }
-

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/gap.dart';
-import 'package:furniture/practice/product_listing_lv_builder.dart';
+import 'package:furniture/practice/home_screen.dart';
 import '../core/services/shared_prefernce_services.dart';
 
 class Welcome2Screen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
               right: 0,
               // left: 147,
               // alignment: Alignment.centerRight,
-              child: Image.asset('assets/images/chair.png'),
+              child: Image.asset(AppImages.imgChair),
             ),
             const Positioned(
                 top: 79,
@@ -59,7 +60,7 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
                     icon: const Icon(
                       Icons.arrow_circle_right,
                       size: 50,
-                      color: Color(0xff95622D),
+                      color: AppColors.kPrimaryColor,
                     ),
                     // Icons.arrow_circle_right,
                     // size: 50,color: Color(0xff95622D),
@@ -69,7 +70,7 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const ProductListingLvBuilder()));
+                                  const HomeScreen()));
                     },
                   ),
                 ],

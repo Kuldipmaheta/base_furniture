@@ -1,7 +1,10 @@
-import 'package:furniture/practice/validation_screen.dart';
+
+
+import 'package:furniture/practice/search_empty_screen.dart';
 
 import 'core/constant/strings.dart';
 import 'design/profile_screen.dart';
+import 'design/profile_setup.dart';
 import 'export.dart';
 
 void main() {
@@ -30,10 +33,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const SplashScreen(),
-      initialRoute: AppRoutes.initialRoute,
+      initialRoute: AppRoutes.lastRoute,
       routes: {
-        AppRoutes.initialRoute: (context) => const ProfileScreen(),
-        AppRoutes.lastRoute:(context) => const ProfileScreen(),
+        AppRoutes.initialRoute: (context) => const SearchEmptyScreen(),
+        AppRoutes.lastRoute:(context) => const SignInScreen(),
         // '/second': (context) => const Welcome2Screen(),
 
       },

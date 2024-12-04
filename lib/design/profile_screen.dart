@@ -1,8 +1,9 @@
-import 'package:furniture/design/utils/custom_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
-
-import '../export.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -12,252 +13,25 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final _formKey = GlobalKey<FormState>();
-
-  String dropDownValue = 'Kuwait';
-  List<String> items = ['Kuwait', 'Australia', 'Canada'];
-  List<String> city = ['Kuwait', 'Australia', 'Canada','Egypt','North america'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      // appBar: AppBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24),
-          child: SingleChildScrollView(
-            child: Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Gap.gapH60,
-                  Text(
-                    'Setup Profile',
-                    style: CustomUiText.size28,
-                  ),
-                  Gap.gapH12,
-                  Text(
-                    "Complete your profile to access all \nthe feature",
-                    style: CustomUiText.size16,
-                  ),
-                  Gap.gapH30,
-                  Text(
-                    'Full name',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(
-                    hintText: 'Enter Name',
-                  ),
-                  Gap.gapH24,
-                  Text(
-                    'Email',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(
-                    hintText: 'Enter Email',
-                  ),
-                  Gap.gapH24,
-                  Text(
-                    'Mobile Number',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  Row(
-                    children: [
-                      Container(
-                          height: 44,
-                          width: 85,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey, width: 1)),
-                          child: Center(
-                            child: Text(
-                              '+965',
-                              style: CustomUiText.size16,
-                            ),
-                          )),
-                      Gap.gapW8,
-                      Expanded(child: CustomMobileTextField()),
-                    ],
-                  ),
-                  Gap.gapH24,
-                  Text(
-                    'Governate',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  SizedBox(
-                    height: 44,
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        contentPadding:  EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.grey)),
-                      ),
-                      value: dropDownValue,
-                      isExpanded: true,
-                      items: items.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropDownValue = newValue!;
-                        });
-                      },
-                    ),
-                  ),
-                  Gap.gapH24,
-                  Text(
-                    'City',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  SizedBox(height: 44,
-                    child: DropdownButtonFormField<String>(
-                      hint: Text('Choose City'),
-                      decoration: InputDecoration(
-                        contentPadding:  EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.grey)),
-                      ),
-                      // value: dropDownValue,
-                      isExpanded: true,
-                      items: city.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items),
-                        );
-                      }).toList(),
-                      onChanged: (String? value) {
-
-                      },
-                    ),
-                  ),
-                  Gap.gapH24,
-                  Text(
-                    'Area',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(hintText: 'Enter Area'),
-                  Gap.gapH24,
-                  Text(
-                    'Street No',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(hintText: 'Enter Street no'),
-                  Gap.gapH24,
-                  Text(
-                    'Avenue(Optional)',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(hintText: 'Enter Avenue'),
-                  Gap.gapH24,
-                  Text(
-                    'Building No',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(hintText: 'Building no'),
-                  Gap.gapH24,
-                  Text(
-                    'Floor(Optional)',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(hintText: 'Floor'),
-                  Gap.gapH24,
-                  Text(
-                    'Flat',
-                    style: CustomUiText.size14,
-                  ),
-                  Gap.gapH6,
-                  CustomTextField(hintText: 'Flat'),
-                  Gap.gapH30,
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: 52,
-                    child: ElevatedButton(onPressed: () {
-                      if(_formKey.currentState != null){
-                        print('object ${_formKey.currentState!.validate()}');
-                      }
-
-                    }, child: Text("Submit"),
-                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF95622D),
-                        textStyle: CustomUiText.size16,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        foregroundColor: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Gap.gapH30,
-                ],
-              ),
-            ),
-          ),
+      appBar: AppBar(
+        title: Text(
+          StringConst.profile,
+          style: CustomUiText.size16,
         ),
       ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  bool _validate = false;
-  TextEditingController _nameController= TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-
-  String hintText;
-
-  // final controller;
-  CustomTextField({super.key, required this.hintText,});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      // margin: const EdgeInsets.only(left: 24, right: 24),
-      height: 44,
-      width: MediaQuery.of(context).size.width,
-      child: TextFormField(
-        controller: _nameController,
-        // key: _formKey,
-        // validator: (value) => value!.isEmpty? "Please enter name" : null,
-        textAlignVertical: TextAlignVertical.bottom,
-        decoration: InputDecoration(
-          contentPadding:
-          EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          // errorText: _validate ? "Value not empty" : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+      body: Column(
+        children: [
+          Container(
+            height: 120,
+            color: AppColors.kPrimaryColor,
           ),
-          hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: Colors.grey)),
-        ),
-        /*onChanged: (value) {
+          Gap.gapH24,
+          // ListTile(leading: SvgPicture.asset('bytesLoader'),)
 
-        },*/
+        ],
       ),
     );
   }

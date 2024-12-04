@@ -21,7 +21,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           //already assign back arrow
           // leading: const ImageIcon(AssetImage('assets/images/back_arrow.png')),
         ),
-
         body: ListView.separated(
           shrinkWrap: true,
           separatorBuilder: (context, index) {
@@ -35,7 +34,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           // Divider(),
           // Gap.gapH24,
           scrollDirection: Axis.vertical,
-          itemCount: 6,
+          itemCount: 3,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(left: 24.0,right: 24,),
@@ -52,7 +51,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     ],
                   ),
                   Gap.gapW16,
-                  Flexible(
+                  const Flexible(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

@@ -4,18 +4,18 @@ import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/design/utils/custom_button.dart';
 
+import '../core/constant/strings.dart';
 import '../design/favorites_screen.dart';
 import '../design/utils/gap.dart';
 
-class ProductListingLvBuilder extends StatefulWidget {
-  const ProductListingLvBuilder({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<ProductListingLvBuilder> createState() =>
-      _ProductListingLvBuilderState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _ProductListingLvBuilderState extends State<ProductListingLvBuilder> {
+class _HomeScreenState extends State<HomeScreen> {
   List products = [];
   int currentPageIndex = 0;
   @override
@@ -25,21 +25,21 @@ class _ProductListingLvBuilderState extends State<ProductListingLvBuilder> {
         forceMaterialTransparency: true,
         // surfaceTintColor: Colors.transparent,
         actions: [
+          // Image.asset('assets/icon/ic_search.png'),
           SvgPicture.asset(AppIcons.icSearch),
           Gap.gapW16,
           GestureDetector(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                     const FavoritesScreen())),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const FavoritesScreen())),
               child: SvgPicture.asset(
-            AppIcons.icWish,
-          )),
+                AppIcons.icWish,
+              )),
           Gap.gapW16,
           Padding(
             padding: const EdgeInsets.only(right: 24.0),
-            child: SvgPicture.asset('assets/images/ic_wishlist.svg'),
+            child: SvgPicture.asset(AppIcons.icNotification),
           ),
 
           // Icon(Icons.notifications_none),
@@ -65,7 +65,7 @@ class _ProductListingLvBuilderState extends State<ProductListingLvBuilder> {
                 Padding(
                   padding: EdgeInsets.only(left: 24.0, top: 16),
                   child: Text(
-                    'Categories',
+                    StringConst.getCategories,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -73,7 +73,7 @@ class _ProductListingLvBuilderState extends State<ProductListingLvBuilder> {
                 Padding(
                   padding: EdgeInsets.only(right: 24.0, top: 16),
                   child: Text(
-                    'View All',
+                    StringConst.getViewAll,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -144,7 +144,7 @@ class _ProductListingLvBuilderState extends State<ProductListingLvBuilder> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        // selectedItemColor: Color(0xff262A2B),
+          // selectedItemColor: Color(0xff262A2B),
           backgroundColor: const Color(0xff262A2B),
           onTap: (index) {
             setState(() {
@@ -163,18 +163,15 @@ class _ProductListingLvBuilderState extends State<ProductListingLvBuilder> {
                   AppIcons.icHome,
                 ),
                 label: 'Home',
-                backgroundColor: const Color(0xff262A2B)
-            ),
+                backgroundColor: const Color(0xff262A2B)),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(AppIcons.icCategory),
               label: "Category",
             ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(AppIcons.icCart),
-                label: 'Cart'),
+                icon: SvgPicture.asset(AppIcons.icCart), label: 'Cart'),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(AppIcons.icProfile),
-                label: 'Profile'),
+                icon: SvgPicture.asset(AppIcons.icProfile), label: 'Profile'),
           ]),
     );
   }

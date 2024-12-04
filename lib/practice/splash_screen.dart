@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/services/shared_prefernce_services.dart';
-import 'package:furniture/practice/product_listing_lv_builder.dart';
+import 'package:furniture/practice/home_screen.dart';
 import 'package:furniture/practice/welcome2_screen.dart';
 import 'package:furniture/practice/welcome_screen.dart';
 
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  value ? const Welcome2Screen() : const ProductListingLvBuilder()));
+                  value ? const Welcome2Screen() : const HomeScreen()));
     });
   }
 }

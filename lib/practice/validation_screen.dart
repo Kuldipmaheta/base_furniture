@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture/design/profile_screen.dart';
+import 'package:furniture/design/profile_setup.dart';
 
 class ValidationScreen extends StatefulWidget {
   const ValidationScreen({super.key});

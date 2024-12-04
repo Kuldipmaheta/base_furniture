@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/services/shared_prefernce_services.dart';
-import 'package:furniture/practice/product_listing_lv_builder.dart';
+import 'package:furniture/practice/home_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -32,7 +32,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProductListingLvBuilder()));
+                            builder: (context) => HomeScreen()));
                   },
                   child: Text("Continue"))
             ],
