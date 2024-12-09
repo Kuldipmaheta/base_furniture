@@ -10,18 +10,20 @@ class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
     required this.onpress,
+    required this.text,
   });
   VoidCallback? onpress;
+  String text;
   // Color hexColor;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 24),
+      margin: EdgeInsets.only(right: 24,left: 24),
       width: 382,
       height: 52,
       child: ElevatedButton(
         onPressed: () {},
-        child: Text("Continue as Guest"),
+        child: Text(text),
         style: ElevatedButton.styleFrom(
           textStyle: CustomUiText.size16,
           shape: RoundedRectangleBorder(

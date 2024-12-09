@@ -12,21 +12,38 @@ class SearchEmptyScreen extends StatefulWidget {
 }
 
 class _SearchEmptyScreenState extends State<SearchEmptyScreen> {
+
+  List<String> data = [
+    'Apple',
+    'Banana',
+    'Cherry',
+    'Chair',
+    'Elderberry',
+    'Fig',
+    'Grapes',
+    'Honeydew',
+    'Kiwi',
+    'Lemon',
+  ];
+  List<String> searchResults = [];
+
+  /*void onQueryChanged(String query) {
+    setState(() {
+      searchResults = data
+          .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }*/
   bool search = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Expanded(child: TextField(
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                )
-              ),
-            )),
-          ],
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+
+          ),
         ),
         leading: GestureDetector(
           onTap: () {
@@ -55,7 +72,7 @@ class _SearchEmptyScreenState extends State<SearchEmptyScreen> {
               style: CustomUiText.size28,
             ),
             Gap.gapH8,
-            Text(StringConst.findSearchMsg, style: CustomUiText.size16),
+            Text(AppLabels.findSearchMsg, style: CustomUiText.size16),
             // Center(child: SvgPicture.asset('assets/images/search.svg',height: 100,width: 100,))
           ],
         ),
@@ -63,3 +80,4 @@ class _SearchEmptyScreenState extends State<SearchEmptyScreen> {
     );
   }
 }
+

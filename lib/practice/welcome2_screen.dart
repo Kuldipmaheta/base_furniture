@@ -33,7 +33,7 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
                 left: 24,
                 // margin: const EdgeInsets.only(top: 80, left: 24),
                 child: Text(
-                  StringConst.welcomeMessage1,
+                  AppLabels.welcomeMessage1,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 )),
             const Positioned(
@@ -41,7 +41,7 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
                 bottom: 160,
                 // alignment: AlignmentDirectional.bottomStart,
                 child: Text(
-                  StringConst.welcomeMessage2,
+                  AppLabels.welcomeMessage2,
                   style: TextStyle(fontSize: 18),
                 )),
             Positioned(
@@ -51,7 +51,7 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
               child: Row(
                 children: [
                   const Text(
-                    StringConst.getStarted,
+                    AppLabels.getStarted,
                     style:
                         TextStyle(fontSize: 18, color: AppColors.kPrimaryColor),
                   ),

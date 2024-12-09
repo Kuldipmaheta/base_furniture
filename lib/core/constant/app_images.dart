@@ -14,9 +14,29 @@ class AppIcons {
   static const icWish = '$iconPath/ic_wishlist.svg';
   static const icNotification = '$iconPath/ic_notification.svg';
   static const icChair = '$iconPath/ic_chair.svg';
-  static const icAboutUs = '$iconPath/ic_about_us.svg';
-  static const icAddress = '$iconPath/ic_address.svg';
+
+  // profile item icon
+  static const icEditPen = '$iconPath/ic_edit.svg';
   static const icShoppingBag = '$iconPath/ic_shopping_bag.svg';
+  static const icAddress = '$iconPath/ic_address.svg';
+  static const icRefund = '$iconPath/ic_refund.svg';
+  static const icReviews = '$iconPath/ic_review.svg';
+  static const icLanguage = '$iconPath/ic_language.svg';
+  static const icAboutUs = '$iconPath/ic_about_us.svg';
+  static const icTerms = '$iconPath/ic_terms.svg';
+  static const icReturnPolicy = '$iconPath/ic_return_policy.svg';
+  static const icShipping = '$iconPath/ic_shipping.svg';
+  static const icFaq = '$iconPath/ic_faq.svg';
+  static const icContact = '$iconPath/ic_contact.svg';
+
+  // my orders icons
+  static const icFilter = '$iconPath/ic_filter.svg';
+  static const icOrders= '$iconPath/orders_icon.svg';
+  static const icSortBy= '$iconPath/ic_sortby.svg';
+
+  //
+
+
 
 
 }

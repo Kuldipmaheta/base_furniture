@@ -94,14 +94,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         IntrinsicHeight(
                           child: Row(
                             children: [
-                              Text(
-                                'Add to Cart',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline,
-                                    color: Color(0xFF95622D)),
-                              ),
+                                Text(
+                                  'Add to Cart',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.underline,
+                                      color: Color(0xFF95622D)),
+                                ),
                               SizedBox(
                                 width: 14,
                               ),

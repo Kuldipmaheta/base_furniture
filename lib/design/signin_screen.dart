@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
+
+import '../core/constant/app_colors.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -35,7 +36,7 @@ class _SignInScreenState extends State<SignInScreen> {
               Text("Unlock your dream space with a few taps",
                   style: CustomUiText.size16),
               Gap.gapH40,
-              Text('Mobile Number'),
+              const Text('Mobile Number'),
               Gap.gapH6,
               Row(
                 children: [
@@ -54,7 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   Gap.gapW8,
                   Expanded(
                       child: Container(
-                    margin: EdgeInsets.only(right: 24),
+                    margin: const EdgeInsets.only(right: 24),
                     height: 44,
                     width: 85,
                     child: TextFormField(
@@ -64,15 +65,15 @@ class _SignInScreenState extends State<SignInScreen> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        hintText: 'Enter mobile nomber',
+                        hintText: 'Enter mobile number',
                         hintStyle: const TextStyle(color: Colors.grey),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.grey)),
+                            borderSide: const BorderSide(color: Colors.grey)),
                       ),
                       /*validator: (value){
                         if (value == null || value.isEmpty) {
-                          return 'mobile nomber length at least 10';
+                          return 'mobile number length at least 10';
                         }
                         return null;
                       },*/
@@ -85,7 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               Gap.gapH30,
               Container(
-                margin: EdgeInsets.only(right: 24),
+                margin: const EdgeInsets.only(right: 24),
                 width: MediaQuery.of(context).size.width,
                 height: 52,
                 child: ElevatedButton(
@@ -95,30 +96,30 @@ class _SignInScreenState extends State<SignInScreen> {
                           const SnackBar(content: Text('Enter Valid Number')));
                     }
                   },
-                  child: Text("Continue"),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF95622D),
+                    backgroundColor: const Color(0xFF95622D),
                     textStyle: CustomUiText.size16,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     foregroundColor: Colors.white,
                   ),
+                  child: const Text("Continue"),
                 ),
               ),
               Gap.gapH24,
               Container(
-                margin: EdgeInsets.only(right: 24),
+                margin: const EdgeInsets.only(right: 24),
                 width: MediaQuery.of(context).size.width,
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: Text("Continue as Guest"),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Color(0xFF95622D)),
+                        side: const BorderSide(color: Color(0xFF95622D)),
                         borderRadius: BorderRadius.circular(10)),
-                    foregroundColor: Color(0xFF95622D),
+                    foregroundColor: const Color(0xFF95622D),
                   ),
+                  child: const Text("Continue as Guest"),
                 ),
               ),
               /* Stack(
@@ -131,15 +132,44 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),*/
               Center(
-                child: RichText(
-                    text: TextSpan(
-                      children: [TextSpan(
-                        text: "hello"
-                      )],
-                        text:
-                            "By continuing, I agree to the Terms of Use & \nPrivacy Policy")),
+                child: Text.rich(
+                  textAlign: TextAlign.center,
+                  TextSpan(
+                    text: 'By continuing, I agree to the ',
+                    style: CustomUiText.size16,
+                    children: [
+                      TextSpan(
+                        children: const [
+                          TextSpan(
+                            text: 'Terms of use',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.kPrimaryColor,
+                                decoration: TextDecoration.underline,
+                                decorationColor: AppColors.kPrimaryColor
+                            )
+                          ),
+                          TextSpan(
+                            text: ' &\n'
+                          ),
+                          TextSpan(
+                            text: 'Privacy Policy',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.kPrimaryColor,
+                                decoration: TextDecoration.underline,
+                                decorationColor: AppColors.kPrimaryColor
+                            )
+                          )
+                        ]
+                      )
+                    ],
+
+                    // text: "By continuing, I agree to the ",
+                  ),
+                ),
               )
-              // CustomDarkButton(onpress: () {})
+
             ],
           ),
         ),

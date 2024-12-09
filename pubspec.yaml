@@ -38,6 +38,7 @@ dependencies:
   carousel_slider: ^5.0.0
   shared_preferences: ^2.3.3
   flutter_svg: ^2.0.16
+  get: ^4.6.6
 #  connectivity_plus: ^6.1.0
 #  internet_availability: ^0.0.5
 

@@ -27,7 +27,6 @@ class _ProfileSetupState extends State<ProfileSetup> {
           padding: const EdgeInsets.only(left: 24.0, right: 24),
           child: SingleChildScrollView(
             child: Form(
-
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
