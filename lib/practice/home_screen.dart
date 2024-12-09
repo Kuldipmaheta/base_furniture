@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
+import 'package:furniture/design/profile_screen.dart';
 import 'package:furniture/design/utils/custom_button.dart';
+import 'package:furniture/features/dashboard/category/screens/category_screen.dart';
 
 import '../core/constant/strings.dart';
 import '../design/favorites_screen.dart';
@@ -16,8 +18,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List products = [];
-  int currentPageIndex = 0;
+  // List products = [];
+  int selectIndex = 0;
+  List name = [HomeScreen(), CategoryScreen(), ProfileScreen()];
+
+  void onItemTapped(int index) {
+    setState(() {
+      selectIndex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: EdgeInsets.only(left: 24.0, top: 16),
                   child: Text(
-                    StringConst.getCategories,
+                    AppLabels.getCategories,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -73,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: EdgeInsets.only(right: 24.0, top: 16),
                   child: Text(
-                    StringConst.getViewAll,
+                    AppLabels.getViewAll,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -148,10 +157,10 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: const Color(0xff262A2B),
           onTap: (index) {
             setState(() {
-              currentPageIndex = index;
+              selectIndex = index;
             });
           },
-          currentIndex: currentPageIndex,
+          currentIndex: selectIndex,
           showSelectedLabels: true,
           showUnselectedLabels: true,
           // backgroundColor: Colors.blue,
