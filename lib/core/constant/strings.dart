@@ -32,6 +32,14 @@ class AppLabels {
   static const ratingLtoH = 'Price: Low to High';
   static const ratingHtoL = 'Price: High to Low';
 
+  // filter
+  static const priceRange = 'Price Range';
+  static const discount = 'Discount';
+  static const vendor = 'Vendor';
+  static const reset = 'Reset';
+  static const close = 'Close';
+  static const apply = 'Apply';
+
   //category
   static const String category = 'Category';
   static const String chair = "Chair";

@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.3.3
   flutter_svg: ^2.0.16
   get: ^4.6.6
+  signature: ^5.5.0
 #  connectivity_plus: ^6.1.0
 #  internet_availability: ^0.0.5
 
