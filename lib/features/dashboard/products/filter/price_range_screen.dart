@@ -16,35 +16,33 @@ class _PriceRangeScreenState extends State<PriceRangeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kWhiteColor,
-      body: Expanded(
-        child: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 24.0, top: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 15.0),
-                  child: Text(
-                    'KWD 0-KWD 2000',
-                    style: TextStyle(fontSize: 16),
-                  ),
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0, top: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 15.0),
+                child: Text(
+                  'KWD 0-KWD 2000',
+                  style: TextStyle(fontSize: 16),
                 ),
-                RangeSlider(
-                    activeColor: AppColors.kPrimaryColor,
-                    min: 0,
-                    max: 50,
-                    values: RangeValues(startValue, endValue),
-                    onChanged: (values) {
-                      setState(() {
-                        startValue = values.start;
-                        endValue = values.end;
-                      });
-                    })
-              ],
-            ),
+              ),
+              RangeSlider(
+                  activeColor: AppColors.kPrimaryColor,
+                  min: 0,
+                  max: 50,
+                  values: RangeValues(startValue, endValue),
+                  onChanged: (values) {
+                    setState(() {
+                      startValue = values.start;
+                      endValue = values.end;
+                    });
+                  })
+            ],
           ),
         ),
       ),

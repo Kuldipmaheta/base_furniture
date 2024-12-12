@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/gap.dart';
 
 class CategoryCheckScreen extends StatefulWidget {
   const CategoryCheckScreen({super.key});
@@ -16,12 +18,42 @@ class _CategoryCheckScreenState extends State<CategoryCheckScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Expanded(
+      backgroundColor: AppColors.kWhiteColor,
+      body: Container(
+        margin: EdgeInsets.only(left: 24, top: 24),
         child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
-            itemCount: data.length,
+            itemCount: 6,
             itemBuilder: (context, index) {
-              return CheckboxListTile(
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Row(
+                  children: [
+                    Checkbox(
+                        visualDensity: const VisualDensity(
+                            horizontal: VisualDensity.minimumDensity, vertical: VisualDensity.minimumDensity),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        activeColor: AppColors.kPrimaryColor,
+                        value: selectedIndices.contains(index),
+                        onChanged: (values) {
+                          setState(() {
+                            if (values!) {
+                              selectedIndices.add(index);
+                            } else {
+                              selectedIndices.remove(index);
+                            }
+                          });
+                        }),
+                    Gap.gapW6,
+                    Text(
+                      data[index],
+                      style: CustomUiText.size16,
+                    ),
+                  ],
+                ),
+              );
+              //listTile checkbox
+              /*CheckboxListTile(
                   activeColor: AppColors.kPrimaryColor,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 10,
@@ -38,7 +70,7 @@ class _CategoryCheckScreenState extends State<CategoryCheckScreen> {
                       }
                     });
                   },
-                  title: Text(data[index]));
+                  title: Text(data[index]));*/
             }),
       ),
     );

@@ -9,16 +9,16 @@ import 'colors_sources.dart';
 class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
-    required this.onpress,
+    required this.onPress,
     required this.text,
   });
-  VoidCallback? onpress;
+  VoidCallback? onPress;
   String text;
   // Color hexColor;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 24,left: 24),
+      margin: EdgeInsets.only(right: 24, left: 24),
       width: 382,
       height: 52,
       child: ElevatedButton(
@@ -27,8 +27,7 @@ class CustomButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           textStyle: CustomUiText.size16,
           shape: RoundedRectangleBorder(
-              side: BorderSide(color: ColorsSources.primaryColor),
-              borderRadius: BorderRadius.circular(10)),
+              side: BorderSide(color: ColorsSources.primaryColor), borderRadius: BorderRadius.circular(10)),
           foregroundColor: ColorsSources.primaryColor,
         ),
       ),
@@ -52,8 +51,7 @@ class CustomDarkButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           textStyle: CustomUiText.size16,
           backgroundColor: ColorsSources.primaryColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           foregroundColor: Colors.white,
         ),
       ),
@@ -124,8 +122,7 @@ class CustomProducts extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.grey.shade200),
+                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.shade200),
                 child: SvgPicture.asset(
                   AppIcons.icChair,
                   height: 30,
@@ -155,15 +152,14 @@ class CustomMobileTextField extends StatelessWidget {
         keyboardType: TextInputType.number,
         textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 16),
+          contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           hintText: 'Enter Mobile Number',
           hintStyle: const TextStyle(color: Colors.grey),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.grey)),
+          focusedBorder:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.grey)),
         ),
         onChanged: (value) {},
       ),

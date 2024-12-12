@@ -28,12 +28,16 @@ class CustomText extends StatelessWidget {
   }
 }
 
-class CustomUiText{
+class CustomUiText {
   static TextStyle size28 = TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
   static TextStyle size16 = TextStyle(fontSize: 16);
   static TextStyle size14 = TextStyle(fontSize: 14);
-  static TextStyle semiSize16 = TextStyle(fontSize: 16,fontWeight: FontWeight.bold);
-  static TextStyle semiSize18 = TextStyle(fontSize: 18,fontWeight: FontWeight.bold,);
+  static TextStyle semiSize14 = TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
+  static TextStyle semiSize16 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static TextStyle semiSize18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
 }
 
 class CustomText2 extends StatelessWidget {
@@ -42,13 +46,7 @@ class CustomText2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Categories',
-      style: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
 }
-
-
-
-
-

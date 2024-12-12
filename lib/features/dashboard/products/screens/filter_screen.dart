@@ -4,6 +4,7 @@ import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/features/dashboard/products/filter/category_check_screen.dart';
 import '../../../../design/utils/gap.dart';
+import '../filter/discount_check_screen.dart';
 import '../filter/price_range_screen.dart';
 
 class FilterScreen extends StatefulWidget {
@@ -16,10 +17,10 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen> {
   List filterName = ['Price Range', ''];
   List<Widget> list = <Widget>[
-    Center(child: PriceRangeScreen()),
-    Center(child: CategoryCheckScreen()),
-    Center(child: Text('Page 3')),
-    Center(child: Text('Page 4')),
+    const PriceRangeScreen(),
+    const CategoryCheckScreen(),
+    const DiscountCheckScreen(),
+    const CategoryCheckScreen(),
   ];
   int current = 0;
 
@@ -31,115 +32,176 @@ class _FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.kWhiteColor,
-      appBar: AppBar(
-        bottom: PreferredSize(
-            preferredSize: Size.fromHeight(1),
-            child: Divider(
-              thickness: 1,
-              // color: Colors.black,
-              height: 1,
-            )),
+    return Theme(
+      //bottom line disable
+      data: Theme.of(context).copyWith(dividerTheme: const DividerThemeData(color: Colors.transparent)),
+      child: Scaffold(
         backgroundColor: AppColors.kWhiteColor,
-        title: Text(
-          AppLabels.filter,
-          style: CustomUiText.semiSize16,
+        appBar: AppBar(
+          forceMaterialTransparency: true,
+          backgroundColor: AppColors.kWhiteColor,
+          bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(1),
+              child: Divider(
+                color: AppColors.kGrey100,
+                thickness: 1,
+                // color: Colors.black,
+                height: 1,
+              )),
+          // appbar bottom line
+          title: Text(
+            AppLabels.filter,
+            style: CustomUiText.semiSize16,
+          ),
+          actions: [
+            const Text(
+              AppLabels.reset,
+              style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.kPrimaryColor,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColors.kPrimaryColor),
+            ),
+            Gap.gapW24,
+          ],
         ),
-        actions: [
-          Text(AppLabels.reset),
-          Gap.gapW24,
-        ],
-      ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
+        body: SafeArea(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Container(
-                  // margin: EdgeInsets.only(left: 24),
-                  color: AppColors.kGrey100,
-                  width: MediaQuery.of(context).size.width / 3,
-                  // height: MediaQuery.of(context).size.height,
-                  child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        color: index == selectedIndex ? AppColors.kWhiteColor : AppColors.kGrey100,
-                        child: ListTile(
-                          // tileColor: index == 3 ? Colors.blue : Colors.red,
-                          selected: index == selectedIndex,
-                          selectedColor: AppColors.kPrimaryColor,
-                          textColor: AppColors.kBlack400,
-                          onTap: () {
-                            setState(() {
-                              print('price.. $selectedIndex');
-                              selectedIndex = index;
-                              controller.jumpToPage(index);
-                            });
-                          },
-                          title: const Text(AppLabels.priceRange
-                              // + index.toString(),
-                              // selectionColor: Colors.white,
-                              ),
-                          // subtitle: Text('data'),
-                        ),
-                      );
-                    },
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      // margin: EdgeInsets.only(left: 24),
+                      color: AppColors.kGrey100,
+                      width: MediaQuery.of(context).size.width / 3,
+                      // height: MediaQuery.of(context).size.height,
+                      child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            color: index == selectedIndex ? AppColors.kWhiteColor : AppColors.kGrey100,
+                            child: ListTile(
+                              // tileColor: index == 3 ? Colors.blue : Colors.red,
+                              selected: index == selectedIndex,
+                              selectedColor: AppColors.kPrimaryColor,
+                              textColor: AppColors.kBlack400,
+                              onTap: () {
+                                setState(() {
+                                  print('price.. $selectedIndex');
+                                  selectedIndex = index;
+                                  controller.jumpToPage(index);
+                                });
+                              },
+                              title: const Text(AppLabels.priceRange
+                                  // + index.toString(),
+                                  // selectionColor: Colors.white,
+                                  ),
+                              // subtitle: Text('data'),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              /*Expanded(
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 24.0, top: 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('KWD 0-KWD 2000'),
+                        Container(
+                          // color: Colors.red,
+                          child: RangeSlider(
+                              activeColor: AppColors.kPrimaryColor,
+                              min: 0,
+                              max: 50,
+                              values: RangeValues(startValue, endValue),
+                              onChanged: (values) {
+                                setState(() {
+                                  startValue = values.start;
+                                  endValue = values.end;
+                                });
+                              }),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
+              ),*/
+              Expanded(
+                  child: PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                // reverse: true,
+                controller: controller,
+                children: list,
+                onPageChanged: (index) {
+                  print("object $index");
+                  current = index;
+                  setState(() {
+                    selectedIndex = index;
+                    controller.jumpToPage(index);
+                  });
+                },
+              )),
             ],
           ),
-          /*Expanded(
-            child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24.0, top: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('KWD 0-KWD 2000'),
-                    Container(
-                      // color: Colors.red,
-                      child: RangeSlider(
-                          activeColor: AppColors.kPrimaryColor,
-                          min: 0,
-                          max: 50,
-                          values: RangeValues(startValue, endValue),
-                          onChanged: (values) {
-                            setState(() {
-                              startValue = values.start;
-                              endValue = values.end;
-                            });
-                          }),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),*/
-          Expanded(
-              child: PageView(
-            physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            // reverse: true,
-            controller: controller,
-            children: list,
-            onPageChanged: (index) {
-              print("object $index");
-              current = index;
-              setState(() {
-                selectedIndex = index;
-                controller.jumpToPage(index);
-              });
-            },
-          )),
+        ),
+        persistentFooterButtons: [
+          Container(margin: const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24), child: CustomButton())
         ],
       ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            child: SizedBox(
+                height: 52,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.kWhiteColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.kPrimaryColor)),
+                        foregroundColor: AppColors.kPrimaryColor),
+                    onPressed: () {},
+                    child: Text(
+                      'Close',
+                      style: CustomUiText.size16,
+                    )))),
+        Gap.gapW20,
+        Expanded(
+            child: Container(
+          height: 52,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.kPrimaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.kPrimaryColor)),
+                  foregroundColor: AppColors.kWhiteColor),
+              onPressed: () {},
+              child: Text(
+                'Apply',
+                style: CustomUiText.size16,
+              )),
+        ))
+      ],
     );
   }
 }
