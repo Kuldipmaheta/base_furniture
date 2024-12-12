@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/strings.dart';
-
 import 'package:furniture/design/utils/custom_text.dart';
-
+import 'package:furniture/features/dashboard/products/filter/category_check_screen.dart';
 import '../../../../design/utils/gap.dart';
+import '../filter/price_range_screen.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -14,12 +14,10 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
+  List filterName = ['Price Range', ''];
   List<Widget> list = <Widget>[
-    // Center(child: FavoritesScreen()),
-    // Center(child: ProductListScreen()),
-    // Center(child: MyOrdersScreen()),
-    Center(child: Text('Page 1')),
-    Center(child: Text('Page 2')),
+    Center(child: PriceRangeScreen()),
+    Center(child: CategoryCheckScreen()),
     Center(child: Text('Page 3')),
     Center(child: Text('Page 4')),
   ];
@@ -36,6 +34,14 @@ class _FilterScreenState extends State<FilterScreen> {
     return Scaffold(
       backgroundColor: AppColors.kWhiteColor,
       appBar: AppBar(
+        bottom: PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              thickness: 1,
+              // color: Colors.black,
+              height: 1,
+            )),
+        backgroundColor: AppColors.kWhiteColor,
         title: Text(
           AppLabels.filter,
           style: CustomUiText.semiSize16,
@@ -57,6 +63,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   width: MediaQuery.of(context).size.width / 3,
                   // height: MediaQuery.of(context).size.height,
                   child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 4,
                     itemBuilder: (context, index) {
                       return Container(
@@ -117,6 +124,8 @@ class _FilterScreenState extends State<FilterScreen> {
           ),*/
           Expanded(
               child: PageView(
+            physics: NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
             // reverse: true,
             controller: controller,
             children: list,

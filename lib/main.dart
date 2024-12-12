@@ -9,6 +9,9 @@ import 'design/profile_screen.dart';
 import 'design/profile_setup.dart';
 import 'export.dart';
 import 'features/dashboard/category/screens/category_screen.dart';
+import 'features/dashboard/products/filter/category_check_screen.dart';
+import 'features/dashboard/products/filter/discount_check_screen.dart';
+import 'features/dashboard/products/filter/price_range_screen.dart';
 import 'features/dashboard/products/screens/filter_screen.dart';
 
 void main() {
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.initialRoute,
       routes: {
         AppRoutes.initialRoute: (context) => const FilterScreen(),
-        AppRoutes.lastRoute: (context) => const ShoppingPage(),
+        AppRoutes.lastRoute: (context) => const DiscountCheckScreen(),
         AppRoutes.productListScreen: (context) => const ProductListScreen(),
         // '/second': (context) => const Welcome2Screen(),
       },
