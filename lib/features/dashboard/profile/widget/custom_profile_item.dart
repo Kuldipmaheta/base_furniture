@@ -4,7 +4,7 @@ import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/gap.dart';
 
-import '../../export.dart';
+import '../../../../export.dart';
 
 class CustomProfileItem extends StatelessWidget {
   String title;

@@ -9,5 +9,7 @@ class AppColors {
   static const Color kWhiteColor = Color(0xFFFFFFFF);
   static const Color kGrey100 = Color(0xFFD8D8D8);
   static const Color kGrey200 = Color(0xFF7A8183);
+  static const Color kGrey300 = Color(0xFF262A2B);
   static const Color kBlack400 = Color(0xFF0F1313);
+  static const Color kGreen = Color(0xff39A31E);
 }

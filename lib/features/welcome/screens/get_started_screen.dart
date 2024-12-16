@@ -3,17 +3,19 @@ import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/gap.dart';
-import 'package:furniture/practice/home_screen.dart';
-import '../core/services/shared_prefernce_services.dart';
+import 'package:furniture/features/dashboard/home/screens/home_screen.dart';
+import 'package:get/get.dart';
+import '../../../core/routes/app_routes.dart';
+import '../../../core/services/shared_prefernce_services.dart';
 
-class Welcome2Screen extends StatefulWidget {
-  const Welcome2Screen({super.key});
+class GetStartedScreen extends StatefulWidget {
+  const GetStartedScreen({super.key});
 
   @override
-  State<Welcome2Screen> createState() => _Welcome2ScreenState();
+  State<GetStartedScreen> createState() => _GetStartedScreenState();
 }
 
-class _Welcome2ScreenState extends State<Welcome2Screen> {
+class _GetStartedScreenState extends State<GetStartedScreen> {
   bool isLoading = true;
   @override
   Widget build(BuildContext context) {
@@ -52,8 +54,7 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
                 children: [
                   const Text(
                     AppLabels.getStarted,
-                    style:
-                        TextStyle(fontSize: 18, color: AppColors.kPrimaryColor),
+                    style: TextStyle(fontSize: 18, color: AppColors.kPrimaryColor),
                   ),
                   Gap.gapW10,
                   IconButton(
@@ -66,11 +67,9 @@ class _Welcome2ScreenState extends State<Welcome2Screen> {
                     // size: 50,color: Color(0xff95622D),
                     onPressed: () {
                       saveBool(value: false);
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const HomeScreen()));
+                      Get.offAllNamed(AppRoutes.homeScreen);
+                      // Get.to(() => HomeScreen());
+                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                     },
                   ),
                 ],

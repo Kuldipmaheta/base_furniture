@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture/design/profile_setup.dart';
+import 'package:furniture/practice/profile_setup.dart';
 
 class ValidationScreen extends StatefulWidget {
   const ValidationScreen({super.key});
@@ -24,14 +24,10 @@ class _ValidationScreenState extends State<ValidationScreen> {
           ),
           ElevatedButton(
               onPressed: () {
-               if(_formKey.currentState!.validate()) {
-                 _emailController.text.toString();
-                 // _text.text.isEmpty ? _validate = true : _validate = false;
-               }
-
-
-
-
+                if (_formKey.currentState!.validate()) {
+                  _emailController.text.toString();
+                  // _text.text.isEmpty ? _validate = true : _validate = false;
+                }
               },
               child: Text("Submit")),
         ],

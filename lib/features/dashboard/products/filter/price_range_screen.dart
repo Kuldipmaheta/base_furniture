@@ -20,12 +20,12 @@ class _PriceRangeScreenState extends State<PriceRangeScreen> {
         physics: const AlwaysScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Padding(
-          padding: const EdgeInsets.only(left: 20.0, top: 24),
+          padding: const EdgeInsets.only(left: 10.0, top: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.only(left: 15.0),
+                padding: EdgeInsets.only(left: 15),
                 child: Text(
                   'KWD 0-KWD 2000',
                   style: TextStyle(fontSize: 16),

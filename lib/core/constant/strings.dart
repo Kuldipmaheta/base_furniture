@@ -1,6 +1,12 @@
+import 'package:get/get_navigation/src/routes/get_route.dart';
+
+import '../../features/dashboard/home/screens/home_screen.dart';
+import '../../features/welcome/screens/splash_screen.dart';
+
 class AppLabels {
-  static const welcomeMessage1 = 'Design Your \nDream Space ' ;
-  static const welcomeMessage2 = "Do Effortless shopping just \nbrowse, select, and purchase \nwithin seconds—it's simple! " ;
+  static const welcomeMessage1 = 'Design Your \nDream Space ';
+  static const welcomeMessage2 =
+      "Do Effortless shopping just \nbrowse, select, and purchase \nwithin seconds—it's simple! ";
   static const getStarted = 'Get Started ';
   static const getCategories = 'Categories';
   static const getViewAll = "View All";
@@ -50,10 +56,21 @@ class AppLabels {
   static const String kitchen = "Kitchen";
   static const String dining = "Dining";
 
+  //cart
+  static const String cart = "Cart";
+  static const String home = "Home";
 }
 
-class AppRoutes {
- static const String initialRoute = "/";
- static const String lastRoute = "third";
- static const String productListScreen = "/productListScreen";
-}
+/*class AppRoutes {
+  static const String initialRoute = "/";
+  static const String splashScreen = "/splashScreen";
+  static const String lastRoute = "third";
+  static const String productListScreen = "/productListScreen";
+  static const String homeScreen = "/homeScreen";
+  static const String favoriteScreen = "/favoriteScreen";
+
+  static List<GetPage> getPages = [
+    GetPage(name: splashScreen, page: () => SplashScreen()),
+    GetPage(name: homeScreen, page: () => HomeScreen()),
+  ];
+}*/

@@ -4,7 +4,7 @@ import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_button.dart';
-import 'package:furniture/design/utils/custom_profile_item.dart';
+import 'package:furniture/features/dashboard/profile/widget/custom_profile_item.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
 

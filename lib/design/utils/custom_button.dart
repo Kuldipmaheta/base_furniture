@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
 
@@ -64,39 +65,38 @@ class CustomSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      // width: MediaQuery.of(context).size.width,
+    return Container(
+      // color: Colors.red,
+      height: 158,
+      width: MediaQuery.of(context).size.width,
       // width: 300,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 24.0, right: 24),
-        child: CarouselView(
-          itemExtent: 400,
-          // shrinkExtent: 200,
-          itemSnapping: true,
-          // backgroundColor: Colors.red,
-          scrollDirection: Axis.horizontal,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          children: [
-            Image.asset(
-              width: MediaQuery.of(context).size.width,
-              AppImages.imgCar,
-              fit: BoxFit.cover,
-            ),
-            Image.asset(
-              width: MediaQuery.of(context).size.width,
-              AppImages.imgCar,
-              fit: BoxFit.cover,
-            ),
-            Image.asset(
-              width: MediaQuery.of(context).size.width,
-              AppImages.imgCar,
-              fit: BoxFit.cover,
-            ),
-          ],
+      child: CarouselView(
+        padding: EdgeInsets.zero,
+        itemExtent: 400,
+        shrinkExtent: 0,
+        itemSnapping: true,
+        // backgroundColor: Colors.red,
+        scrollDirection: Axis.horizontal,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
         ),
+        children: [
+          Image.asset(
+            width: MediaQuery.of(context).size.width,
+            AppImages.imgCar,
+            fit: BoxFit.cover,
+          ),
+          Image.asset(
+            width: MediaQuery.of(context).size.width,
+            AppImages.imgCar,
+            fit: BoxFit.cover,
+          ),
+          Image.asset(
+            width: MediaQuery.of(context).size.width,
+            AppImages.imgCar,
+            fit: BoxFit.cover,
+          ),
+        ],
       ),
     );
   }
@@ -116,13 +116,13 @@ class CustomProducts extends StatelessWidget {
         },
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: 200,
+        itemCount: 10,
         itemBuilder: (context, index) {
           return Column(
             children: [
               Container(
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.shade200),
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.kGrey100),
                 child: SvgPicture.asset(
                   AppIcons.icChair,
                   height: 30,
@@ -130,7 +130,7 @@ class CustomProducts extends StatelessWidget {
                 ),
               ),
               Gap.gapH8,
-              const Text('Sofa'),
+              const Text('Chair'),
             ],
           );
         },

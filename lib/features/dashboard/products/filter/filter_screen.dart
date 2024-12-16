@@ -3,9 +3,10 @@ import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/features/dashboard/products/filter/category_check_screen.dart';
+import 'package:furniture/practice/google_map_launcher.dart';
 import '../../../../design/utils/gap.dart';
-import '../filter/discount_check_screen.dart';
-import '../filter/price_range_screen.dart';
+import 'discount_check_screen.dart';
+import 'price_range_screen.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -38,6 +39,7 @@ class _FilterScreenState extends State<FilterScreen> {
       child: Scaffold(
         backgroundColor: AppColors.kWhiteColor,
         appBar: AppBar(
+          titleSpacing: 0,
           forceMaterialTransparency: true,
           backgroundColor: AppColors.kWhiteColor,
           bottom: const PreferredSize(
@@ -49,9 +51,12 @@ class _FilterScreenState extends State<FilterScreen> {
                 height: 1,
               )),
           // appbar bottom line
-          title: Text(
-            AppLabels.filter,
-            style: CustomUiText.semiSize16,
+          title: Padding(
+            padding: const EdgeInsets.only(left: 24.0),
+            child: Text(
+              AppLabels.filter,
+              style: CustomUiText.semiSize16,
+            ),
           ),
           actions: [
             const Text(
@@ -84,6 +89,8 @@ class _FilterScreenState extends State<FilterScreen> {
                           return Container(
                             color: index == selectedIndex ? AppColors.kWhiteColor : AppColors.kGrey100,
                             child: ListTile(
+                              // content default padding zero bz no leading item
+                              contentPadding: EdgeInsets.zero,
                               // tileColor: index == 3 ? Colors.blue : Colors.red,
                               selected: index == selectedIndex,
                               selectedColor: AppColors.kPrimaryColor,
@@ -95,10 +102,13 @@ class _FilterScreenState extends State<FilterScreen> {
                                   controller.jumpToPage(index);
                                 });
                               },
-                              title: const Text(AppLabels.priceRange
-                                  // + index.toString(),
-                                  // selectionColor: Colors.white,
-                                  ),
+                              title: Padding(
+                                padding: const EdgeInsets.only(left: 24.0),
+                                child: const Text(AppLabels.priceRange
+                                    // + index.toString(),
+                                    // selectionColor: Colors.white,
+                                    ),
+                              ),
                               // subtitle: Text('data'),
                             ),
                           );
@@ -195,7 +205,9 @@ class CustomButton extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.kPrimaryColor)),
                   foregroundColor: AppColors.kWhiteColor),
-              onPressed: () {},
+              onPressed: () {
+                // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const GoogleMapLauncher()));
+              },
               child: Text(
                 'Apply',
                 style: CustomUiText.size16,

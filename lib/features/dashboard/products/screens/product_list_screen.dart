@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
-import 'package:furniture/features/dashboard/products/screens/filter_screen.dart';
-import 'package:get/get.dart';
+import 'package:furniture/features/dashboard/products/filter/filter_screen.dart';
 import '../../../../core/constant/app_images.dart';
 import '../../../../design/utils/gap.dart';
 import '../../../../design/utils/widgets/custom_svg.dart';
-import '../../../../practice/home_screen.dart';
+import '../../home/screens/home_screen.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -32,34 +31,36 @@ class _ProductListScreenState extends State<ProductListScreen> {
               const CustomSvg(imgUrl: AppIcons.icWish),
               Gap.gapW24,
             ]),
-        body: SingleChildScrollView(
-          child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 20, right: 10),
-                        child: const Column(
-                          children: [ProductInfo()],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 20, right: 10),
+                          child: const Column(
+                            children: [ProductInfo()],
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10, right: 20),
-                        child: const Column(
-                          children: [ProductInfo()],
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 10, right: 20),
+                          child: const Column(
+                            children: [ProductInfo()],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              }),
+                    ],
+                  );
+                }),
+          ),
         ),
         persistentFooterButtons: [
           Container(

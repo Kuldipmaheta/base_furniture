@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/core/services/shared_prefernce_services.dart';
-import 'package:furniture/practice/home_screen.dart';
-import 'package:furniture/practice/welcome2_screen.dart';
-import 'package:furniture/practice/welcome_screen.dart';
+import 'package:get/get.dart';
+import 'package:furniture/features/dashboard/home/screens/home_screen.dart';
+import 'package:furniture/features/welcome/screens/get_started_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -37,10 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Center(
                 child: Text(
               'Athathi',
-              style: TextStyle(
-                  fontSize: 70,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+              style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold, color: Colors.white),
             ))
           ],
         ),
@@ -52,11 +50,9 @@ class _SplashScreenState extends State<SplashScreen> {
     bool value = await getBool();
     print(value);
     Future.delayed(const Duration(seconds: 4), () {
+      // Get.ofAllNamed(AppRoutes.splashScreen);
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  value ? const Welcome2Screen() : const HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => value ? const GetStartedScreen() : const HomeScreen()));
     });
   }
 }
