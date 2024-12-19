@@ -16,7 +16,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
 
   String dropDownValue = 'Kuwait';
   List<String> items = ['Kuwait', 'Australia', 'Canada'];
-  List<String> city = ['Kuwait', 'Australia', 'Canada','Egypt','North america'];
+  List<String> city = ['Kuwait', 'Australia', 'Canada', 'Egypt', 'North america'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,9 +80,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                             ),
                           )),
                       Gap.gapW8,
-                      Expanded(
-                          flex: 2,
-                          child: CustomMobileTextField()),
+                      const Expanded(flex: 2, child: CustomMobileTextField()),
                     ],
                   ),
                   Gap.gapH24,
@@ -95,14 +93,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
                     // height: 44,
                     child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
-                        contentPadding:  EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         hintStyle: const TextStyle(color: Colors.grey),
                         focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
                       ),
                       value: dropDownValue,
                       isExpanded: true,
@@ -128,16 +125,15 @@ class _ProfileSetupState extends State<ProfileSetup> {
                   SizedBox(
                     // height: 44,
                     child: DropdownButtonFormField<String>(
-                      hint: Text('Choose City'),
+                      hint: const Text('Choose City'),
                       decoration: InputDecoration(
-                        contentPadding:  EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         hintStyle: const TextStyle(color: Colors.grey),
                         focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
                       ),
                       // value: dropDownValue,
                       isExpanded: true,
@@ -147,9 +143,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                           child: Text(items),
                         );
                       }).toList(),
-                      onChanged: (String? value) {
-
-                      },
+                      onChanged: (String? value) {},
                     ),
                   ),
                   Gap.gapH24,
@@ -198,17 +192,19 @@ class _ProfileSetupState extends State<ProfileSetup> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: 52,
-                    child: ElevatedButton(onPressed: () {
-                      if(_formKey.currentState != null){
-                        print('object ${_formKey.currentState!.validate()}');
-                      }
-                    }, child: Text("Submit"),
-                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF95622D),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState != null) {
+                          debugPrint('object ${_formKey.currentState!.validate()}');
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF95622D),
                         textStyle: CustomUiText.size16,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         foregroundColor: Colors.white,
                       ),
+                      child: const Text("Submit"),
                     ),
                   ),
                   Gap.gapH30,
@@ -223,11 +219,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
 }
 
 class CustomTextField extends StatelessWidget {
-
-   TextEditingController nameController= TextEditingController();
+  TextEditingController nameController = TextEditingController();
   // TextEditingController _emailController = TextEditingController();
   String hintText;
-  CustomTextField({super.key, required this.hintText,});
+  CustomTextField({
+    super.key,
+    required this.hintText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -242,10 +240,10 @@ class CustomTextField extends StatelessWidget {
         // minLines: 1,
         controller: nameController,
         // key: _formKey,
-        validator: (value) => value!.isEmpty? "Please enter name" : null,
+        validator: (value) => value!.isEmpty ? "Please enter name" : null,
         // keyboardType: TextInputType.text,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 16),
+          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           // errorText: _validate ? "Value not empty" : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -253,10 +251,8 @@ class CustomTextField extends StatelessWidget {
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.grey),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: Colors.grey)),
+              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
         ),
-
       ),
     );
   }

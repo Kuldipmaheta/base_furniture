@@ -21,6 +21,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
       data: Theme.of(context).copyWith(dividerTheme: const DividerThemeData(color: Colors.transparent)),
       child: Scaffold(
         appBar: AppBar(
+            forceMaterialTransparency: true,
+            titleSpacing: 0,
             title: Text(
               AppLabels.chair,
               style: CustomUiText.semiSize18,
@@ -39,25 +41,23 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 20, right: 10),
-                          child: const Column(
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20),
+                    child: Row(
+                      children: [
+                        const Expanded(
+                          child: Column(
                             children: [ProductInfo()],
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 10, right: 20),
-                          child: const Column(
+                        Gap.gapW20,
+                        const Expanded(
+                          child: Column(
                             children: [ProductInfo()],
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 }),
           ),

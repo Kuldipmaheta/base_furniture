@@ -13,16 +13,16 @@ class CategoryCheckScreen extends StatefulWidget {
 class _CategoryCheckScreenState extends State<CategoryCheckScreen> {
   bool isChecked = false;
   int selectIndex = 0;
-  final Set<int> selectedIndices = Set();
+  final Set<int> selectedIndices = {};
   List data = ['Select All', 'Arm Chairs', 'Rocking Chairs', 'Folding Chairs', 'Iconic Chairs', 'Cafe Chairs'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kWhiteColor,
       body: Container(
-        margin: EdgeInsets.only(left: 24, top: 24),
+        margin: const EdgeInsets.only(left: 24, top: 24),
         child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 6,
             itemBuilder: (context, index) {
               return Padding(

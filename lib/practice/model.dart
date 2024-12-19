@@ -1,10 +1,9 @@
-class MainProduct{
+class MainProduct {
   String? imageUrl;
   String? name;
   String? description;
   double? price;
 }
-
 
 List<dynamic> popularFurnitureList = [
   {

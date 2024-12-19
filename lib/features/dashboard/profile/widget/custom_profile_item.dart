@@ -1,8 +1,5 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
-import 'package:furniture/core/constant/app_images.dart';
-import 'package:furniture/core/constant/strings.dart';
-import 'package:furniture/design/utils/gap.dart';
 
 import '../../../../export.dart';
 
@@ -27,7 +24,7 @@ class CustomProfileItem extends StatelessWidget {
       child: ListTile(
         leading: SvgPicture.asset(leading),
         title: CustomProdText(title: title),
-        trailing: Icon(
+        trailing: const Icon(
           (Icons.arrow_forward_ios),
           color: AppColors.kGrey200,
         ),

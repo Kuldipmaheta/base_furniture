@@ -1,5 +1,3 @@
-import 'package:get/state_manager.dart';
-
 class Product {
   final int id;
   final String productName;

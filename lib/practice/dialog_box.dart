@@ -12,33 +12,31 @@ class _DialogBoxState extends State<DialogBox> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DialogBox'),
+        title: const Text('DialogBox'),
       ),
-      body:
-
-      Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextButton(
               onPressed: () {
                 showDialog(
-                    context: context, builder: (context) => AlertDialog(
-                  title: Text('Alert Dialog title'),
-                  content: Text('Alert Dialog discription'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text('Ok'),
-                    ),
-                  ],
-                ));
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          title: const Text('Alert Dialog title'),
+                          content: const Text('Alert Dialog discription'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        ));
               },
-              child: Center(child: Text('Open'))),
-
+              child: const Center(child: Text('Open'))),
         ],
       ),
     );
@@ -80,4 +78,3 @@ class BottomSheet extends StatelessWidget {
     );
   }
 }
-

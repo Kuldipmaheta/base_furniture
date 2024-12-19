@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomFilterItem extends StatelessWidget {
+/*class CustomFilterItem extends StatelessWidget {
   String title;
   CustomFilterItem({super.key,required this.title});
 
@@ -10,4 +10,4 @@ class CustomFilterItem extends StatelessWidget {
 
     );
   }
-}
+}*/

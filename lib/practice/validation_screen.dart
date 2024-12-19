@@ -9,8 +9,8 @@ class ValidationScreen extends StatefulWidget {
 }
 
 class _ValidationScreenState extends State<ValidationScreen> {
-  TextEditingController _emailController = TextEditingController();
-  bool _validate = false;
+  final TextEditingController _emailController = TextEditingController();
+  // bool _validate = false;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _ValidationScreenState extends State<ValidationScreen> {
                   // _text.text.isEmpty ? _validate = true : _validate = false;
                 }
               },
-              child: Text("Submit")),
+              child: const Text("Submit")),
         ],
       ),
     );

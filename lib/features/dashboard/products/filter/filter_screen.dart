@@ -3,7 +3,7 @@ import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/features/dashboard/products/filter/category_check_screen.dart';
-import 'package:furniture/practice/google_map_launcher.dart';
+
 import '../../../../design/utils/gap.dart';
 import 'discount_check_screen.dart';
 import 'price_range_screen.dart';
@@ -97,14 +97,14 @@ class _FilterScreenState extends State<FilterScreen> {
                               textColor: AppColors.kBlack400,
                               onTap: () {
                                 setState(() {
-                                  print('price.. $selectedIndex');
+                                  debugPrint('price.. $selectedIndex');
                                   selectedIndex = index;
                                   controller.jumpToPage(index);
                                 });
                               },
-                              title: Padding(
-                                padding: const EdgeInsets.only(left: 24.0),
-                                child: const Text(AppLabels.priceRange
+                              title: const Padding(
+                                padding: EdgeInsets.only(left: 24.0),
+                                child: Text(AppLabels.priceRange
                                     // + index.toString(),
                                     // selectionColor: Colors.white,
                                     ),
@@ -155,7 +155,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 controller: controller,
                 children: list,
                 onPageChanged: (index) {
-                  print("object $index");
+                  debugPrint("object $index");
                   current = index;
                   setState(() {
                     selectedIndex = index;
@@ -167,7 +167,8 @@ class _FilterScreenState extends State<FilterScreen> {
           ),
         ),
         persistentFooterButtons: [
-          Container(margin: const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24), child: CustomButton())
+          Container(
+              margin: const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24), child: const CustomButton())
         ],
       ),
     );
@@ -188,7 +189,8 @@ class CustomButton extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.kWhiteColor,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.kPrimaryColor)),
+                            borderRadius: BorderRadius.circular(10),
+                            side: const BorderSide(color: AppColors.kPrimaryColor)),
                         foregroundColor: AppColors.kPrimaryColor),
                     onPressed: () {},
                     child: Text(
@@ -197,13 +199,13 @@ class CustomButton extends StatelessWidget {
                     )))),
         Gap.gapW20,
         Expanded(
-            child: Container(
+            child: SizedBox(
           height: 52,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.kPrimaryColor,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.kPrimaryColor)),
+                      borderRadius: BorderRadius.circular(10), side: const BorderSide(color: AppColors.kPrimaryColor)),
                   foregroundColor: AppColors.kWhiteColor),
               onPressed: () {
                 // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const GoogleMapLauncher()));

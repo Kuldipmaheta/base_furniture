@@ -63,12 +63,12 @@ Widget buildButtons(BuildContext context) => Container(
 
 Widget buildCheck(BuildContext context) => IconButton(
       iconSize: 36,
-      icon: Icon(Icons.check, color: Colors.green),
+      icon: const Icon(Icons.check, color: Colors.green),
       onPressed: () {},
     );
 Widget buildClear() => IconButton(
     iconSize: 36,
-    icon: Icon(Icons.clear, color: Colors.red),
+    icon: const Icon(Icons.clear, color: Colors.red),
     onPressed: () {
       // controller.clear();
     });

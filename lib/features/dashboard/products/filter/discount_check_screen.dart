@@ -23,7 +23,7 @@ class _DiscountCheckScreenState extends State<DiscountCheckScreen> {
           top: 24,
         ),
         child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 10,
             itemBuilder: (context, index) {
               return Row(
@@ -35,7 +35,7 @@ class _DiscountCheckScreenState extends State<DiscountCheckScreen> {
                     ),
                     child: Radio(
                         activeColor: AppColors.kPrimaryColor,
-                        visualDensity: VisualDensity(
+                        visualDensity: const VisualDensity(
                             horizontal: VisualDensity.minimumDensity, vertical: VisualDensity.minimumDensity),
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         value: index,

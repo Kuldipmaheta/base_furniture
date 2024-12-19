@@ -1,8 +1,3 @@
-import 'package:get/get_navigation/src/routes/get_route.dart';
-
-import '../../features/dashboard/home/screens/home_screen.dart';
-import '../../features/welcome/screens/splash_screen.dart';
-
 class AppLabels {
   static const welcomeMessage1 = 'Design Your \nDream Space ';
   static const welcomeMessage2 =
@@ -59,6 +54,9 @@ class AppLabels {
   //cart
   static const String cart = "Cart";
   static const String home = "Home";
+
+  //
+  static const String favorites = "Favorites";
 }
 
 /*class AppRoutes {

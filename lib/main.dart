@@ -1,8 +1,8 @@
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:get/get.dart';
+
 import 'core/routes/app_routes.dart';
 import 'export.dart';
-import 'features/dashboard/products/screens/product_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const SplashScreen(),
-      initialRoute: AppRoutes.dashboardScreen,
+      initialRoute: AppRoutes.productZoomScreen,
       getPages: AppRoutes.getPages,
       /*routes: {
         AppRoutes.initialRoute: (context) => const Welcome2Screen(),

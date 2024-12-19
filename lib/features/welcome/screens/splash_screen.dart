@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/core/services/shared_prefernce_services.dart';
-import 'package:get/get.dart';
+import 'package:furniture/features/dashboard/dashboard_screen.dart';
 import 'package:furniture/features/dashboard/home/screens/home_screen.dart';
 import 'package:furniture/features/welcome/screens/get_started_screen.dart';
 
@@ -48,11 +47,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> navigate() async {
     bool value = await getBool();
-    print(value);
+    debugPrint("SSS $value");
     Future.delayed(const Duration(seconds: 4), () {
       // Get.ofAllNamed(AppRoutes.splashScreen);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => value ? const GetStartedScreen() : const HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => value ? const GetStartedScreen() : const DashboardScreen()));
     });
   }
 }

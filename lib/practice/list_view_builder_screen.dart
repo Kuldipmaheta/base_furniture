@@ -9,11 +9,7 @@ class ListViewBuilderScreen extends StatefulWidget {
 
 class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
   final titles = ["List 1", "List 2", "List 3"];
-  final subtitles = [
-    "Here is list 1 subtitle",
-    "Here is list 2 subtitle",
-    "Here is list 3 subtitle"
-  ];
+  final subtitles = ["Here is list 1 subtitle", "Here is list 2 subtitle", "Here is list 3 subtitle"];
   final icons = [Icons.ac_unit, Icons.access_alarm, Icons.access_time];
   @override
   Widget build(BuildContext context) {
@@ -26,14 +22,13 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
             itemBuilder: (context, index) {
               return ListTile(
                 subtitle: Text(subtitles[index]),
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1547721064-da6cfb341d50'),
+                leading: const CircleAvatar(
+                  backgroundImage: NetworkImage('https://images.unsplash.com/photo-1547721064-da6cfb341d50'),
                 ),
                 trailing: Icon(icons[index]),
                 title: Text(
                   titles[index],
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               );
             }),

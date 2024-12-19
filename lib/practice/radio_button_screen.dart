@@ -18,10 +18,12 @@ class _RadioButtonScreenState extends State<RadioButtonScreen> {
           RadioMenuButton(
               value: 1,
               groupValue: selectedSnack,
-              onChanged: (selectedValue) {setState(() {
-                // selectedSnack = selectedValue;
-              });},
-              child: Text('English')),
+              onChanged: (selectedValue) {
+                setState(() {
+                  // selectedSnack = selectedValue;
+                });
+              },
+              child: const Text('English')),
         ],
       ),
     );

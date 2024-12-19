@@ -25,9 +25,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ElevatedButton(
                   onPressed: () {
                     saveBool(value: false);
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                   },
-                  child: Text("Continue"))
+                  child: const Text("Continue"))
             ],
           ),
         ),

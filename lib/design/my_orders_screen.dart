@@ -17,7 +17,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: ImageIcon(
+        leading: const ImageIcon(
           AssetImage('assets/images/back_arrow.png'),
           size: 10,
         ),
@@ -39,28 +39,28 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
       ),
       body: ListView.separated(
         scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          separatorBuilder: (context, index) {
-            return Gap.gapW16;
-          },
-          itemCount: 1,
-          itemBuilder: (context, index) {
+        shrinkWrap: true,
+        separatorBuilder: (context, index) {
+          return Gap.gapW16;
+        },
+        itemCount: 1,
+        itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(left: 24.0,right: 24),
+            padding: const EdgeInsets.only(left: 24.0, right: 24),
             child: Column(
               children: [
                 Row(
                   children: [
                     SvgPicture.asset('assets/icons/orders_icon.svg'),
                     Gap.gapW10,
-                    Column(
+                    const Column(
                       children: [
                         Text("Ordered Placed"),
                         Text("Ordered Placed"),
                       ],
                     ),
                     Gap.gapW20,
-                    Column(
+                    const Column(
                       textDirection: TextDirection.rtl,
                       // mainAxisAlignment: MainAxisAlignment.end,
                       // crossAxisAlignment: CrossAxisAlignment.end,
@@ -71,25 +71,20 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                     )
                   ],
                 ),
-                Row(
+                const Row(
                   children: [
                     Column(
-                      children: [
-
-                      ],
+                      children: [],
                     ),
                     Column(
-                      children: [
-
-                      ],
+                      children: [],
                     )
                   ],
                 )
               ],
             ),
           );
-          },
-
+        },
       ),
     );
   }

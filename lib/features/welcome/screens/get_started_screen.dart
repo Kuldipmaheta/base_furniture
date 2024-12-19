@@ -3,8 +3,9 @@ import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/gap.dart';
-import 'package:furniture/features/dashboard/home/screens/home_screen.dart';
+import 'package:furniture/features/dashboard/dashboard_screen.dart';
 import 'package:get/get.dart';
+
 import '../../../core/routes/app_routes.dart';
 import '../../../core/services/shared_prefernce_services.dart';
 
@@ -67,9 +68,9 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     // size: 50,color: Color(0xff95622D),
                     onPressed: () {
                       saveBool(value: false);
-                      Get.offAllNamed(AppRoutes.homeScreen);
+                      Get.offAllNamed(AppRoutes.dashboardScreen);
                       // Get.to(() => HomeScreen());
-                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashboardScreen()));
                     },
                   ),
                 ],

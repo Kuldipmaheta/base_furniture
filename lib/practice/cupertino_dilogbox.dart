@@ -19,30 +19,29 @@ class _CupertinoDilogboxState extends State<CupertinoDilogbox> {
           CupertinoButton(
               onPressed: () {
                 showCupertinoDialog(
-                    context: context, builder: (context) => CupertinoAlertDialog(
-                  title: Text('Alert'),
-                  content: Text('Proceed with destructive action?'),
-                  actions: <CupertinoDialogAction>[
-                    CupertinoDialogAction(
-                      isDefaultAction: true,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('No'),
-                    ),
-                    CupertinoDialogAction(
-                      isDefaultAction: true,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Yes'),
-                    ),
-
-                  ],
-                ));
+                    context: context,
+                    builder: (context) => CupertinoAlertDialog(
+                          title: const Text('Alert'),
+                          content: const Text('Proceed with destructive action?'),
+                          actions: <CupertinoDialogAction>[
+                            CupertinoDialogAction(
+                              isDefaultAction: true,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text('No'),
+                            ),
+                            CupertinoDialogAction(
+                              isDefaultAction: true,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text('Yes'),
+                            ),
+                          ],
+                        ));
               },
-              child: Center(child: Text('IOS'))),
-
+              child: const Center(child: Text('IOS'))),
         ],
       ),
     );

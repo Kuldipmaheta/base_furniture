@@ -20,7 +20,7 @@ class _GoogleMapLauncherState extends State<GoogleMapLauncher> {
   );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: GoogleMap(initialCameraPosition: _kGooglePlex),
     );
   }

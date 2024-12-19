@@ -51,10 +51,10 @@ class _GridviewBuilderScreenState extends State<GridviewBuilderScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: GridView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
           itemCount: listData.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
           itemBuilder: (BuildContext context, index) {
             return Column(

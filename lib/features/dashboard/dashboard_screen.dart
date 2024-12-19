@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
 import 'package:furniture/export.dart';
@@ -19,7 +18,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectIndex = 0;
 
-  final List<Widget> _screens = [HomeScreen(), CategoryScreen(), CartScreen(), ProfileScreen()];
+  final List<Widget> _screens = [const HomeScreen(), const CategoryScreen(), const CartScreen(), const ProfileScreen()];
 
   void onItemTapped(int index) {
     setState(() {
@@ -47,7 +46,10 @@ class CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: Theme.of(context).copyWith(),
+      data: Theme.of(context).copyWith(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
       child: BottomNavigationBar(
         // showSelectedLabels: true,
         // showUnselectedLabels: true,

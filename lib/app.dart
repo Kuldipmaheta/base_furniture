@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'core/routes/app_routes.dart';
+
 import 'export.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
-        child: GetMaterialApp(
+        child: const GetMaterialApp(
             // initialRoute: AppRoutes.homeScreen,
             // getPages: AppRoutes.getPages,
             ));

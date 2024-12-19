@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
+import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
-import 'package:furniture/features/dashboard/products/screens/product_list_screen.dart';
+import 'package:get/get.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -19,11 +20,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          AppLabels.category,
-          style: CustomUiText.semiSize16,
+        titleSpacing: 0,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 24.0),
+          child: Text(
+            AppLabels.category,
+            style: CustomUiText.semiSize16,
+          ),
         ),
-          actions: [const CustomSvg(imgUrl: AppIcons.icSearch), Gap.gapW24],
+        actions: [const CustomSvg(imgUrl: AppIcons.icSearch), Gap.gapW24],
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 10.0, right: 10),
@@ -39,13 +44,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
+                  Gap.gapH16,
                   GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                              const ProductListScreen()));
+                    onTap: () {
+                      Get.toNamed(AppRoutes.productListScreen);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListScreen()));
                     },
                     child: const CircleAvatar(
                       radius: 50,

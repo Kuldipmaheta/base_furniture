@@ -1,57 +1,56 @@
 import 'package:flutter/material.dart';
 
 class MyAppScreen extends StatefulWidget {
-  const MyAppScreen({Key? key}) : super(key: key);
+  const MyAppScreen({super.key});
 
   @override
   State<MyAppScreen> createState() => _MyAppScreenState();
 }
+
 class _MyAppScreenState extends State<MyAppScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,   //new line
+      resizeToAvoidBottomInset: false, //new line
       body: Center(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Text(
+            const Text(
               'Dog Home',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            Text(
+            const Text(
               'Foundation',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            Text(
+            const Text(
               'For those who can not speak',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Card(
                 elevation: 8,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       const Text(
                         'Login',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       const TextField(
                         decoration: InputDecoration(
@@ -59,42 +58,41 @@ class _MyAppScreenState extends State<MyAppScreen> {
                           hintText: 'Username',
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.password),
                           hintText: 'Password',
                           suffixIcon: Icon(Icons.lock_outline_rounded),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
-                      Text(
+                      const Text(
                         'New User?',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blueAccent),
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blueAccent),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
-                      Container(
+                      SizedBox(
                         width: 250,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black87,
                             foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                           ),
                           onPressed: () {},
-                          child: Row(
+                          child: const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
                                 'SIGN IN',
-                                style: TextStyle(letterSpacing: 2.0,fontSize: 18,),
+                                style: TextStyle(
+                                  letterSpacing: 2.0,
+                                  fontSize: 18,
+                                ),
                               ),
                               SizedBox(
                                 width: 10,
@@ -108,26 +106,26 @@ class _MyAppScreenState extends State<MyAppScreen> {
                         ),
                         // child: Text('SIGN IN',style: TextStyle(fontSize: 16),),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       // Divider(thickness: 2,indent: 20,endIndent: 20,),
-                      Row(children: [
+                      const Row(children: [
                         Expanded(
                             child: Divider(
-                              thickness: 2,
-                              indent: 20,
-                              endIndent: 10,
-                            )),
+                          thickness: 2,
+                          indent: 20,
+                          endIndent: 10,
+                        )),
                         Text("OR"),
                         Expanded(
                             child: Divider(
-                              thickness: 2,
-                              indent: 10,
-                              endIndent: 20,
-                            )),
+                          thickness: 2,
+                          indent: 10,
+                          endIndent: 20,
+                        )),
                       ]),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
@@ -146,7 +144,7 @@ class _MyAppScreenState extends State<MyAppScreen> {
                                   height: 25,
                                 ),
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Container(
@@ -161,7 +159,7 @@ class _MyAppScreenState extends State<MyAppScreen> {
                                     width: 28,
                                     height: 28,
                                   ))),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Container(
@@ -178,7 +176,7 @@ class _MyAppScreenState extends State<MyAppScreen> {
                                   ))),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                     ],

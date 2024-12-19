@@ -20,6 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         title: Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
@@ -84,7 +85,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: AppIcons.icLanguage,
             ),
             const Divider(
-              thickness: 1,
+              color: AppColors.kGrey100,
+              thickness: 3,
             ),
             CustomProfileItem(
               title: AppLabels.aboutUs,
@@ -116,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               text: 'Logout',
             ),
             Gap.gapH16,
-            Text(
+            const Text(
               'Delete Account',
               style: TextStyle(
                   fontSize: 16,

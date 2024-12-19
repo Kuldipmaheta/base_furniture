@@ -31,12 +31,9 @@ class AppIcons {
 
   // my orders icons
   static const icFilter = '$iconPath/ic_filter.svg';
-  static const icOrders= '$iconPath/orders_icon.svg';
-  static const icSortBy= '$iconPath/ic_sortby.svg';
+  static const icOrders = '$iconPath/orders_icon.svg';
+  static const icSortBy = '$iconPath/ic_sortby.svg';
+  static const icBackArrow = '$iconPath/ic_back_mobile.svg';
 
   //
-
-
-
-
 }

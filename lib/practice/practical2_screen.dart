@@ -49,18 +49,21 @@ class _PracticalSliderState extends State<PracticalSlider> {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
-        children: [CarouselSlider(items: [
-          Container(
-            margin: EdgeInsets.all(6.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                image: NetworkImage('https://media.istockphoto.com/id/593331954/photo/orange-luxury-sport-car-lamborghini-aventador.jpg?s=612x612&w=0&k=20&c=YZmILGk1mxLrB8U0HubIHsAOllc7Hh0yGNzWWAkQO08='),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          /*Container(
+        children: [
+          CarouselSlider(
+              items: [
+                Container(
+                  margin: const EdgeInsets.all(6.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    image: const DecorationImage(
+                      image: NetworkImage(
+                          'https://media.istockphoto.com/id/593331954/photo/orange-luxury-sport-car-lamborghini-aventador.jpg?s=612x612&w=0&k=20&c=YZmILGk1mxLrB8U0HubIHsAOllc7Hh0yGNzWWAkQO08='),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                /*Container(
             margin: EdgeInsets.all(6.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -70,7 +73,7 @@ class _PracticalSliderState extends State<PracticalSlider> {
               ),
             ),
           ),*/
-          /*Container(
+                /*Container(
             margin: EdgeInsets.all(6.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -80,14 +83,16 @@ class _PracticalSliderState extends State<PracticalSlider> {
               ),
             ),
           ),*/
-        ], options: CarouselOptions(
-          enableInfiniteScroll: true,
-          enlargeCenterPage: true,
-          // autoPlayCurve: Curves.fastOutSlowIn,
-          // autoPlay: true,
-          aspectRatio: 16/9,
-          // autoPlayAnimationDuration: Duration(seconds: 3),
-        ))],
+              ],
+              options: CarouselOptions(
+                enableInfiniteScroll: true,
+                enlargeCenterPage: true,
+                // autoPlayCurve: Curves.fastOutSlowIn,
+                // autoPlay: true,
+                aspectRatio: 16 / 9,
+                // autoPlayAnimationDuration: Duration(seconds: 3),
+              ))
+        ],
       ),
     );
   }

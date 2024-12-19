@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
@@ -12,7 +11,6 @@ class SearchEmptyScreen extends StatefulWidget {
 }
 
 class _SearchEmptyScreenState extends State<SearchEmptyScreen> {
-
   List<String> data = [
     'Apple',
     'Banana',
@@ -39,18 +37,15 @@ class _SearchEmptyScreenState extends State<SearchEmptyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextField(
-
-          ),
+        title: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: TextField(),
         ),
         leading: GestureDetector(
           onTap: () {
             search = true;
           },
-          child: ImageIcon(
-              AssetImage('assets/images/back_arrow.png')),
+          child: const ImageIcon(AssetImage('assets/images/back_arrow.png')),
         ),
       ),
       body: SafeArea(
@@ -80,4 +75,3 @@ class _SearchEmptyScreenState extends State<SearchEmptyScreen> {
     );
   }
 }
-

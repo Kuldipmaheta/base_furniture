@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/practice/getx/shopping_controller.dart';
-import 'package:furniture/practice/getx/shopping_controller.dart';
-import 'package:furniture/practice/getx/shopping_controller.dart';
 import 'package:get/get.dart';
 
 class ShoppingPage extends StatefulWidget {
@@ -12,8 +10,7 @@ class ShoppingPage extends StatefulWidget {
 }
 
 class _ShoppingPageState extends State<ShoppingPage> {
-
-  final ShoppingController shoppingController= Get.put(ShoppingController());
+  final ShoppingController shoppingController = Get.put(ShoppingController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,20 +18,19 @@ class _ShoppingPageState extends State<ShoppingPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
-                child:
-                    GetX<ShoppingController>(builder: (controller){
-                      return
-                      ListView.builder(
-                          // itemCount: controller.products.length,
-                          itemBuilder: (context, index) {
-                            return Card();
-                          });
-      })
-
+            Expanded(child: GetX<ShoppingController>(builder: (controller) {
+              return ListView.builder(
+                  // itemCount: controller.products.length,
+                  itemBuilder: (context, index) {
+                return const Card();
+              });
+            })),
+            const Text(
+              'Total Amount',
             ),
-            Text('Total Amount',),
-            SizedBox(height: 100,),
+            const SizedBox(
+              height: 100,
+            ),
           ],
         ),
       ),

@@ -79,7 +79,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                           )),
                       Gap.gapW8,
-                      Expanded(flex: 2, child: CustomMobileTextField()),
+                      const Expanded(flex: 2, child: CustomMobileTextField()),
                     ],
                   ),
                   Gap.gapH24,
@@ -92,7 +92,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     // height: 44,
                     child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -124,9 +124,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   SizedBox(
                     // height: 44,
                     child: DropdownButtonFormField<String>(
-                      hint: Text('Choose City'),
+                      hint: const Text('Choose City'),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -194,16 +194,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState != null) {
-                          print('object ${_formKey.currentState!.validate()}');
+                          debugPrint('object ${_formKey.currentState!.validate()}');
                         }
                       },
-                      child: Text("Submit"),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF95622D),
+                        backgroundColor: const Color(0xFF95622D),
                         textStyle: CustomUiText.size16,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         foregroundColor: Colors.white,
                       ),
+                      child: const Text("Submit"),
                     ),
                   ),
                   Gap.gapH30,
@@ -242,7 +242,7 @@ class CustomTextField extends StatelessWidget {
         validator: (value) => value!.isEmpty ? "Please enter name" : null,
         // keyboardType: TextInputType.text,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           // errorText: _validate ? "Value not empty" : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

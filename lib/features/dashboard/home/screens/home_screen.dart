@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
@@ -17,10 +18,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final totalDots = 3;
+  int currentPosition = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.kWhiteColor,
         forceMaterialTransparency: true,
         // surfaceTintColor: Colors.transparent,
         actions: [
@@ -59,6 +64,13 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(left: 24.0, right: 24),
               child: CustomSlider(),
             ),
+            Center(
+              child: DotsIndicator(
+                decorator: const DotsDecorator(color: AppColors.kGrey100, activeColor: AppColors.kPrimaryColor),
+                dotsCount: totalDots,
+                position: currentPosition,
+              ),
+            ),
             Gap.gapH16,
             Padding(
               padding: const EdgeInsets.only(left: 24.0, right: 24),
@@ -71,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
-                      // Get.offAllNamed(AppRoutes.profileScreen);
+                      // Get.offAllNamed(AppRoutes.categoryScreen);
                     },
                     child: const Text(
                       AppLabels.getViewAll,
@@ -122,19 +134,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20),
+                  return const Padding(
+                    padding: EdgeInsets.only(
+                      bottom: 20,
+                    ),
                     child: Row(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Expanded(
-                          child: Column(
-                            children: [ProductInfo()],
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 24.0, right: 10),
+                            child: ProductInfo(),
                           ),
                         ),
-                        Gap.gapW20,
-                        const Expanded(
-                          child: Column(
-                            children: [ProductInfo()],
+                        // Gap.gapW20,
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10.0, right: 24),
+                            child: ProductInfo(),
                           ),
                         ),
                       ],
@@ -152,49 +170,60 @@ class ProductInfo extends StatelessWidget {
   const ProductInfo({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     // String? name;
     // List products = [];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Image.asset(
-          'assets/images/image2.png',
-          fit: BoxFit.cover,
-          width: 200,
-        ),
-        Gap.gapH16,
-        const CustomText(title: 'Vendor Name'),
-        Gap.gapH6,
-        const Text(
-          'Eames Plastic Iconic Chair\nin White Colour',
-          maxLines: 2,
-        ),
-        // CustomText(title: 'Eames Plastic Iconic Chair in White Colour'),
-        Gap.gapH10,
-        const Row(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'KWD 620',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    double imageSize = ((MediaQuery.of(context).size.width) - ((24 * 2) + 20)) / 2;
+    return Container(
+      // color: Colors.red,
+      margin: const EdgeInsets.only(right: 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(AppRoutes.productDetailScreen);
+            },
+            child: Image.asset(
+              'assets/images/image2.png',
+              fit: BoxFit.cover,
+              width: imageSize,
+              height: imageSize,
             ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              'KWD 677',
-              style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                  decoration: TextDecoration.lineThrough,
-                  decorationColor: Colors.grey),
-            ),
-          ],
-        ),
-      ],
+          ),
+          Gap.gapH16,
+          const CustomText(title: 'Vendor Name'),
+          Gap.gapH6,
+          const Text(
+            'Eames Plastic Iconic Chair\nin White Colour',
+            maxLines: 2,
+          ),
+          // CustomText(title: 'Eames Plastic Iconic Chair in White Colour'),
+          Gap.gapH10,
+          const Row(
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'KWD 620',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              /*SizedBox(
+                width: 10,
+              ),*/
+              Spacer(),
+              Text(
+                'KWD 677',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                    decoration: TextDecoration.lineThrough,
+                    decorationColor: Colors.grey),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

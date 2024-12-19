@@ -29,12 +29,12 @@ class CustomText extends StatelessWidget {
 }
 
 class CustomUiText {
-  static TextStyle size28 = TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
-  static TextStyle size16 = TextStyle(fontSize: 16);
-  static TextStyle size14 = TextStyle(fontSize: 14);
-  static TextStyle semiSize14 = TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
-  static TextStyle semiSize16 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
-  static TextStyle semiSize18 = TextStyle(
+  static TextStyle size28 = const TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
+  static TextStyle size16 = const TextStyle(fontSize: 16);
+  static TextStyle size14 = const TextStyle(fontSize: 14);
+  static TextStyle semiSize14 = const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
+  static TextStyle semiSize16 = const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static TextStyle semiSize18 = const TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
   );
@@ -44,7 +44,7 @@ class CustomText2 extends StatelessWidget {
   const CustomText2({super.key});
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return const Text(
       'Categories',
       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     );

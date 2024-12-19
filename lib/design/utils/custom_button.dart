@@ -7,6 +7,7 @@ import 'package:furniture/design/utils/gap.dart';
 import '../../core/constant/app_images.dart';
 import 'colors_sources.dart';
 
+@immutable
 class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
@@ -19,23 +20,24 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 24, left: 24),
+      margin: const EdgeInsets.only(right: 24, left: 24),
       width: 382,
       height: 52,
       child: ElevatedButton(
         onPressed: () {},
-        child: Text(text),
         style: ElevatedButton.styleFrom(
           textStyle: CustomUiText.size16,
           shape: RoundedRectangleBorder(
               side: BorderSide(color: ColorsSources.primaryColor), borderRadius: BorderRadius.circular(10)),
           foregroundColor: ColorsSources.primaryColor,
         ),
+        child: Text(text),
       ),
     );
   }
 }
 
+@immutable
 class CustomDarkButton extends StatelessWidget {
   VoidCallback? onpress;
   CustomDarkButton({super.key, required this.onpress});
@@ -43,18 +45,18 @@ class CustomDarkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 24),
+      margin: const EdgeInsets.only(right: 24),
       width: 382,
       height: 52,
       child: ElevatedButton(
         onPressed: () {},
-        child: Text("Continue"),
         style: ElevatedButton.styleFrom(
           textStyle: CustomUiText.size16,
           backgroundColor: ColorsSources.primaryColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           foregroundColor: Colors.white,
         ),
+        child: const Text("Continue"),
       ),
     );
   }
@@ -65,7 +67,7 @@ class CustomSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       // color: Colors.red,
       height: 158,
       width: MediaQuery.of(context).size.width,
@@ -152,14 +154,14 @@ class CustomMobileTextField extends StatelessWidget {
         keyboardType: TextInputType.number,
         textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           hintText: 'Enter Mobile Number',
           hintStyle: const TextStyle(color: Colors.grey),
-          focusedBorder:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.grey)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
         ),
         onChanged: (value) {},
       ),

@@ -9,9 +9,8 @@ class Practical1Screen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Column(
-
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
@@ -24,15 +23,15 @@ class Practical1Screen extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.deepPurple,
                       width: 2,
                     ),
                   ),
-                  prefixIcon: Icon(Icons.email_outlined),
+                  prefixIcon: const Icon(Icons.email_outlined),
                   labelText: "Email id",
                   hintText: "enter mail",
-                  hintStyle: TextStyle(color: Colors.grey)),
+                  hintStyle: const TextStyle(color: Colors.grey)),
             ),
           ),
           Padding(
@@ -47,27 +46,27 @@ class Practical1Screen extends StatelessWidget {
                   // errorBorder: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.deepPurple,
                       width: 2,
                     ),
                   ),
-                  prefixIcon: Icon(Icons.password),
-                  suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                  prefixIcon: const Icon(Icons.password),
+                  suffixIcon: const Icon(Icons.remove_red_eye_outlined),
                   labelText: "Password",
                   hintText: "enter password",
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.grey,
                   )),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
-          Container(
+          SizedBox(
               width: MediaQuery.of(context).size.width / 1.5,
-              child: ElevatedButton(onPressed: () {}, child: Text('Submit'))),
-          Container(
+              child: ElevatedButton(onPressed: () {}, child: const Text('Submit'))),
+          SizedBox(
               width: MediaQuery.of(context).size.width / 1.5,
               child: ElevatedButton(
                   onPressed: () {
@@ -77,16 +76,14 @@ class Practical1Screen extends StatelessWidget {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackbar);
                   },
-                  child: Text('Show snackbar'))),
-          SizedBox(
+                  child: const Text('Show snackbar'))),
+          const SizedBox(
             height: 10,
           ),
           TextFormField(
-            decoration: InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: "Enter your username"),
+            decoration: const InputDecoration(border: UnderlineInputBorder(), labelText: "Enter your username"),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -107,12 +104,18 @@ class Practical1Screen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {},
-            child: Text("submit",style: TextStyle(fontSize: 20),),
+            child: const Text(
+              "submit",
+              style: TextStyle(fontSize: 20),
+            ),
           ),
           GestureDetector(
-           behavior: HitTestBehavior.opaque,
+              behavior: HitTestBehavior.opaque,
               onTap: () {},
-              child: Text('Submit',style: TextStyle(fontSize: 20),))
+              child: const Text(
+                'Submit',
+                style: TextStyle(fontSize: 20),
+              ))
         ],
       ),
     );

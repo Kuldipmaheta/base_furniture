@@ -4,8 +4,6 @@ import 'package:furniture/design/utils/gap.dart';
 
 import '../../../core/constant/app_colors.dart';
 
-
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -17,13 +15,18 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool changeButton = false;
 
+  TextEditingController mobileController = TextEditingController();
+  String? inputtedValue;
+  // you can add more fields if needed
+  bool userInteracts() => inputtedValue != null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.only(left: 24),
+        padding: const EdgeInsets.only(left: 24, right: 24),
         child: Form(
           key: _formKey,
           child: Column(
@@ -35,19 +38,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: CustomUiText.size28,
               ),
               Gap.gapH12,
-              Text("Unlock your dream space with a few taps",
-                  style: CustomUiText.size16),
+              Text("Unlock your dream space with a few taps", style: CustomUiText.size16),
               Gap.gapH40,
               const Text('Mobile Number'),
               Gap.gapH6,
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      height: 44,
+                      height: 50,
                       width: 85,
                       decoration: BoxDecoration(
+                          // color: Colors.red,
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.grey, width: 1)),
+                          border: Border.all(color: AppColors.kGrey100, width: 1)),
                       child: Center(
                         child: Text(
                           '+965',
@@ -56,72 +60,79 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                   Gap.gapW8,
                   Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 24),
-                        height: 44,
-                        width: 85,
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          textAlignVertical: TextAlignVertical.bottom,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            hintText: 'Enter mobile number',
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.grey)),
-                          ),
-                          /*validator: (value){
+                      child: SizedBox(
+                    // color: Colors.blue,
+                    // margin: const EdgeInsets.only(right: 24),
+                    // height: 44,
+                    child: TextFormField(
+                      validator: (value) => value!.isEmpty ? "Please enter mobile number" : null,
+                      controller: mobileController,
+                      keyboardType: TextInputType.number,
+                      textAlignVertical: TextAlignVertical.bottom,
+                      decoration: InputDecoration(
+                        // constraints: BoxConstraints(maxHeight: 60, minHeight: 60),
+                        // isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        hintText: 'Enter mobile number',
+                        hintStyle: const TextStyle(color: AppColors.kGrey200),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: AppColors.kGrey100)),
+                      ),
+                      /*validator: (value){
                         if (value == null || value.isEmpty) {
                           return 'mobile number length at least 10';
                         }
                         return null;
                       },*/
-                          onChanged: (value) {
-                            setState(() {});
-                          },
-                        ),
-                      )),
+                      onChanged: (value) {
+                        setState(() {});
+                      },
+                    ),
+                  )),
                 ],
               ),
               Gap.gapH30,
-              Container(
-                margin: const EdgeInsets.only(right: 24),
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Enter Valid Number')));
-                    }
+                    /*if (_formKey.currentState != null) {
+                      print('object ${_formKey.currentState!.validate()}');
+                    }*/
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF95622D),
                     textStyle: CustomUiText.size16,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     foregroundColor: Colors.white,
                   ),
                   child: const Text("Continue"),
                 ),
               ),
               Gap.gapH24,
-              Container(
-                margin: const EdgeInsets.only(right: 24),
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 52,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    /*if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Enter Valid Number')));
+                    }*/
+                  },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        side: const BorderSide(color: Color(0xFF95622D)),
-                        borderRadius: BorderRadius.circular(10)),
+                        side: const BorderSide(color: Color(0xFF95622D)), borderRadius: BorderRadius.circular(10)),
                     foregroundColor: const Color(0xFF95622D),
                   ),
-                  child: const Text("Continue as Guest"),
+                  child: const Text(
+                    "Continue as Guest",
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
               /* Stack(
@@ -133,45 +144,42 @@ class _LoginScreenState extends State<LoginScreen> {
                           "By continuing, I agree to the Terms of Use & \nPrivacy Policy")),
                 ],
               ),*/
-              Center(
-                child: Text.rich(
-                  textAlign: TextAlign.center,
-                  TextSpan(
-                    text: 'By continuing, I agree to the ',
-                    style: CustomUiText.size16,
-                    children: const [
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
+                child: Column(
+                  children: [
+                    Text.rich(
+                      textAlign: TextAlign.center,
                       TextSpan(
-                          children: [
+                        text: 'By continuing, I agree to the ',
+                        style: CustomUiText.size16,
+                        children: const [
+                          TextSpan(children: [
                             TextSpan(
                                 text: 'Terms of use',
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: AppColors.kPrimaryColor,
                                     decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.kPrimaryColor
-                                )
-                            ),
-                            TextSpan(
-                                text: ' &\n'
-                            ),
+                                    decorationColor: AppColors.kPrimaryColor)),
+                            TextSpan(text: ' &\n'),
                             TextSpan(
                                 text: 'Privacy Policy',
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: AppColors.kPrimaryColor,
                                     decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.kPrimaryColor
-                                )
-                            )
-                          ]
-                      )
-                    ],
+                                    decorationColor: AppColors.kPrimaryColor))
+                          ])
+                        ],
 
-                    // text: "By continuing, I agree to the ",
-                  ),
+                        // text: "By continuing, I agree to the ",
+                      ),
+                    ),
+                  ],
                 ),
               )
-
             ],
           ),
         ),
