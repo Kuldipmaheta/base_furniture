@@ -146,7 +146,7 @@ class CustomMobileTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       // color: AppColors.kGrey100,
       // margin: const EdgeInsets.only(left: 24, right: 24),
       // height: 44,

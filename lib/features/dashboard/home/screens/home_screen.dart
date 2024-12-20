@@ -135,8 +135,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 shrinkWrap: true,
                 itemCount: popularFurnitureList.length,
                 itemBuilder: (context, index) {
-                  Furniture item = popularFurnitureList[index];
-                  return Padding(
+                  // Furniture item = popularFurnitureList[index];
+                  return const Padding(
                     padding: EdgeInsets.only(
                       bottom: 20,
                     ),
@@ -197,7 +197,7 @@ class ProductInfo extends StatelessWidget {
             ),
           ),
           Gap.gapH16,
-          CustomText(
+          const CustomText(
             title: "Vendor name",
             color: AppColors.kGrey200,
           ),

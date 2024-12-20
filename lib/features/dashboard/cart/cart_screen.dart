@@ -81,12 +81,12 @@ class _CartScreenState extends State<CartScreen> {
                                   children: [
                                     Text(
                                       item.originalPrice.toString(),
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                                     ),
                                     Gap.gapW10,
                                     Text(
                                       item.discountedPrice.toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey,
                                           decoration: TextDecoration.lineThrough,

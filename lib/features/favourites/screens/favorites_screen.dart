@@ -60,72 +60,69 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     ),
                     Gap.gapW16,
                     Flexible(
-                      child: Container(
-                        // color: Colors.red,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              title: item.vendorName,
-                              color: AppColors.kGrey200,
-                            ),
-                            Gap.gapH6,
-                            Text(
-                              item.productName,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Gap.gapH6,
-                            Row(
-                              children: [
-                                Text(
-                                  item.originalPrice.toString(),
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                                Gap.gapW10,
-                                // Spacer(),
-                                Text(
-                                  item.discountedPrice.toString(),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.grey,
-                                      decoration: TextDecoration.lineThrough,
-                                      decorationColor: Colors.grey),
-                                ),
-                              ],
-                            ),
-                            Gap.gapH16,
-                            IntrinsicHeight(
-                              child: Row(
-                                children: [
-                                  const Text(
-                                    'Add to Cart',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.underline,
-                                        color: Color(0xFF95622D)),
-                                  ),
-                                  Gap.gapW16,
-                                  const VerticalDivider(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomText(
+                            title: item.vendorName,
+                            color: AppColors.kGrey200,
+                          ),
+                          Gap.gapH6,
+                          Text(
+                            item.productName,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Gap.gapH6,
+                          Row(
+                            children: [
+                              Text(
+                                item.originalPrice.toString(),
+                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Gap.gapW10,
+                              // Spacer(),
+                              Text(
+                                item.discountedPrice.toString(),
+                                style: const TextStyle(
+                                    fontSize: 16,
                                     color: Colors.grey,
-                                    thickness: 1,
-                                  ),
-                                  Gap.gapW16,
-                                  // const Spacer(),
-                                  const Text(
-                                    'Remove',
-                                    style: TextStyle(
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor: Colors.grey),
+                              ),
+                            ],
+                          ),
+                          Gap.gapH16,
+                          IntrinsicHeight(
+                            child: Row(
+                              children: [
+                                const Text(
+                                  'Add to Cart',
+                                  style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       decoration: TextDecoration.underline,
-                                    ),
+                                      color: Color(0xFF95622D)),
+                                ),
+                                Gap.gapW16,
+                                const VerticalDivider(
+                                  color: Colors.grey,
+                                  thickness: 1,
+                                ),
+                                Gap.gapW16,
+                                // const Spacer(),
+                                const Text(
+                                  'Remove',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
                                   ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ],
