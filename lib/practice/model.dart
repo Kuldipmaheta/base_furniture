@@ -5,7 +5,45 @@ class MainProduct {
   double? price;
 }
 
-List<dynamic> popularFurnitureList = [
+class Furniture {
+  final int id;
+  final String productName;
+  final String vendorName;
+  final double originalPrice;
+  final double discountedPrice;
+  final double productRating;
+  final String productImage;
+  final bool isInStock;
+  final bool isFav;
+
+  Furniture({
+    required this.id,
+    required this.productName,
+    required this.vendorName,
+    required this.originalPrice,
+    required this.discountedPrice,
+    required this.productRating,
+    required this.productImage,
+    required this.isInStock,
+    required this.isFav,
+  });
+
+  factory Furniture.fromJson(Map<String, dynamic> json) {
+    return Furniture(
+      id: json['id'],
+      productName: json['product_name'],
+      vendorName: json['vendor_name'],
+      originalPrice: json['original_price'],
+      discountedPrice: json['discounted_price'],
+      productRating: json['product_rating'],
+      productImage: json['product_image'],
+      isInStock: json['is_in_stock'],
+      isFav: json['is_fav'],
+    );
+  }
+}
+
+List<Furniture> popularFurnitureList = [
   {
     "id": 0,
     "product_name": "Modern Leather Sofa Set",
@@ -46,7 +84,7 @@ List<dynamic> popularFurnitureList = [
     "original_price": 350.00,
     "discounted_price": 299.00,
     "product_rating": 4.3,
-    "product_image": "https://example.com/tv_stand.jpg",
+    "product_image": "https://th.bing.com/th/id/OIP.H-S3UVP5lFX0qclDmIYzOwHaHa?rs=1&pid=ImgDetMain",
     "is_in_stock": true,
     "is_fav": false
   },
@@ -116,4 +154,4 @@ List<dynamic> popularFurnitureList = [
     "is_in_stock": true,
     "is_fav": false
   }
-];
+].map((item) => Furniture.fromJson(item)).toList();

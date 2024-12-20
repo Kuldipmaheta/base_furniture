@@ -1,3 +1,4 @@
+import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
@@ -70,6 +71,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           height: 48,
                           width: 85,
                           decoration: BoxDecoration(
+                              color: AppColors.kGrey100,
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(color: Colors.grey, width: 1)),
                           child: Center(
@@ -79,7 +81,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                           )),
                       Gap.gapW8,
-                      const Expanded(flex: 2, child: CustomMobileTextField()),
+                      const Expanded(child: CustomMobileTextField()),
                     ],
                   ),
                   Gap.gapH24,
@@ -234,14 +236,18 @@ class CustomTextField extends StatelessWidget {
       // height: 54,
       // width: MediaQuery.of(context).size.width,
       child: TextFormField(
+        keyboardType: TextInputType.text,
+        enabled: false,
         textAlignVertical: TextAlignVertical.bottom,
         // maxLines: 1,
         // minLines: 1,
         controller: nameController,
         // key: _formKey,
-        validator: (value) => value!.isEmpty ? "Please enter name" : null,
+        // validator: (value) => value!.isEmpty ? "Please enter name" : null,
         // keyboardType: TextInputType.text,
         decoration: InputDecoration(
+          // isDense: true,
+          // enabled: true,
           contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           // errorText: _validate ? "Value not empty" : null,
           border: OutlineInputBorder(

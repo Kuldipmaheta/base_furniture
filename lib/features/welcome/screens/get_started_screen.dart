@@ -3,7 +3,6 @@ import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/gap.dart';
-import 'package:furniture/features/dashboard/dashboard_screen.dart';
 import 'package:get/get.dart';
 
 import '../../../core/routes/app_routes.dart';

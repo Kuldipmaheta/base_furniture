@@ -1,10 +1,12 @@
-import 'package:furniture/core/routes/app_routes.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 import '../../../../core/constant/app_colors.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../../home/screens/home_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -30,28 +32,30 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(
-                          image: AssetImage(
-                            "assets/images/chair_image.png",
-                          ),
-                          fit: BoxFit.cover)),
-                  margin: const EdgeInsets.only(left: 24, right: 24),
-                  // decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                  width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  child: GestureDetector(
-                    onTap: () {
-                      // Get.toNamed(AppRoutes.productZoomScreen);
-                    },
-                    /*child: Image.asset(
-                      // color: Colors.red,
-                      'assets/images/chair_image.png',
-                      fit: BoxFit.cover,
-                    ),*/
-                  )),
+              GestureDetector(
+                child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                            image: AssetImage(
+                              "assets/images/chair_image.png",
+                            ),
+                            fit: BoxFit.cover)),
+                    margin: const EdgeInsets.only(left: 24, right: 24),
+                    // decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    width: MediaQuery.of(context).size.width,
+                    height: 300,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.productZoomScreen);
+                      },
+                      /*child: Image.asset(
+                        // color: Colors.red,
+                        'assets/images/chair_image.png',
+                        fit: BoxFit.cover,
+                      ),*/
+                    )),
+              ),
               Gap.gapH40,
               Padding(
                 padding: const EdgeInsets.only(left: 24.0, right: 24),
@@ -282,7 +286,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Gap.gapH16,
               Container(
                 margin: const EdgeInsets.only(left: 24, right: 24),
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 2.9,
                 // width: MediaQuery.of(context).size.width,
                 child: ListView.separated(
                     separatorBuilder: (ctx, index) {
@@ -293,7 +297,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 4,
                     itemBuilder: (ctx, index) {
-                      return Container(width: 170, child: const ProductInfo());
+                      return const SizedBox(width: 170, child: ProductInfo());
                     }),
               ),
               Gap.gapH24,
@@ -312,7 +316,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Gap.gapH16,
               Container(
                 margin: const EdgeInsets.only(left: 24, right: 24),
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 2.8,
                 // width: MediaQuery.of(context).size.width,
                 child: ListView.separated(
                     separatorBuilder: (ctx, index) {
@@ -323,7 +327,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 4,
                     itemBuilder: (ctx, index) {
-                      return Container(width: 170, child: const ProductInfo());
+                      return const SizedBox(width: 170, child: ProductInfo());
                     }),
               ),
             ],

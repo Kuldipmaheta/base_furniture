@@ -15,6 +15,6 @@ export 'package:furniture/practice/practical2_screen.dart';
 export 'package:furniture/practice/radio_button_screen.dart';
 export 'package:furniture/practice/welcome_screen.dart';
 
-export 'design/favorites_screen.dart';
+export 'features/favourites/screens/favorites_screen.dart';
 export 'design/product_listing.dart';
 export 'features/welcome/screens/choose_language_screen.dart';

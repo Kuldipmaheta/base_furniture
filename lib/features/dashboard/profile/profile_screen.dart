@@ -64,6 +64,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             Gap.gapH24,
+            /* ListView.separated(
+                separatorBuilder: (context, index) {
+                  return Divider();
+                },
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 11,
+                itemBuilder: (context, index) {
+                  return CustomProfileItem(
+                    title: AppLabels.myOrders,
+                    leading: AppIcons.icShoppingBag,
+                  );
+                }),*/
             CustomProfileItem(
               title: AppLabels.myOrders,
               leading: AppIcons.icShoppingBag,
@@ -124,6 +137,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   decoration: TextDecoration.underline,
+                  decorationColor: AppColors.kPrimaryColor,
                   color: AppColors.kPrimaryColor),
             ),
             Gap.gapH24

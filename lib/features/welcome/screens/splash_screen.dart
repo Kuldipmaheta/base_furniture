@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/services/shared_prefernce_services.dart';
 import 'package:furniture/features/dashboard/dashboard_screen.dart';
-import 'package:furniture/features/dashboard/home/screens/home_screen.dart';
 import 'package:furniture/features/welcome/screens/get_started_screen.dart';
 
 class SplashScreen extends StatefulWidget {

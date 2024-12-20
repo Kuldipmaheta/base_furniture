@@ -8,8 +8,9 @@ import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
 import 'package:get/get.dart';
 import '../../../../core/constant/strings.dart';
-import '../../../../design/favorites_screen.dart';
+import '../../../favourites/screens/favorites_screen.dart';
 import '../../../../design/utils/gap.dart';
+import 'package:furniture/practice/model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -132,9 +133,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: 5,
+                itemCount: popularFurnitureList.length,
                 itemBuilder: (context, index) {
-                  return const Padding(
+                  Furniture item = popularFurnitureList[index];
+                  return Padding(
                     padding: EdgeInsets.only(
                       bottom: 20,
                     ),
@@ -167,8 +169,10 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class ProductInfo extends StatelessWidget {
+  // final Furniture item;
   const ProductInfo({
     super.key,
+    // required this.item,
   });
   @override
   Widget build(BuildContext context) {
@@ -193,7 +197,10 @@ class ProductInfo extends StatelessWidget {
             ),
           ),
           Gap.gapH16,
-          const CustomText(title: 'Vendor Name'),
+          CustomText(
+            title: "Vendor name",
+            color: AppColors.kGrey200,
+          ),
           Gap.gapH6,
           const Text(
             'Eames Plastic Iconic Chair\nin White Colour',
@@ -208,10 +215,10 @@ class ProductInfo extends StatelessWidget {
                 'KWD 620',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              /*SizedBox(
+              SizedBox(
                 width: 10,
-              ),*/
-              Spacer(),
+              ),
+              // Spacer(),
               Text(
                 'KWD 677',
                 style: TextStyle(

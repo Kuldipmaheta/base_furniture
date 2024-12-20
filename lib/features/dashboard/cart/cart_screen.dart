@@ -1,8 +1,8 @@
 import 'package:furniture/design/utils/custom_text.dart';
-
 import '../../../core/constant/app_colors.dart';
 import '../../../design/utils/gap.dart';
 import '../../../export.dart';
+import '../../../practice/model.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -40,7 +40,7 @@ class _CartScreenState extends State<CartScreen> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
-                  itemCount: 2,
+                  itemCount: popularFurnitureList.length,
                   separatorBuilder: (context, index) {
                     return const Divider(
                       color: AppColors.kGrey100,
@@ -48,8 +48,9 @@ class _CartScreenState extends State<CartScreen> {
                     );
                   },
                   itemBuilder: (context, index) {
+                    Furniture item = popularFurnitureList[index];
                     return Padding(
-                      padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20, top: 16),
+                      padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20, top: 10),
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,24 +67,25 @@ class _CartScreenState extends State<CartScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const CustomText(
-                                  title: 'Vandor Name',
+                                CustomText(
+                                  title: item.vendorName,
+                                  color: AppColors.kGrey200,
                                 ),
                                 Gap.gapH6,
                                 Text(
-                                  'Eames Plastic Iconic Chair in \nWhite Colour ' * 10,
+                                  item.productName,
                                   maxLines: 2,
                                 ),
                                 Gap.gapH8,
                                 Row(
                                   children: [
-                                    const Text(
-                                      'KWD 620',
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                    Text(
+                                      item.originalPrice.toString(),
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                                     ),
                                     Gap.gapW10,
-                                    const Text(
-                                      'KWD 677',
+                                    Text(
+                                      item.discountedPrice.toString(),
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey,
@@ -123,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
                                       'Remove',
                                       style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w400,
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
@@ -150,7 +152,7 @@ class _CartScreenState extends State<CartScreen> {
                   children: [
                     const Text(
                       'Price Detail (2 items)',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     ),
                     Gap.gapH16,
                     const Row(
@@ -162,7 +164,7 @@ class _CartScreenState extends State<CartScreen> {
                         Spacer(),
                         Text(
                           'KWD 1,899',
-                          style: TextStyle(fontSize: 16, color: AppColors.kBlack400, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -176,7 +178,7 @@ class _CartScreenState extends State<CartScreen> {
                         Spacer(),
                         Text(
                           '-KWD 100',
-                          style: TextStyle(fontSize: 16, color: AppColors.kRed, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 16, color: AppColors.kRed, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -190,7 +192,7 @@ class _CartScreenState extends State<CartScreen> {
                         Spacer(),
                         Text(
                           'KWD 1,899',
-                          style: TextStyle(fontSize: 16, color: AppColors.kBlack400, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -204,12 +206,12 @@ class _CartScreenState extends State<CartScreen> {
                       children: [
                         Text(
                           'Total Prize',
-                          style: TextStyle(fontSize: 16, color: AppColors.kBlack400, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                         Spacer(),
                         Text(
                           'KWD 1,899',
-                          style: TextStyle(fontSize: 16, color: AppColors.kBlack400, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),

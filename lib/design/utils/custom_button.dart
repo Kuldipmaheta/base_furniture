@@ -146,14 +146,19 @@ class CustomMobileTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      // color: AppColors.kGrey100,
       // margin: const EdgeInsets.only(left: 24, right: 24),
       // height: 44,
       width: MediaQuery.of(context).size.width,
       child: TextField(
+        cursorColor: AppColors.kBlack400,
+        enabled: true,
         keyboardType: TextInputType.number,
         textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
+          fillColor: AppColors.kGrey100,
+          filled: true,
           contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

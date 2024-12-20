@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/design/utils/gap.dart';
 
-import 'favorites_screen.dart';
+import '../features/favourites/screens/favorites_screen.dart';
 
 class ProductListing extends StatefulWidget {
   const ProductListing({super.key});
@@ -11,7 +11,6 @@ class ProductListing extends StatefulWidget {
 }
 
 class _ProductListingState extends State<ProductListing> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,14 +26,14 @@ class _ProductListingState extends State<ProductListing> {
           shrinkWrap: true,
           itemCount: 10,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: .70,
-              crossAxisCount: 2,
-              crossAxisSpacing: 0,
-              mainAxisSpacing: 10,
+            childAspectRatio: .70,
+            crossAxisCount: 2,
+            crossAxisSpacing: 0,
+            mainAxisSpacing: 10,
           ),
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10),
+              padding: const EdgeInsets.only(left: 10.0, right: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -46,7 +45,8 @@ class _ProductListingState extends State<ProductListing> {
                     ),
                   ),*/
                   Image.asset(
-                    'assets/images/image1.png',fit: BoxFit.cover,
+                    'assets/images/image1.png',
+                    fit: BoxFit.cover,
                     width: 200,
                   ),
                   Gap.gapH6,
@@ -62,8 +62,7 @@ class _ProductListingState extends State<ProductListing> {
                     children: [
                       Text(
                         'KWD 620',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         width: 10,
@@ -78,9 +77,6 @@ class _ProductListingState extends State<ProductListing> {
                       ),
                     ],
                   ),
-
-
-
                 ],
               ),
             );

@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const SplashScreen(),
-      initialRoute: AppRoutes.productZoomScreen,
+      initialRoute: AppRoutes.dashboardScreen,
       getPages: AppRoutes.getPages,
       /*routes: {
         AppRoutes.initialRoute: (context) => const Welcome2Screen(),
