@@ -50,7 +50,7 @@ class _CartScreenState extends State<CartScreen> {
                   itemBuilder: (context, index) {
                     Furniture item = popularFurnitureList[index];
                     return Padding(
-                      padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20, top: 10),
+                      padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20, top: 20),
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -2,6 +2,7 @@ class AppImages {
   static const imagePath = 'assets/images';
   static const imgCar = '$imagePath/car_img.png';
   static const imgChair = '$imagePath/chair.png';
+  static const imgChooseLanguage = '$imagePath/choose_language.png';
 }
 
 class AppIcons {

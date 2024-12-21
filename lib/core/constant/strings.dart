@@ -57,6 +57,8 @@ class AppLabels {
 
   //
   static const String favorites = "Favorites";
+  static const String english = "English";
+  static const String chooseLanguage = "Choose Language";
 }
 
 /*class AppRoutes {

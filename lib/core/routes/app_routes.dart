@@ -9,6 +9,7 @@ import '../../features/dashboard/dashboard_screen.dart';
 import '../../features/dashboard/products/screens/product_detail_screen.dart';
 import '../../features/dashboard/products/screens/product_list_screen.dart';
 import '../../features/dashboard/products/screens/product_zoom_screen.dart';
+import '../../features/dashboard/profile/edit_profile/screens/edit_profile_screen.dart';
 import '../../features/dashboard/profile/profile_screen.dart';
 
 class AppRoutes {
@@ -25,6 +26,8 @@ class AppRoutes {
   static const String cartScreen = "/cartScreen";
   static const String categoryScreen = "/categoryScreen";
   static const String productZoomScreen = "/productZoomScreen";
+  static const String chooseLanguageScreen = "/chooseLanguageScreen";
+  static const String editProfileScreen = "/editProfileScreen";
 
   static List<GetPage> getPages = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -39,5 +42,7 @@ class AppRoutes {
     GetPage(name: cartScreen, page: () => const CartScreen()),
     GetPage(name: categoryScreen, page: () => const CategoryScreen()),
     GetPage(name: productZoomScreen, page: () => const ProductZoomScreen()),
+    GetPage(name: chooseLanguageScreen, page: () => const ChooseLanguageScreen()),
+    GetPage(name: editProfileScreen, page: () => const EditProfileScreen()),
   ];
 }

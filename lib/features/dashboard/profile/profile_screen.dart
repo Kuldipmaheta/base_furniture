@@ -3,10 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
+import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/features/dashboard/profile/widget/custom_profile_item.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -56,7 +58,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         style: CustomUiText.semiSize18.copyWith(color: AppColors.kWhiteColor),
                       ),
                       Gap.gapW8,
-                      SvgPicture.asset('assets/icons/ic_edit.svg')
+                      GestureDetector(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.editProfileScreen);
+                          },
+                          child: SvgPicture.asset('assets/icons/ic_edit.svg'))
                     ],
                   ),
                 ),
