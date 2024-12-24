@@ -2,11 +2,16 @@ class AppLabels {
   static const welcomeMessage1 = 'Design Your \nDream Space ';
   static const welcomeMessage2 =
       "Do Effortless shopping just \nbrowse, select, and purchase \nwithin seconds—it's simple! ";
+
+  static String logInTitle = "Let's Get Started";
   static const getStarted = 'Get Started ';
   static const getCategories = 'Categories';
   static const getViewAll = "View All";
   static const findSearchMsg = "Find what you're looking for";
+
   static const searchHere = "Search here";
+  static String logInDescr = "Unlock your dream space with a few taps";
+  static String mobileNumber = "Mobile Number";
 
   // profile cart
   static const profile = "Profile";
@@ -59,6 +64,12 @@ class AppLabels {
   static const String favorites = "Favorites";
   static const String english = "English";
   static const String chooseLanguage = "Choose Language";
+
+  //
+  static const String inStock = "In Stock";
+  static const String accentChair = "Pashe Fabric Accent Chair";
+  static const String quantity = "Quantity";
+  static const String productDet = "Product Details";
 }
 
 /*class AppRoutes {

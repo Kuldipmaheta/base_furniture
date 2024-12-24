@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
+import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
-
-import '../../../core/constant/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -33,20 +35,27 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap.gapH12,
-              Text(
-                "Let's Get Started",
-                style: CustomUiText.size28,
+              CustomText(
+                text: AppLabels.logInTitle,
+                style: context.titleMedium
+                    .withColor(AppColors.kBlack400)
+                    .copyWith(fontWeight: FontWeight.w600, fontSize: 28),
               ),
               Gap.gapH12,
-              Text("Unlock your dream space with a few taps", style: CustomUiText.size16),
+              CustomText(
+                text: AppLabels.logInDescr,
+                style: context.titleMedium.withColor(AppColors.kGrey300_2).copyWith(fontWeight: FontWeight.w300),
+              ),
               Gap.gapH40,
-              const Text('Mobile Number'),
+              CustomText(
+                text: AppLabels.mobileNumber,
+              ),
               Gap.gapH6,
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      height: 50,
+                      height: 44,
                       width: 85,
                       decoration: BoxDecoration(
                           // color: Colors.red,
@@ -63,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: SizedBox(
                     // color: Colors.blue,
                     // margin: const EdgeInsets.only(right: 24),
-                    // height: 44,
+                    height: 44,
                     child: TextFormField(
                       validator: (value) => value!.isEmpty ? "Please enter mobile number" : null,
                       controller: mobileController,

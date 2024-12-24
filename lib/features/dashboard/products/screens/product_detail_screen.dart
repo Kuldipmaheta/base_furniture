@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
+import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:get/get.dart';
+
 import '../../../../core/constant/app_colors.dart';
+import '../../../../core/constant/strings.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../home/screens/home_screen.dart';
 
@@ -15,6 +19,16 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  bool isExpanded = false;
+  bool _visible = false;
+
+  /* final String longText = "As a Flutter developer, crafting dynamic UIs is both fun and rewarding. "
+      "This example demonstrates how you can toggle text visibility in your app. "
+      "Click 'View More' to see the full content or 'View Less' to minimize.";*/
+  final String text = "Accessories shown in the image are only for representation and are not part of the product "
+      "Depending on your screen settings and resolution on your device there may be a  slight variance in "
+      "fabric color and wood polish of the image and actual  product  Wood grains will vary from product to product. ";
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -42,7 +56,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     margin: const EdgeInsets.only(left: 24, right: 24),
                     // decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     width: MediaQuery.of(context).size.width,
-                    height: 300,
+                    height: 382,
                     child: GestureDetector(
                       onTap: () {
                         Get.toNamed(AppRoutes.productZoomScreen);
@@ -59,53 +73,59 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 padding: const EdgeInsets.only(left: 24.0, right: 24),
                 child: Row(
                   children: [
-                    const Expanded(
-                      child: Text('Vendor Name',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(fontSize: 14, color: AppColors.kGrey200)),
-                    ),
+                    Expanded(
+                        child: CustomText(
+                      text: AppLabels.vendor,
+                      maxLines: 1,
+                      style: context.titleMedium.withColor(AppColors.kGrey200).copyWith(fontWeight: FontWeight.w400),
+                    )
+                        /* Text('Vendor Name',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(fontSize: 14, color: AppColors.kGrey200)),*/
+                        ),
                     const Spacer(),
                     SvgPicture.asset('assets/icons/ic_checked.svg'),
                     Gap.gapW4,
-                    const Text(
-                      'In stock',
-                      style: TextStyle(color: AppColors.kGreen),
-                    ),
+                    CustomText(
+                      text: AppLabels.inStock,
+                      style: context.titleSmall.withColor(AppColors.kGreen),
+                    )
                   ],
                 ),
               ),
               Gap.gapH16,
               Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24),
-                child: Text(
-                  'Pashe Fabric Accent Chair',
-                  style: CustomUiText.semiSize16,
-                ),
-              ),
+                  padding: const EdgeInsets.only(left: 24.0, right: 24),
+                  child: CustomText(
+                    maxLines: 1,
+                    text: AppLabels.accentChair,
+                    style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
+                  )),
               Gap.gapH16,
               Padding(
                 padding: const EdgeInsets.only(left: 24.0, right: 24),
                 child: Row(
                   children: [
-                    Text(
-                      'KWD 599',
-                      style: CustomUiText.semiSize16,
+                    CustomText(
+                      maxLines: 1,
+                      text: "KWD 599",
+                      style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
                     ),
                     Gap.gapW10,
-                    const Text(
-                      'KWD 699',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.kGrey200,
+                    CustomText(
+                      text: "KWD 699",
+                      style: context.titleMedium.withColor(AppColors.kGrey200).copyWith(
+                          fontWeight: FontWeight.w300,
                           decoration: TextDecoration.lineThrough,
                           decorationColor: AppColors.kGrey200),
-                    ),
+                    )
                   ],
                 ),
               ),
               Gap.gapH24,
               const Divider(
+                height: 4,
                 color: AppColors.kGrey100,
                 thickness: 2,
               ),
@@ -114,9 +134,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 padding: const EdgeInsets.only(left: 24.0, right: 24),
                 child: Row(
                   children: [
-                    Text(
-                      'Quantity',
-                      style: CustomUiText.size16,
+                    CustomText(
+                      text: AppLabels.quantity,
+                      style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(
+                            fontWeight: FontWeight.w400,
+                          ),
                     ),
                     const Spacer(),
                     Container(
@@ -145,6 +167,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
               Gap.gapH24,
               const Divider(
+                height: 4,
                 color: AppColors.kGrey100,
                 thickness: 2,
               ),
@@ -154,34 +177,70 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText(
-                      title: "Product Details",
+                    CustomText(
+                      text: "Product Details",
+                      style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w400),
                     ),
                     Gap.gapH16,
-                    const CustomText(title: 'Brand', color: AppColors.kGrey200),
-                    const CustomText(
-                      title: 'Doe Buck',
+                    CustomText(
+                      text: 'Brand',
+                      style: context.titleMedium.withColor(AppColors.kGrey200).copyWith(fontWeight: FontWeight.w300),
                     ),
-                    Gap.gapH14,
-                    const CustomText(
-                      title: "Assembly",
+                    CustomText(
+                      text: 'Doe Buck',
+                      style: context.titleMedium.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w300),
                     ),
-                    const CustomText(title: 'Brand', color: AppColors.kGrey200),
-                    Gap.gapH14,
-                    const CustomText(
-                      title: "Assembly",
+                    Visibility(
+                      visible: _visible,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Gap.gapH14,
+                          CustomText(
+                            text: "Assembly",
+                            style:
+                                context.titleMedium.withColor(AppColors.kGrey200).copyWith(fontWeight: FontWeight.w300),
+                          ),
+                          CustomText(
+                            text: 'Brand',
+                            style:
+                                context.titleMedium.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w300),
+                          ),
+                          Gap.gapH14,
+                          CustomText(
+                            text: "Assembly",
+                            style:
+                                context.titleMedium.withColor(AppColors.kGrey200).copyWith(fontWeight: FontWeight.w300),
+                          ),
+                          CustomText(
+                            text: 'Brand',
+                            style:
+                                context.titleMedium.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w300),
+                          ),
+                        ],
+                      ),
                     ),
-                    const CustomText(title: 'Brand', color: AppColors.kGrey200),
                     Gap.gapH16,
-                    const CustomText(
-                      title: "View Less",
-                      color: AppColors.kPrimaryColor,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _visible = !_visible;
+                        });
+                      },
+                      child: CustomText(
+                        text: _visible ? "View Less" : "View More",
+                        style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.kPrimaryColor,
+                            fontWeight: FontWeight.w400),
+                      ),
                     ),
                   ],
                 ),
               ),
               Gap.gapH24,
               const Divider(
+                height: 4,
                 color: AppColors.kGrey100,
                 thickness: 2,
               ),
@@ -191,23 +250,39 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText(title: 'Specification'),
+                    CustomText(
+                      text: 'Specification',
+                      style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w400),
+                    ),
                     Gap.gapH16,
-                    const CustomText(
-                      maxLines: 5,
-                      title:
-                          "Accessories shown in the image are only for representation and are not part of the product  Depending on your screen settings and resolution on your device there may be a  slight variance in fabric color and wood polish of the image and actual  product  Wood grains will vary from product to product ",
+                    CustomText(
+                      maxLines: 8,
+                      text: isExpanded ? text : '${text.substring(0, 100)}...',
+                      // "Accessories shown in the image are only for representation and are not part of the product  Depending on your screen settings and resolution on your device there may be a  slight variance in fabric color and wood polish of the image and actual  product  Wood grains will vary from product to product ",
+                      style: context.titleMedium.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w300),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Gap.gapH14,
-                    const CustomText(
-                      title: "View More",
-                      color: AppColors.kPrimaryColor,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isExpanded = !isExpanded;
+                        });
+                      },
+                      child: CustomText(
+                        text: isExpanded ? "View Less" : "View More",
+                        style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.kPrimaryColor,
+                            fontWeight: FontWeight.w400),
+                      ),
                     ),
                   ],
                 ),
               ),
               Gap.gapH24,
               const Divider(
+                height: 4,
                 color: AppColors.kGrey100,
                 thickness: 2,
               ),
@@ -228,13 +303,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Row(
+                        Row(
                           children: [
                             CustomText(
-                              title: "Customer Reviews",
+                              text: "Customer Reviews",
+                              style: context.titleMedium
+                                  .withColor(AppColors.kBlack400)
+                                  .copyWith(fontWeight: FontWeight.w400),
                             ),
-                            Spacer(),
-                            Text("Sea All")
+                            const Spacer(),
+                            CustomText(
+                              text: "See All",
+                              style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.kPrimaryColor,
+                                  fontWeight: FontWeight.w400),
+                            ),
                           ],
                         ),
                         Gap.gapH16,
@@ -246,22 +330,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             Gap.gapW12,
                             const Column(
                               children: [
-                                CustomText(title: 'Noura Rashidi'),
+                                CustomText(text: 'Noura Rashidi'),
                                 CustomText(
-                                  title: '17 June, 2024',
-                                  color: AppColors.kGrey200,
+                                  text: '17 June, 2024',
+                                  // color: AppColors.kGrey200,
                                 ),
                               ],
                             )
                           ],
                         ),
                         Gap.gapH12,
-                        const CustomText(title: "The ultimate chair for reading, napping, or just chilling. "),
-                        const CustomText(title: "I'm absolutely in love with it!"),
+                        const CustomText(text: "The ultimate chair for reading, napping, or just chilling. "),
+                        const CustomText(text: "I'm absolutely in love with it!"),
                         Gap.gapH12,
-                        const CustomText(
-                          title: "View More",
-                          color: AppColors.kPrimaryColor,
+                        CustomText(
+                          text: "View More",
+                          style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.kPrimaryColor,
+                              fontWeight: FontWeight.w400),
                         ),
                         Gap.gapH16,
                         const Divider(
@@ -277,8 +364,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               const Padding(
                 padding: EdgeInsets.only(left: 24.0),
                 child: CustomText(
-                  title: "Other Vendors",
-                  color: AppColors.kBlack400,
+                  text: "Other Vendors",
+                  // color: AppColors.kBlack400,
                 ),
               ),
               Gap.gapH16,
@@ -307,8 +394,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               const Padding(
                 padding: EdgeInsets.only(left: 24.0),
                 child: CustomText(
-                  title: "Related Products",
-                  color: AppColors.kBlack400,
+                  text: "Related Products",
+                  // color: AppColors.kBlack400,
                 ),
               ),
               Gap.gapH16,
@@ -355,7 +442,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   }
 }
 
-class CustomText extends StatelessWidget {
+/*class CustomText extends StatelessWidget {
   const CustomText({
     super.key,
     required this.title,
@@ -381,7 +468,7 @@ class CustomText extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
 class CustomElevateBtn extends StatelessWidget {
   const CustomElevateBtn({super.key});

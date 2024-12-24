@@ -1,4 +1,3 @@
-import 'package:furniture/core/constant/app_colors.dart';
 import 'package:get/get.dart';
 
 import 'core/routes/app_routes.dart';
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const SplashScreen(),
-      initialRoute: AppRoutes.chooseLanguageScreen,
+      initialRoute: AppRoutes.productDetailScreen,
       getPages: AppRoutes.getPages,
       /*routes: {
         AppRoutes.initialRoute: (context) => const Welcome2Screen(),
