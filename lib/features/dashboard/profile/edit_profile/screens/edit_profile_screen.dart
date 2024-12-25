@@ -32,11 +32,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap.gapH16,
-              Text("Full name"),
+              const Text("Full name"),
               Gap.gapH6,
               CustomTextField(hintText: "Name"),
               Gap.gapH24,
-              Text("Mobile Number"),
+              const Text("Mobile Number"),
               Gap.gapH6,
               Row(
                 children: [
@@ -54,14 +54,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       )),
                   Gap.gapW8,
-                  Expanded(child: CustomMobileTextField()),
+                  const Expanded(child: CustomMobileTextField()),
                 ],
               ),
               Gap.gapH24,
-              Text("Email"),
+              const Text("Email"),
               Gap.gapH6,
               CustomTextField(hintText: "email@gmail.com"),
-              SizedBox(
+              const SizedBox(
                 height: 410,
               ),
               SizedBox(width: MediaQuery.of(context).size.width, height: 52, child: const CustomElevateBtn()),

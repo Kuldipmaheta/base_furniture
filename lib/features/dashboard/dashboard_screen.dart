@@ -4,8 +4,6 @@ import 'package:furniture/export.dart';
 import 'package:furniture/features/dashboard/category/screens/category_screen.dart';
 import 'package:furniture/features/dashboard/profile/profile_screen.dart';
 
-import '../../core/constant/app_colors.dart';
-import '../../core/constant/strings.dart';
 import 'cart/cart_screen.dart';
 
 class DashboardScreen extends StatefulWidget {

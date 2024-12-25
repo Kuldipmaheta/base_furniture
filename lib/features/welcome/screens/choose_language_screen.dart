@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_images.dart';
-import 'package:furniture/core/constant/strings.dart';
-import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/export.dart';
 import 'package:get/get.dart';
-
-import '../../../core/constant/app_colors.dart';
-import '../../../design/utils/custom_text.dart';
 
 class ChooseLanguageScreen extends StatefulWidget {
   const ChooseLanguageScreen({super.key});
@@ -19,7 +14,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
   int? selectedValue;
   @override
   Widget build(BuildContext context) {
-    String lang = "English";
+    // String lang = "English";
     return Scaffold(
       body: Container(
         height: Get.height,
@@ -42,7 +37,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
               // CustomText(title: AppLabels.chooseLanguage),
               Gap.gapH16,
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 // alignment: Alignment.bottomLeft,
                 // height: 200,
                 // width: MediaQuery.of(context).size.width,
@@ -62,10 +57,10 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                         return Column(
                           children: [
                             Container(
-                              padding: EdgeInsets.only(bottom: 20),
+                              padding: const EdgeInsets.only(bottom: 20),
                               // color: Colors.red,
                               child: Container(
-                                padding: EdgeInsets.all(16),
+                                padding: const EdgeInsets.all(16),
                                 decoration:
                                     BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all()),
                                 child: Row(

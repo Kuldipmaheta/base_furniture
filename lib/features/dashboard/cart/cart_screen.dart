@@ -1,6 +1,5 @@
 import 'package:furniture/design/utils/custom_text.dart';
-import '../../../core/constant/app_colors.dart';
-import '../../../design/utils/gap.dart';
+
 import '../../../export.dart';
 import '../../../practice/model.dart';
 

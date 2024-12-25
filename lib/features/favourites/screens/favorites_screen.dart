@@ -15,7 +15,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        backgroundColor: AppColors.kWhiteColor,
+        appBar: /* CustomAppBar(
+          title: AppLabels.favorites,
+        ),*/
+            AppBar(
           forceMaterialTransparency: true,
           // title: Text("Favorites"),
           titleSpacing: 0,
@@ -45,7 +49,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             itemBuilder: (context, index) {
               Furniture item = popularFurnitureList[index];
               return Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                padding: const EdgeInsets.only(
+                  left: 24.0,
+                  right: 24,
+                ),
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,6 +109,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       decoration: TextDecoration.underline,
+                                      decorationColor: Color(0xFF95622D),
                                       color: Color(0xFF95622D)),
                                 ),
                                 Gap.gapW16,

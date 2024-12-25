@@ -5,9 +5,9 @@ import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_button.dart';
-import 'package:furniture/features/dashboard/profile/widget/custom_profile_item.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/features/dashboard/profile/widget/custom_profile_item.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -88,8 +88,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: AppIcons.icShoppingBag,
             ),
             CustomProfileItem(
+              onTap: () {
+                print("object");
+                Get.toNamed(AppRoutes.myAddressScreen);
+              },
               title: AppLabels.myAddress,
-              leading: AppIcons.icRefund,
+              leading: AppIcons.icAddress,
             ),
             CustomProfileItem(
               title: AppLabels.returnRefund,

@@ -35,6 +35,9 @@ class AppIcons {
   static const icOrders = '$iconPath/orders_icon.svg';
   static const icSortBy = '$iconPath/ic_sortby.svg';
   static const icBackArrow = '$iconPath/ic_back_mobile.svg';
+  static const icStar = '$iconPath/ic_star.svg';
 
-  //
+  //my address
+  static const icEdit = '$iconPath/ic_edit_pen.svg';
+  static const icDelete = '$iconPath/ic_delete.svg';
 }

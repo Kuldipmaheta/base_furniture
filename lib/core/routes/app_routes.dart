@@ -6,10 +6,12 @@ import '../../features/authentication/screens/registration_screen.dart';
 import '../../features/dashboard/cart/cart_screen.dart';
 import '../../features/dashboard/category/screens/category_screen.dart';
 import '../../features/dashboard/dashboard_screen.dart';
+import '../../features/dashboard/products/review/customer_review_screen.dart';
 import '../../features/dashboard/products/screens/product_detail_screen.dart';
 import '../../features/dashboard/products/screens/product_list_screen.dart';
 import '../../features/dashboard/products/screens/product_zoom_screen.dart';
 import '../../features/dashboard/profile/edit_profile/screens/edit_profile_screen.dart';
+import '../../features/dashboard/profile/my_address/screens/my_address_screen.dart';
 import '../../features/dashboard/profile/profile_screen.dart';
 
 class AppRoutes {
@@ -28,6 +30,8 @@ class AppRoutes {
   static const String productZoomScreen = "/productZoomScreen";
   static const String chooseLanguageScreen = "/chooseLanguageScreen";
   static const String editProfileScreen = "/editProfileScreen";
+  static const String customerReviewScreen = "/customerReviewScreen";
+  static const String myAddressScreen = "/myAddressScreen";
 
   static List<GetPage> getPages = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -44,5 +48,7 @@ class AppRoutes {
     GetPage(name: productZoomScreen, page: () => const ProductZoomScreen()),
     GetPage(name: chooseLanguageScreen, page: () => const ChooseLanguageScreen()),
     GetPage(name: editProfileScreen, page: () => const EditProfileScreen()),
+    GetPage(name: customerReviewScreen, page: () => const CustomerReviewScreen()),
+    GetPage(name: myAddressScreen, page: () => const MyAddressScreen()),
   ];
 }

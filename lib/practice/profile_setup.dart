@@ -1,6 +1,5 @@
 import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/custom_text.dart';
-import 'package:furniture/design/utils/gap.dart';
 
 import '../export.dart';
 

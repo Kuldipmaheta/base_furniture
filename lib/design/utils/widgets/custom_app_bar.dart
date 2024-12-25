@@ -1,7 +1,14 @@
-import 'package:furniture/core/constant/app_images.dart';
-import 'package:furniture/export.dart';
+import 'package:flutter/material.dart';
+// import 'package:furniture/export.dart';
 import 'package:flutter/services.dart';
-import '../extensions/widget_extensions.dart';
+import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/core/constant/app_images.dart';
+import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
+import 'package:furniture/design/utils/extensions/text_style_extension.dart';
+import 'package:furniture/design/utils/extensions/widget_extensions.dart';
+
+import 'custom_image.dart';
 import 'custom_svg.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -40,6 +47,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
       child: AppBar(
+        // backgroundColor: AppColors.kWhiteColor,
+        forceMaterialTransparency: true,
         scrolledUnderElevation: 0,
         automaticallyImplyLeading: false,
         systemOverlayStyle: systemOverlayStyle,
@@ -56,30 +65,29 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 if (isTrailingPad) gap12,
                 if (imageUrl != null) ...[
-                  /* CustomImage(
+                  CustomImage(
                     imageUrl: imageUrl!,
                     height: 34,
                     width: 34,
                     fit: BoxFit.cover,
                     radius: BorderRadius.circular(25),
-                  ),*/
+                  ),
                   gap12,
                 ],
-                const Flexible(
+                Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(""),
-                      /*CustomText(
+                      CustomText(
                         text: title,
-                        style: context.headlineMedium,
+                        style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
                       ),
                       if (subtitle != null)
-                        if (!subtitle!.isTextBlank())
-                          CustomText(
-                            text: subtitle,
-                            style: context.bodyMedium,
-                          ),*/
+                        // if (!subtitle!.isTextBlank())
+                        CustomText(
+                          text: subtitle,
+                          style: context.bodyMedium,
+                        ),
                     ],
                   ),
                 )

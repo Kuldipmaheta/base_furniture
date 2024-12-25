@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
+import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_button.dart';
+import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
-import 'package:get/get.dart';
-import '../../../../core/constant/strings.dart';
-import '../../../favourites/screens/favorites_screen.dart';
-import '../../../../design/utils/gap.dart';
+import 'package:furniture/features/favourites/screens/favorites_screen.dart';
 import 'package:furniture/practice/model.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

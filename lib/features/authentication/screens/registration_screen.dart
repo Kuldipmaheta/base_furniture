@@ -1,7 +1,6 @@
-import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/custom_text.dart';
-import 'package:furniture/design/utils/gap.dart';
+
 import '../../../export.dart';
 
 class RegistrationScreen extends StatefulWidget {

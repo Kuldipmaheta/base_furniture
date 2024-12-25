@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/design/utils/widgets/custom_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constant/app_colors.dart';
@@ -257,7 +259,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Gap.gapH16,
                     CustomText(
                       maxLines: 8,
-                      text: isExpanded ? text : '${text.substring(0, 100)}...',
+                      text: isExpanded ? text : '${text.substring(0, 90)}...',
                       // "Accessories shown in the image are only for representation and are not part of the product  Depending on your screen settings and resolution on your device there may be a  slight variance in fabric color and wood polish of the image and actual  product  Wood grains will vary from product to product ",
                       style: context.titleMedium.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w300),
                       overflow: TextOverflow.ellipsis,
@@ -287,13 +289,40 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 thickness: 2,
               ),
               Gap.gapH24,
-              ListView.builder(
-                /*separatorBuilder: (context, index) {
-                  return Divider(
-                    color: AppColors.kGrey100,
-                    thickness: 3,
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: "Customer Reviews",
+                      style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w400),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.customerReviewScreen);
+                      },
+                      child: CustomText(
+                        text: "See All",
+                        style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.kPrimaryColor,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ListView.separated(
+                separatorBuilder: (context, index) {
+                  return const Padding(
+                    padding: EdgeInsets.only(left: 24.0, right: 24),
+                    child: Divider(
+                      color: AppColors.kGrey100,
+                      thickness: 1,
+                    ),
                   );
-                },*/
+                },
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: 3,
@@ -303,24 +332,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            CustomText(
-                              text: "Customer Reviews",
-                              style: context.titleMedium
-                                  .withColor(AppColors.kBlack400)
-                                  .copyWith(fontWeight: FontWeight.w400),
-                            ),
-                            const Spacer(),
-                            CustomText(
-                              text: "See All",
-                              style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.kPrimaryColor,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        ),
                         Gap.gapH16,
                         Row(
                           children: [
@@ -328,20 +339,51 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               child: Image.asset('assets/images/ellipse_img.png'),
                             ),
                             Gap.gapW12,
-                            const Column(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CustomText(text: 'Noura Rashidi'),
+                                CustomText(
+                                  text: 'Noura Rashidi',
+                                  style: context.titleMedium
+                                      .withColor(AppColors.kBlack400)
+                                      .copyWith(fontWeight: FontWeight.w400),
+                                ),
                                 CustomText(
                                   text: '17 June, 2024',
+                                  style: context.titleSmall
+                                      .withColor(AppColors.kGrey200)
+                                      .copyWith(fontWeight: FontWeight.w400),
                                   // color: AppColors.kGrey200,
                                 ),
                               ],
+                            ),
+                            const Spacer(),
+                            Container(
+                              decoration:
+                                  BoxDecoration(color: AppColors.kYellow, borderRadius: BorderRadius.circular(5)),
+                              height: 19,
+                              width: 40,
+                              // color: Colors.red,
+                              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                const Text("4.5"),
+                                Gap.gapW4,
+                                const CustomSvg(
+                                  imgUrl: AppIcons.icStar,
+                                  width: 10,
+                                  // width: 10,
+                                ),
+                              ]),
                             )
                           ],
                         ),
                         Gap.gapH12,
-                        const CustomText(text: "The ultimate chair for reading, napping, or just chilling. "),
-                        const CustomText(text: "I'm absolutely in love with it!"),
+                        CustomText(
+                          maxLines: 3,
+                          text: "The ultimate chair for reading, napping, or just chilling. \n"
+                              "I'm absolutely in love with it!",
+                          style: context.titleSmall.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w400),
+                        ),
+                        // const CustomText(text: "I'm absolutely in love with it!"),
                         Gap.gapH12,
                         CustomText(
                           text: "View More",
@@ -351,20 +393,61 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                         Gap.gapH16,
-                        const Divider(
+                        /*const Divider(
+                          height: 4,
                           color: AppColors.kGrey100,
                           thickness: 2,
-                        ),
+                        ),*/
                       ],
                     ),
                   );
                 },
               ),
+              Gap.gapH8,
+              const Divider(
+                height: 4,
+                color: AppColors.kGrey100,
+                thickness: 2,
+              ),
               Gap.gapH24,
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 24.0),
                 child: CustomText(
                   text: "Other Vendors",
+                  style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
+                  // color: AppColors.kBlack400,
+                ),
+              ),
+              Gap.gapH16,
+              Container(
+                margin: const EdgeInsets.only(left: 24, right: 24),
+                height: MediaQuery.of(context).size.height / 2.98,
+                // width: MediaQuery.of(context).size.width,
+                child: ListView.separated(
+                    separatorBuilder: (ctx, index) {
+                      return Gap.gapW20;
+                    },
+                    shrinkWrap: true,
+                    // physics: NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 4,
+                    itemBuilder: (ctx, index) {
+                      return const SizedBox(width: 170, child: ProductInfo());
+                    }),
+              ),
+              Gap.gapH24,
+              const Divider(
+                height: 4,
+                color: AppColors.kGrey100,
+                thickness: 2,
+              ),
+              Gap.gapH24,
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0),
+                child: CustomText(
+                  text: "Related Products",
+                  style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
+
                   // color: AppColors.kBlack400,
                 ),
               ),
@@ -385,42 +468,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       return const SizedBox(width: 170, child: ProductInfo());
                     }),
               ),
-              Gap.gapH24,
-              const Divider(
-                color: AppColors.kGrey100,
-                thickness: 2,
-              ),
-              Gap.gapH24,
-              const Padding(
-                padding: EdgeInsets.only(left: 24.0),
-                child: CustomText(
-                  text: "Related Products",
-                  // color: AppColors.kBlack400,
-                ),
-              ),
-              Gap.gapH16,
-              Container(
-                margin: const EdgeInsets.only(left: 24, right: 24),
-                height: MediaQuery.of(context).size.height / 2.8,
-                // width: MediaQuery.of(context).size.width,
-                child: ListView.separated(
-                    separatorBuilder: (ctx, index) {
-                      return Gap.gapW20;
-                    },
-                    shrinkWrap: true,
-                    // physics: NeverScrollableScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemBuilder: (ctx, index) {
-                      return const SizedBox(width: 170, child: ProductInfo());
-                    }),
-              ),
             ],
           ),
         ),
         persistentFooterButtons: [
           Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24, top: 24, bottom: 16),
+            padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 16),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 52,
