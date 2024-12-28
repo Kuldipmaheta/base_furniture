@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.kWhiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.kWhiteColor,
         forceMaterialTransparency: true,
@@ -56,112 +57,115 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        // physics: AlwaysScrollableScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 24.0, right: 24),
-              child: CustomSlider(),
-            ),
-            Center(
-              child: DotsIndicator(
-                decorator: const DotsDecorator(color: AppColors.kGrey100, activeColor: AppColors.kPrimaryColor),
-                dotsCount: totalDots,
-                position: currentPosition,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          // physics: AlwaysScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gap.gapH16,
+              const Padding(
+                padding: EdgeInsets.only(left: 24.0, right: 24),
+                child: CustomSlider(),
               ),
-            ),
-            Gap.gapH16,
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24),
-              child: Row(
-                children: [
-                  const Text(
-                    AppLabels.getCategories,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      // Get.offAllNamed(AppRoutes.categoryScreen);
-                    },
-                    child: const Text(
-                      AppLabels.getViewAll,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.kPrimaryColor,
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColors.kPrimaryColor,
+              Center(
+                child: DotsIndicator(
+                  decorator: const DotsDecorator(color: AppColors.kGrey100, activeColor: AppColors.kPrimaryColor),
+                  dotsCount: totalDots,
+                  position: currentPosition,
+                ),
+              ),
+              Gap.gapH16,
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                child: Row(
+                  children: [
+                    const Text(
+                      AppLabels.getCategories,
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        // Get.offAllNamed(AppRoutes.categoryScreen);
+                      },
+                      child: const Text(
+                        AppLabels.getViewAll,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.kPrimaryColor,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.kPrimaryColor,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Gap.gapH24,
-            const CustomProducts(),
-            Gap.gapH16,
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24),
-              child: Row(
-                children: [
-                  const Text(
-                    'Popular Furniture',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      'View All',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.kPrimaryColor,
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColors.kPrimaryColor,
+              Gap.gapH24,
+              const CustomProducts(),
+              Gap.gapH16,
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                child: Row(
+                  children: [
+                    const Text(
+                      'Popular Furniture',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        'View All',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.kPrimaryColor,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.kPrimaryColor,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Gap.gapH16,
-            ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: popularFurnitureList.length,
-                itemBuilder: (context, index) {
-                  // Furniture item = popularFurnitureList[index];
-                  return const Padding(
-                    padding: EdgeInsets.only(
-                      bottom: 20,
-                    ),
-                    child: Row(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 24.0, right: 10),
-                            child: ProductInfo(),
+              Gap.gapH16,
+              ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: popularFurnitureList.length,
+                  itemBuilder: (context, index) {
+                    // Furniture item = popularFurnitureList[index];
+                    return const Padding(
+                      padding: EdgeInsets.only(
+                        bottom: 20,
+                      ),
+                      child: Row(
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 24.0, right: 10),
+                              child: ProductInfo(),
+                            ),
                           ),
-                        ),
-                        // Gap.gapW20,
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 10.0, right: 24),
-                            child: ProductInfo(),
+                          // Gap.gapW20,
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10.0, right: 24),
+                              child: ProductInfo(),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
-          ],
+                        ],
+                      ),
+                    );
+                  }),
+            ],
+          ),
         ),
       ),
     );

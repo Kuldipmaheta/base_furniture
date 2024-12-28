@@ -5,6 +5,7 @@ import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/features/authentication/controllers/sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -110,6 +111,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
+                    setState(() {
+                      signIn(phoneController.text, codeController.text);
+                    });
+
                     /*if (_formKey.currentState != null) {
                       print('object ${_formKey.currentState!.validate()}');
                     }*/

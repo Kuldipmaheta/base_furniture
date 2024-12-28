@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/gap.dart';
-
-import '../../../practice/model.dart';
+import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
+import 'package:furniture/practice/model.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -16,10 +17,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.kWhiteColor,
-        appBar: /* CustomAppBar(
+        appBar: const CustomAppBar(
           title: AppLabels.favorites,
-        ),*/
-            AppBar(
+        ),
+        /* AppBar(
           forceMaterialTransparency: true,
           // title: Text("Favorites"),
           titleSpacing: 0,
@@ -30,16 +31,20 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           ),
           //already assign back arrow
           // leading: const ImageIcon(AssetImage('assets/images/back_arrow.png')),
-        ),
+        ),*/
         body: SafeArea(
           child: ListView.separated(
+            padding: const EdgeInsets.only(
+              top: 16.0,
+            ),
             shrinkWrap: true,
             separatorBuilder: (context, index) {
               return const Padding(
                 padding: EdgeInsets.only(top: 24.0, bottom: 24),
                 child: Divider(
+                  height: 4,
                   color: AppColors.kGrey100,
-                  thickness: 2,
+                  thickness: 4,
                 ),
               );
             },
@@ -57,7 +62,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   // mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Gap.gapH13,
+                    // Gap.gapH13,
                     const Column(
                       children: [
                         Image(

@@ -52,7 +52,8 @@ const EdgeInsets p6 = EdgeInsets.all(6);
 const EdgeInsets p10 = EdgeInsets.all(10);
 const EdgeInsets p12 = EdgeInsets.all(12);
 const EdgeInsets p16 = EdgeInsets.all(16);
-const EdgeInsets p24 = EdgeInsets.all(24);
+const EdgeInsets p20 = EdgeInsets.all(20);
+const EdgeInsets p24 = EdgeInsets.only(left: 24, right: 24);
 const EdgeInsets p30 = EdgeInsets.all(30);
 const EdgeInsets p32 = EdgeInsets.all(32);
 

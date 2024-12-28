@@ -168,7 +168,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ),
         persistentFooterButtons: [
           Container(
-              margin: const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24), child: const CustomButton())
+              padding: const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24), child: const CustomButton())
         ],
       ),
     );

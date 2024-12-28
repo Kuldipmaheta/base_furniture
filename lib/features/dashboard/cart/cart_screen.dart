@@ -1,7 +1,8 @@
 import 'package:furniture/design/utils/custom_text.dart';
-
-import '../../../export.dart';
-import '../../../practice/model.dart';
+import 'package:furniture/design/utils/extensions/widget_extensions.dart';
+import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
+import 'package:furniture/export.dart';
+import 'package:furniture/practice/model.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -16,7 +17,14 @@ class _CartScreenState extends State<CartScreen> {
     return Theme(
       data: Theme.of(context).copyWith(dividerTheme: const DividerThemeData(color: Colors.transparent)),
       child: Scaffold(
-        appBar: AppBar(
+        // extendBody: true,
+        backgroundColor: AppColors.kWhiteColor,
+        appBar: const CustomAppBar(
+          title: AppLabels.cart,
+          isTrailingPad: false,
+          backWidget: gap0,
+        ),
+        /*AppBar(
           backgroundColor: AppColors.kWhiteColor,
           forceMaterialTransparency: true,
           titleSpacing: 0,
@@ -27,123 +35,129 @@ class _CartScreenState extends State<CartScreen> {
               style: CustomUiText.semiSize16,
             ),
           ),
-        ),
+        ),*/
         body: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                // height: MediaQuery.of(context).size.height / 2.3,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: popularFurnitureList.length,
-                  separatorBuilder: (context, index) {
-                    return const Divider(
+              Gap.gapH16,
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemCount: popularFurnitureList.length,
+                separatorBuilder: (context, index) {
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 20.0, bottom: 20),
+                    child: Divider(
+                      // height: 4,
                       color: AppColors.kGrey100,
-                      thickness: 2,
-                    );
-                  },
-                  itemBuilder: (context, index) {
-                    Furniture item = popularFurnitureList[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20, top: 20),
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Column(
+                      thickness: 4,
+                    ),
+                  );
+                },
+                itemBuilder: (context, index) {
+                  Furniture item = popularFurnitureList[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 24.0,
+                      right: 24,
+                    ),
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Column(
+                          children: [
+                            Image(
+                              image: AssetImage('assets/images/image3.png'),
+                            ),
+                          ],
+                        ),
+                        Gap.gapW16,
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image(
-                                image: AssetImage('assets/images/image3.png'),
+                              CustomText(
+                                title: item.vendorName,
+                                color: AppColors.kGrey200,
+                              ),
+                              Gap.gapH6,
+                              Text(
+                                item.productName,
+                                maxLines: 2,
+                              ),
+                              Gap.gapH8,
+                              Row(
+                                children: [
+                                  Text(
+                                    item.originalPrice.toString(),
+                                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                                  ),
+                                  Gap.gapW10,
+                                  Text(
+                                    item.discountedPrice.toString(),
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                        decoration: TextDecoration.lineThrough,
+                                        decorationColor: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                              Gap.gapH16,
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 28,
+                                    width: 28,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5), color: AppColors.kGrey300),
+                                    child: const Icon(
+                                      Icons.remove,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Gap.gapW16,
+                                  const Text('1'),
+                                  Gap.gapW16,
+                                  Container(
+                                    height: 28,
+                                    width: 28,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5), color: AppColors.kGrey300),
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  const Text(
+                                    'Remove',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          Gap.gapW16,
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CustomText(
-                                  title: item.vendorName,
-                                  color: AppColors.kGrey200,
-                                ),
-                                Gap.gapH6,
-                                Text(
-                                  item.productName,
-                                  maxLines: 2,
-                                ),
-                                Gap.gapH8,
-                                Row(
-                                  children: [
-                                    Text(
-                                      item.originalPrice.toString(),
-                                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                                    ),
-                                    Gap.gapW10,
-                                    Text(
-                                      item.discountedPrice.toString(),
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.grey,
-                                          decoration: TextDecoration.lineThrough,
-                                          decorationColor: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                                Gap.gapH16,
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 28,
-                                      width: 28,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5), color: AppColors.kGrey300),
-                                      child: const Icon(
-                                        Icons.remove,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Gap.gapW16,
-                                    const Text('1'),
-                                    Gap.gapW16,
-                                    Container(
-                                      height: 28,
-                                      width: 28,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5), color: AppColors.kGrey300),
-                                      child: const Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    const Text(
-                                      'Remove',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
+              Gap.gapH20,
               const Divider(
                 color: AppColors.kGrey100,
-                thickness: 2,
+                thickness: 4,
               ),
-              Gap.gapH16,
+              Gap.gapH20,
               Padding(
                 padding: const EdgeInsets.only(left: 24.0, right: 24),
                 child: Column(
@@ -223,7 +237,11 @@ class _CartScreenState extends State<CartScreen> {
         ),
         persistentFooterButtons: [
           Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24, top: 16, bottom: 16),
+            padding: const EdgeInsets.only(
+              left: 24.0,
+              right: 24,
+              bottom: 16,
+            ),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 52,

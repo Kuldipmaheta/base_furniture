@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:furniture/core/constant/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
-   CustomTextField({super.key,required this.hintText});
-
-  TextEditingController nameController= TextEditingController();
-  // TextEditingController _emailController = TextEditingController();
   String hintText;
+  final TextCapitalization textCapitalization;
+  final TextEditingController? controller;
 
+  CustomTextField(
+      {super.key, required this.hintText, this.textCapitalization = TextCapitalization.none, this.controller});
+
+  TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // width: double.infinity,
-      // margin: const EdgeInsets.only(left: 24, right: 24),
       height: 50,
-      // width: MediaQuery.of(context).size.width,
       child: TextFormField(
-        textAlignVertical: TextAlignVertical.bottom,
-        // maxLines: 1,
-        // minLines: 1,
-        controller: nameController,
+        textCapitalization: textCapitalization,
+        // textAlignVertical: TextAlignVertical.bottom,
+        controller: controller,
         // key: _formKey,
-        validator: (value) => value!.isEmpty? "Please enter name" : null,
+        validator: (value) => value!.isEmpty ? "Please enter name" : null,
         // keyboardType: TextInputType.text,
         decoration: InputDecoration(
-          // contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 5),
+          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           // errorText: _validate ? "Value not empty" : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
+          hintStyle: const TextStyle(color: AppColors.kGrey200),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: Colors.grey)),
+              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
         ),
         /*onChanged: (value) {
 

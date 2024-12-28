@@ -1,7 +1,7 @@
 import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/custom_text.dart';
-
-import '../../../export.dart';
+import 'package:furniture/design/utils/extensions/widget_extensions.dart';
+import 'package:furniture/export.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -23,7 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       // appBar: AppBar(),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24),
+          padding: p24,
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,

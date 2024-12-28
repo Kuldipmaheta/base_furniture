@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
+import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
+import 'package:get/get.dart';
 
 class MyAddressScreen extends StatefulWidget {
   const MyAddressScreen({super.key});
@@ -24,12 +26,17 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
       appBar: CustomAppBar(
         title: AppLabels.myAddress,
         actions: [
-          CustomText(
-            text: "Add New",
-            style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
-                fontWeight: FontWeight.w500,
-                decoration: TextDecoration.underline,
-                decorationColor: AppColors.kPrimaryColor),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(AppRoutes.accAddAddressScreen);
+            },
+            child: CustomText(
+              text: "Add New",
+              style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColors.kPrimaryColor),
+            ),
           ),
           Gap.gapW24
         ],
@@ -38,7 +45,11 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
         itemCount: 2,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24, top: 16, bottom: 16),
+            padding: const EdgeInsets.only(
+              left: 24.0,
+              right: 24,
+              top: 16,
+            ),
             child: Container(
               // height: 300,
               decoration: BoxDecoration(

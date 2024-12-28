@@ -104,6 +104,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: AppIcons.icReviews,
             ),
             CustomProfileItem(
+              onTap: () {
+                Get.toNamed(AppRoutes.changeLanguageScreen);
+              },
               title: AppLabels.changeLanguage,
               leading: AppIcons.icLanguage,
             ),

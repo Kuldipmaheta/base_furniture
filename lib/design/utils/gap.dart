@@ -21,6 +21,9 @@ class Gap {
   static SizedBox gapH40 = const SizedBox(
     height: 40,
   );
+  static SizedBox gapH20 = const SizedBox(
+    height: 20,
+  );
   static SizedBox gapH6 = const SizedBox(
     height: 6,
   );
