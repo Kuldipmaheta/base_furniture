@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:get/get.dart';
 
 import '../../core/constant/app_images.dart';
+import '../../core/routes/app_routes.dart';
 import 'colors_sources.dart';
+import 'extensions/widget_extensions.dart';
 
 @immutable
 class CustomButton extends StatelessWidget {
@@ -62,45 +67,34 @@ class CustomDarkButton extends StatelessWidget {
   }
 }
 
-class CustomSlider extends StatelessWidget {
-  const CustomSlider({super.key});
+class BannerListing extends StatelessWidget {
+  final ValueChanged<int>? onPageChanged;
+  BannerListing({super.key, this.onPageChanged});
 
+  final List<String> imagePath = [
+    "assets/images/car_img.png",
+    "assets/images/car_img.png",
+    "assets/images/car_img.png"
+  ];
+  List<Widget>? pages;
+  int activePage = 0;
+  Timer? timer;
+  final PageController pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // color: Colors.red,
-      height: 158,
-      width: MediaQuery.of(context).size.width,
-      // width: 300,
-      child: CarouselView(
-        padding: EdgeInsets.zero,
-        itemExtent: 400,
-        shrinkExtent: 0,
-        itemSnapping: true,
-        // backgroundColor: Colors.red,
-        scrollDirection: Axis.horizontal,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        children: [
-          Image.asset(
-            width: MediaQuery.of(context).size.width,
-            AppImages.imgCar,
-            fit: BoxFit.cover,
-          ),
-          Image.asset(
-            width: MediaQuery.of(context).size.width,
-            AppImages.imgCar,
-            fit: BoxFit.cover,
-          ),
-          Image.asset(
-            width: MediaQuery.of(context).size.width,
-            AppImages.imgCar,
-            fit: BoxFit.cover,
-          ),
-        ],
-      ),
-    );
+    return Padding(
+        padding: p24,
+        child: SizedBox(
+          height: 158,
+          width: MediaQuery.of(context).size.width,
+          child: PageView.builder(
+              controller: pageController,
+              itemCount: imagePath.length,
+              onPageChanged: onPageChanged,
+              itemBuilder: (context, index) {
+                return pages?[index];
+              }),
+        ));
   }
 }
 
@@ -122,13 +116,18 @@ class CustomProducts extends StatelessWidget {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.kGrey100),
-                child: SvgPicture.asset(
-                  AppIcons.icChair,
-                  height: 30,
-                  // width: 30,
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.productListScreen);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.kGrey100),
+                  child: SvgPicture.asset(
+                    AppIcons.icChair,
+                    height: 30,
+                    // width: 30,
+                  ),
                 ),
               ),
               Gap.gapH8,

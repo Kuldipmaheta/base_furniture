@@ -29,6 +29,8 @@ class AppLabels {
   static const faqs = "FAQs";
   static const contactUs = 'Contact us';
 
+  //
+
   // my orders screen
   static const filter = 'Filter';
   static const sortBy = 'Sort By';

@@ -17,11 +17,11 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.kWhiteColor,
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           title: "Change Language",
         ),
         body: ListView.builder(
-            padding: EdgeInsets.only(top: 16),
+            padding: const EdgeInsets.only(top: 16),
             itemCount: 2,
             itemBuilder: (context, index) {
               return Container(

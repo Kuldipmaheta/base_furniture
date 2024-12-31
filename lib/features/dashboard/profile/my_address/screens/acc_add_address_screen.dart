@@ -38,7 +38,7 @@ class _AccAddAddressScreenState extends State<AccAddAddressScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap.gapH16,
-              CustomText(
+              const CustomText(
                 text: "Governate",
               ),
               Gap.gapH6,
@@ -48,7 +48,7 @@ class _AccAddAddressScreenState extends State<AccAddAddressScreen> {
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.kGrey100),
+                      borderSide: const BorderSide(color: AppColors.kGrey100),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintStyle: const TextStyle(color: Colors.grey),

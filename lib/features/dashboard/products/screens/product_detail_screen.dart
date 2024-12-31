@@ -6,12 +6,12 @@ import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
+import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/strings.dart';
 import '../../../../core/routes/app_routes.dart';
-import '../../home/screens/home_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
@@ -432,7 +432,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 4,
                     itemBuilder: (ctx, index) {
-                      return const SizedBox(width: 170, child: ProductInfo());
+                      return const SizedBox(width: 170, child: ProductListWidget());
                     }),
               ),
               Gap.gapH24,
@@ -465,7 +465,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 4,
                     itemBuilder: (ctx, index) {
-                      return const SizedBox(width: 170, child: ProductInfo());
+                      return const SizedBox(width: 170, child: ProductListWidget());
                     }),
               ),
             ],

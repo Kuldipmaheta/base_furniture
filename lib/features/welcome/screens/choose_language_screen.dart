@@ -11,7 +11,9 @@ class ChooseLanguageScreen extends StatefulWidget {
 }
 
 class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
+  final Set<int> selectedIndices = {};
   int? selectedValue;
+  bool? isSelected = false;
   @override
   Widget build(BuildContext context) {
     // String lang = "English";
@@ -59,40 +61,65 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                             Container(
                               padding: const EdgeInsets.only(bottom: 20),
                               // color: Colors.red,
-                              child: Container(
-                                padding: const EdgeInsets.all(16),
-                                decoration:
-                                    BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all()),
-                                child: Row(
-                                  children: [
-                                    Radio(
-                                        visualDensity: const VisualDensity(
-                                            horizontal: VisualDensity.minimumDensity,
-                                            vertical: VisualDensity.minimumDensity),
-                                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                        activeColor: AppColors.kPrimaryColor,
-                                        value: index,
-                                        groupValue: selectedValue,
-                                        onChanged: (int? value) {
-                                          setState(() {
-                                            selectedValue = value!;
-                                          });
-                                        }),
-                                    Gap.gapW12,
-                                    Text(
-                                      AppLabels.english,
-                                      style: CustomUiText.size16,
-                                    )
-                                  ],
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedValue = index;
+                                  });
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: AppColors.kGrey100)),
+                                  child: Row(
+                                    children: [
+                                      /* Checkbox(
+                                          visualDensity: const VisualDensity(
+                                              horizontal: VisualDensity.minimumDensity,
+                                              vertical: VisualDensity.minimumDensity),
+                                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                          activeColor: AppColors.kPrimaryColor,
+                                          value: isSelected,
+                                          onChanged: (values) {
+                                            setState(() {
+                                              isSelected = values!;
+                                              if (values!) {
+                                                selectedIndices.add(index);
+                                              } else {
+                                                selectedIndices.remove(index);
+                                              }
+                                            });
+                                          }),*/
+                                      Radio(
+                                          visualDensity: const VisualDensity(
+                                              horizontal: VisualDensity.minimumDensity,
+                                              vertical: VisualDensity.minimumDensity),
+                                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                          activeColor: AppColors.kPrimaryColor,
+                                          value: index,
+                                          groupValue: selectedValue,
+                                          onChanged: (int? value) {
+                                            setState(() {
+                                              selectedValue = value!;
+                                            });
+                                          }),
+                                      Gap.gapW12,
+                                      Text(
+                                        AppLabels.english,
+                                        style: CustomUiText.size16,
+                                      )
+                                    ],
+                                  ),
+                                  /*ListTile(
+                                    onTap: () {},
+                                    tileColor: Colors.red,
+                                    selectedTileColor: Colors.yellow,
+                                    shape: RoundedRectangleBorder(
+                                        side: BorderSide(color: Colors.blue, width: 2), borderRadius: BorderRadius.circular(10)),
+                                    title: Text("English"),
+                                  ),*/
                                 ),
-                                /*ListTile(
-                                  onTap: () {},
-                                  tileColor: Colors.red,
-                                  selectedTileColor: Colors.yellow,
-                                  shape: RoundedRectangleBorder(
-                                      side: BorderSide(color: Colors.blue, width: 2), borderRadius: BorderRadius.circular(10)),
-                                  title: Text("English"),
-                                ),*/
                               ),
                             ),
                           ],

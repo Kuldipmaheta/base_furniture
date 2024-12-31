@@ -1,15 +1,6 @@
-import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:furniture/core/constant/app_colors.dart';
-import 'package:furniture/core/constant/app_images.dart';
-import 'package:furniture/core/constant/strings.dart';
-import 'package:furniture/core/routes/app_routes.dart';
-import 'package:furniture/design/utils/custom_button.dart';
-import 'package:furniture/design/utils/gap.dart';
-import 'package:furniture/design/utils/widgets/custom_svg.dart';
-import 'package:furniture/features/favourites/screens/favorites_screen.dart';
-import 'package:furniture/practice/model.dart';
+import 'dart:async';
+
+import 'package:furniture/export.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,8 +10,42 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final totalDots = 3;
-  int currentPosition = 0;
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (pageController.page == imagePath.length - 1) {
+        pageController.animateToPage(0, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+      } else {
+        pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    pages = List.generate(
+        imagePath.length,
+        (index) => ImagePlace(
+              imagePath: imagePath[index],
+            ));
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
+  }
+
+  final List<String> imagePath = [
+    "assets/images/banner_img1.jpg",
+    "assets/images/banner_img1.jpg",
+    "assets/images/banner_img1.jpg",
+  ];
+  List<Widget>? pages;
+  int activePage = 0;
+  Timer? timer;
+  final PageController pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -64,20 +89,48 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap.gapH16,
-              const Padding(
-                padding: EdgeInsets.only(left: 24.0, right: 24),
-                child: CustomSlider(),
-              ),
-              Center(
-                child: DotsIndicator(
-                  decorator: const DotsDecorator(color: AppColors.kGrey100, activeColor: AppColors.kPrimaryColor),
-                  dotsCount: totalDots,
-                  position: currentPosition,
+              Padding(
+                  padding: p24,
+                  child: SizedBox(
+                    height: 158,
+                    width: MediaQuery.of(context).size.width,
+                    child: PageView.builder(
+                        controller: pageController,
+                        itemCount: imagePath.length,
+                        onPageChanged: (value) {
+                          setState(() {
+                            activePage = value;
+                          });
+                        },
+                        itemBuilder: (context, index) {
+                          return pages?[index];
+                        }),
+                  )),
+              Gap.gapH14,
+              Container(
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                      pages?.length ?? 0,
+                      (index) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                pageController.animateToPage(index,
+                                    duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: activePage == index ? AppColors.kPrimaryColor : AppColors.kGrey100,
+                                radius: 4,
+                              ),
+                            ),
+                          )),
                 ),
               ),
               Gap.gapH16,
               Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                padding: p24,
                 child: Row(
                   children: [
                     const Text(
@@ -87,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        // Get.offAllNamed(AppRoutes.categoryScreen);
+                        Get.toNamed(AppRoutes.productListScreen);
                       },
                       child: const Text(
                         AppLabels.getViewAll,
@@ -103,11 +156,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              Gap.gapH24,
+              Gap.gapH16,
               const CustomProducts(),
               Gap.gapH16,
               Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                padding: p24,
                 child: Row(
                   children: [
                     const Text(
@@ -117,14 +170,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {},
-                      child: const Text(
-                        'View All',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.kPrimaryColor,
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.kPrimaryColor,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.productListScreen);
+                        },
+                        child: const Text(
+                          'View All',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.kPrimaryColor,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.kPrimaryColor,
+                          ),
                         ),
                       ),
                     ),
@@ -150,14 +208,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.only(left: 24.0, right: 10),
-                              child: ProductInfo(),
+                              child: ProductListWidget(),
                             ),
                           ),
                           // Gap.gapW20,
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.only(left: 10.0, right: 24),
-                              child: ProductInfo(),
+                              child: ProductListWidget(),
                             ),
                           ),
                         ],
@@ -172,69 +230,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class ProductInfo extends StatelessWidget {
-  // final Furniture item;
-  const ProductInfo({
-    super.key,
-    // required this.item,
-  });
+class ImagePlace extends StatelessWidget {
+  final String? imagePath;
+  const ImagePlace({super.key, this.imagePath});
+
   @override
   Widget build(BuildContext context) {
-    // String? name;
-    // List products = [];
-    double imageSize = ((MediaQuery.of(context).size.width) - ((24 * 2) + 20)) / 2;
     return Container(
-      // color: Colors.red,
-      margin: const EdgeInsets.only(right: 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoutes.productDetailScreen);
-            },
-            child: Image.asset(
-              'assets/images/image2.png',
-              fit: BoxFit.cover,
-              width: imageSize,
-              height: imageSize,
-            ),
-          ),
-          Gap.gapH16,
-          const CustomText(
-            title: "Vendor name",
-            color: AppColors.kGrey200,
-          ),
-          Gap.gapH6,
-          const Text(
-            'Eames Plastic Iconic Chair\nin White Colour',
-            maxLines: 2,
-          ),
-          // CustomText(title: 'Eames Plastic Iconic Chair in White Colour'),
-          Gap.gapH10,
-          const Row(
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'KWD 620',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              // Spacer(),
-              Text(
-                'KWD 677',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    decoration: TextDecoration.lineThrough,
-                    decorationColor: Colors.grey),
-              ),
-            ],
-          ),
-        ],
-      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          image: DecorationImage(image: AssetImage(imagePath!), fit: BoxFit.cover)),
+      /* child: Image.asset(
+        imagePath!,
+        fit: BoxFit.cover,
+        // radius: BorderRadius.circular(16),
+      ),*/
     );
   }
 }

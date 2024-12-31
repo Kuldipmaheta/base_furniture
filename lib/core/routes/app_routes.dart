@@ -14,11 +14,13 @@ import '../../features/dashboard/profile/change_language/screens/change_language
 import '../../features/dashboard/profile/edit_profile/screens/edit_profile_screen.dart';
 import '../../features/dashboard/profile/my_address/screens/acc_add_address_screen.dart';
 import '../../features/dashboard/profile/my_address/screens/my_address_screen.dart';
+import '../../features/dashboard/profile/my_orders/screens/my_orders_screen.dart';
 import '../../features/dashboard/profile/profile_screen.dart';
 
 class AppRoutes {
   static String splashScreen = "/splashScreen";
   static const String initialRoute = "/";
+  static const String getStartedScreen = "/getStartedScreen";
   static const String productListScreen = "/productListScreen";
   static const String homeScreen = "/homeScreen";
   static const String favoriteScreen = "/favoriteScreen";
@@ -36,9 +38,11 @@ class AppRoutes {
   static const String myAddressScreen = "/myAddressScreen";
   static const String accAddAddressScreen = "/accAddAddressScreen";
   static const String changeLanguageScreen = "/changeLanguageScreen";
+  static const String myOrdersScreen = "/myOrdersScreen";
 
   static List<GetPage> getPages = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
+    GetPage(name: getStartedScreen, page: () => const GetStartedScreen()),
     GetPage(name: homeScreen, page: () => const HomeScreen()),
     GetPage(name: favoriteScreen, page: () => const FavoritesScreen()),
     GetPage(name: loginScreen, page: () => const LoginScreen()),
@@ -56,5 +60,6 @@ class AppRoutes {
     GetPage(name: myAddressScreen, page: () => const MyAddressScreen()),
     GetPage(name: accAddAddressScreen, page: () => const AccAddAddressScreen()),
     GetPage(name: changeLanguageScreen, page: () => const ChangeLanguageScreen()),
+    GetPage(name: myOrdersScreen, page: () => const MyOrdersScreen()),
   ];
 }

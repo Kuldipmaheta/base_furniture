@@ -40,14 +40,14 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                 )),
             const Positioned(
                 left: 24,
-                bottom: 160,
+                bottom: 150,
                 // alignment: AlignmentDirectional.bottomStart,
                 child: Text(
                   AppLabels.welcomeMessage2,
                   style: TextStyle(fontSize: 18),
                 )),
             Positioned(
-              bottom: 50,
+              bottom: 30,
               right: 24,
               // alignment: AlignmentDirectional.bottomStart,
               child: Row(
@@ -56,20 +56,16 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     AppLabels.getStarted,
                     style: TextStyle(fontSize: 18, color: AppColors.kPrimaryColor),
                   ),
-                  Gap.gapW10,
+                  Gap.gapW4,
                   IconButton(
                     icon: const Icon(
                       Icons.arrow_circle_right,
                       size: 50,
                       color: AppColors.kPrimaryColor,
                     ),
-                    // Icons.arrow_circle_right,
-                    // size: 50,color: Color(0xff95622D),
                     onPressed: () {
                       saveBool(value: false);
                       Get.offAllNamed(AppRoutes.dashboardScreen);
-                      // Get.to(() => HomeScreen());
-                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashboardScreen()));
                     },
                   ),
                 ],

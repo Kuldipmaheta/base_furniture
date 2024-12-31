@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:furniture/features/dashboard/products/filter/filter_screen.dart';
+
 import '../../../../core/constant/app_images.dart';
 import '../../../../design/utils/gap.dart';
 import '../../../../design/utils/widgets/custom_svg.dart';
-import '../../home/screens/home_screen.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -47,13 +48,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       children: [
                         const Expanded(
                           child: Column(
-                            children: [ProductInfo()],
+                            children: [ProductListWidget()],
                           ),
                         ),
                         Gap.gapW20,
                         const Expanded(
                           child: Column(
-                            children: [ProductInfo()],
+                            children: [ProductListWidget()],
                           ),
                         ),
                       ],

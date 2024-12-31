@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'core/routes/app_routes.dart';
 import 'export.dart';
+import 'features/dashboard/category/controllers/category_data_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => GetDataProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (context) => GetDataProvider()),
+        ChangeNotifierProvider(create: (context) => CategoryDataProvider()),
+      ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: const SplashScreen(),
-        initialRoute: AppRoutes.customerReviewScreen,
+        initialRoute: AppRoutes.dashboardScreen,
         getPages: AppRoutes.getPages,
         /*routes: {
           AppRoutes.initialRoute: (context) => const Welcome2Screen(),

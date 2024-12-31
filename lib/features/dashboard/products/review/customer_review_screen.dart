@@ -63,13 +63,16 @@ class _CustomerReviewScreenState extends State<CustomerReviewScreen> {
                           Gap.gapH16,
                           Row(
                             children: [
-                              ClipRRect(
+                              CircleAvatar(
+                                backgroundImage: NetworkImage(item.avatar.toString()),
+                              ),
+                              /*ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
                                 child: Image.network(
                                   item.avatar.toString(),
                                   height: 40,
                                 ),
-                              ),
+                              ),*/
                               Gap.gapW12,
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

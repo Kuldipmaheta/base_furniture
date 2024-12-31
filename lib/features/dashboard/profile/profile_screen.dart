@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
@@ -84,12 +85,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   );
                 }),*/
             CustomProfileItem(
+              onTap: () {
+                Get.toNamed(AppRoutes.myOrdersScreen);
+              },
               title: AppLabels.myOrders,
               leading: AppIcons.icShoppingBag,
             ),
             CustomProfileItem(
               onTap: () {
-                print("object");
+                if (kDebugMode) {
+                  print("object");
+                }
                 Get.toNamed(AppRoutes.myAddressScreen);
               },
               title: AppLabels.myAddress,

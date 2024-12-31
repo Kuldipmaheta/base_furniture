@@ -23,3 +23,25 @@ class GetDataProvider extends ChangeNotifier {
     }
   }
 }
+// dio use
+/*class GetDataProvider extends ChangeNotifier {
+  ReviewModel? reviewModel;
+
+    final Dio _dio = Dio(); // Create a Dio instance
+
+  Future<void> getData() async {
+    try {
+      final response = await _dio.get("https://reqres.in/api/users?page=2");
+
+      if (response.statusCode == 200) {
+        print("models.. $reviewModel");
+        reviewModel = ReviewModel.fromJson(response.data);
+        notifyListeners();
+      } else {
+        debugPrint("Failed to fetch data: ${response.statusCode}");
+      }
+    } catch (e) {
+      debugPrint("Error fetching data: $e");
+    }
+  }
+}*/
