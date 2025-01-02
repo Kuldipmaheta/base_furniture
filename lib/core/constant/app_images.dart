@@ -15,6 +15,7 @@ class AppIcons {
   static const icWish = '$iconPath/ic_wishlist.svg';
   static const icNotification = '$iconPath/ic_notification.svg';
   static const icChair = '$iconPath/ic_chair.svg';
+  static const icApp = '$iconPath/ic_athathi.svg';
 
   // profile item icon
   static const icEditPen = '$iconPath/ic_edit.svg';

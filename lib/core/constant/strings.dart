@@ -13,6 +13,28 @@ class AppLabels {
   static String logInDescr = "Unlock your dream space with a few taps";
   static String mobileNumber = "Mobile Number";
 
+  // Home
+  static const appName = 'Athathi';
+  static const vendorName = 'Vendor Name';
+  static String popularFurn = "Popular Furniture";
+  static String vendorMsg = "Eames Plastic Iconic Chair\nin White Colour";
+
+  //register
+  static const setup = "Setup Profile";
+  static const setupMsg = "Complete your profile to access all \nthe feature";
+  static const fullName = "Full Name";
+  static const email = "Email";
+  static const mobile = "Mobile Number";
+  static const govern = "Governate";
+  static const city = "City";
+  static const area = "Area";
+  static const street = "Street No";
+  static const avenue = "Avenue(Optional)";
+  static const building = "Building NO";
+  static const floor = "Floor(Optional)";
+  static const flat = "Flat";
+  static const submit = "Submit";
+
   // profile cart
   static const profile = "Profile";
   static const welcome = "Welcome!";

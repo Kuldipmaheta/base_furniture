@@ -1,4 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
+/*
+
 import 'package:flutter/material.dart';
 
 class Practical2Screen extends StatefulWidget {
@@ -63,7 +64,8 @@ class _PracticalSliderState extends State<PracticalSlider> {
                     ),
                   ),
                 ),
-                /*Container(
+                */
+/*Container(
             margin: EdgeInsets.all(6.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -72,8 +74,10 @@ class _PracticalSliderState extends State<PracticalSlider> {
                 fit: BoxFit.cover,
               ),
             ),
-          ),*/
-                /*Container(
+          ),*/ /*
+
+                */
+/*Container(
             margin: EdgeInsets.all(6.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -82,7 +86,8 @@ class _PracticalSliderState extends State<PracticalSlider> {
                 fit: BoxFit.cover,
               ),
             ),
-          ),*/
+          ),*/ /*
+
               ],
               options: CarouselOptions(
                 enableInfiniteScroll: true,
@@ -97,3 +102,4 @@ class _PracticalSliderState extends State<PracticalSlider> {
     );
   }
 }
+*/

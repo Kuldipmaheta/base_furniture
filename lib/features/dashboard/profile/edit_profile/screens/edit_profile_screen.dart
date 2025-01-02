@@ -54,7 +54,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       )),
                   Gap.gapW8,
-                  const Expanded(child: CustomMobileTextField()),
+                  Expanded(child: CustomMobileTextField()),
                 ],
               ),
               Gap.gapH24,

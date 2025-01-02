@@ -1,7 +1,13 @@
-import 'package:furniture/design/utils/custom_button.dart';
-import 'package:furniture/design/utils/custom_text.dart';
-import 'package:furniture/design/utils/extensions/widget_extensions.dart';
-import 'package:furniture/export.dart';
+import "package:flutter/material.dart";
+import "package:furniture/core/constant/app_colors.dart";
+import "package:furniture/core/constant/strings.dart";
+import "package:furniture/design/utils/custom_button.dart";
+import "package:furniture/design/utils/custom_text.dart";
+import "package:furniture/design/utils/extensions/build_context_extension.dart";
+import "package:furniture/design/utils/extensions/text_style_extension.dart";
+import "package:furniture/design/utils/extensions/widget_extensions.dart";
+import "package:furniture/design/utils/gap.dart";
+import "package:furniture/design/utils/widgets/custom_text_field.dart";
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -16,6 +22,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String dropDownValue = 'Kuwait';
   List<String> items = ['Kuwait', 'Australia', 'Canada'];
   List<String> city = ['Kuwait', 'Australia', 'Canada', 'Egypt', 'North america'];
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController areaController = TextEditingController();
+  TextEditingController streetController = TextEditingController();
+  TextEditingController avenueController = TextEditingController();
+  TextEditingController buildingController = TextEditingController();
+  TextEditingController floorController = TextEditingController();
+  TextEditingController flatController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,40 +46,42 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gap.gapH60,
-                  Text(
-                    'Setup Profile',
-                    style: CustomUiText.size28,
+                  CustomText(
+                    text: AppLabels.setup,
+                    style: context.titleLarge.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w700),
                   ),
                   Gap.gapH12,
-                  Text(
-                    "Complete your profile to access all \nthe feature",
-                    style: CustomUiText.size16,
+                  CustomText(
+                    text: AppLabels.setupMsg,
+                    style: context.titleMedium.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w300),
                   ),
                   Gap.gapH30,
-                  Text(
-                    'Full name',
-                    style: CustomUiText.size14,
+                  CustomText(
+                    text: AppLabels.fullName,
+                    style: context.titleSmall.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w400),
                   ),
                   Gap.gapH6,
                   CustomTextField(
+                    textCapitalization: TextCapitalization.sentences,
                     hintText: 'Enter Name',
                   ),
                   Gap.gapH24,
-                  Text(
-                    'Email',
-                    style: CustomUiText.size14,
+                  CustomText(
+                    text: AppLabels.email,
+                    style: context.titleSmall.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w400),
                   ),
                   Gap.gapH6,
                   CustomTextField(
                     hintText: 'Enter Email',
                   ),
                   Gap.gapH24,
-                  Text(
-                    'Mobile Number',
-                    style: CustomUiText.size14,
+                  CustomText(
+                    text: AppLabels.mobileNumber,
+                    style: context.titleSmall.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w400),
                   ),
                   Gap.gapH6,
-                  Row(
+                  CustomMobileTextField(),
+                  /*Row(
                     children: [
                       Container(
                           height: 48,
@@ -72,17 +89,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           decoration: BoxDecoration(
                               color: AppColors.kGrey100,
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey, width: 1)),
+                              border: Border.all(
+                                color: Colors.grey,
+                              )),
                           child: Center(
-                            child: Text(
-                              '+965',
-                              style: CustomUiText.size16,
+                            child: CustomText(
+                              text: "+965",
+                              style: context.titleMedium
+                                  .withColor(AppColors.kBlack400)
+                                  .copyWith(fontWeight: FontWeight.w300),
                             ),
                           )),
                       Gap.gapW8,
-                      const Expanded(child: CustomMobileTextField()),
+                      Expanded(child: CustomMobileTextField()),
                     ],
-                  ),
+                  ),*/
                   Gap.gapH24,
                   Text(
                     'Governate',
@@ -212,50 +233,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-  // TextEditingController _emailController = TextEditingController();
-  String hintText;
-  CustomTextField({
-    super.key,
-    required this.hintText,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      // width: double.infinity,
-      // margin: const EdgeInsets.only(left: 24, right: 24),
-      // height: 54,
-      // width: MediaQuery.of(context).size.width,
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        enabled: false,
-        textAlignVertical: TextAlignVertical.bottom,
-        // maxLines: 1,
-        // minLines: 1,
-        controller: nameController,
-        // key: _formKey,
-        // validator: (value) => value!.isEmpty ? "Please enter name" : null,
-        // keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          // isDense: true,
-          // enabled: true,
-          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
-          // errorText: _validate ? "Value not empty" : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
         ),
       ),
     );

@@ -1,7 +1,21 @@
 import 'dart:async';
 
-import 'package:furniture/export.dart';
+import 'package:flutter/material.dart';
+import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/core/constant/app_images.dart';
+import 'package:furniture/core/constant/strings.dart';
+import 'package:furniture/core/routes/app_routes.dart';
+import 'package:furniture/design/utils/custom_button.dart';
+import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
+import 'package:furniture/design/utils/extensions/text_style_extension.dart';
+import 'package:furniture/design/utils/extensions/widget_extensions.dart';
+import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/design/utils/widgets/custom_svg.dart';
+import 'package:furniture/features/dashboard/category/controllers/category_data_provider.dart';
+import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,13 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       if (pageController.page == imagePath.length - 1) {
-        pageController.animateToPage(0, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+        pageController.animateToPage(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
       } else {
-        pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+        pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
       }
     });
   }
 
+  CategoryDataProvider? provider;
   @override
   void initState() {
     pages = List.generate(
@@ -29,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ));
     super.initState();
     startTimer();
+    provider = Provider.of<CategoryDataProvider>(context, listen: false);
+    provider?.getData();
   }
 
   @override
@@ -39,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<String> imagePath = [
     "assets/images/banner_img1.jpg",
-    "assets/images/banner_img1.jpg",
+    "assets/images/banner.png",
     "assets/images/banner_img1.jpg",
   ];
   List<Widget>? pages;
@@ -67,20 +84,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const CustomSvg(imgUrl: AppIcons.icWish),
           ),
           Gap.gapW16,
-          SvgPicture.asset(
-            AppIcons.icNotification,
-          ),
+          const CustomSvg(imgUrl: AppIcons.icNotification),
           Gap.gapW24
           // Icon(Icons.notifications_none),
         ],
         titleSpacing: 0,
-        title: const Padding(
-          padding: EdgeInsets.only(left: 24.0),
-          child: Text(
-            'Athathi',
-            style: TextStyle(color: AppColors.kPrimaryColor, fontWeight: FontWeight.bold),
-          ),
-        ),
+        title: Padding(
+            padding: const EdgeInsets.only(left: 24.0),
+            child: CustomText(
+              text: AppLabels.appName,
+              style: context.titleLarge.withColor(AppColors.kPrimaryColor).copyWith(fontWeight: FontWeight.w600),
+            )),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -91,10 +105,13 @@ class _HomeScreenState extends State<HomeScreen> {
               Gap.gapH16,
               Padding(
                   padding: p24,
-                  child: SizedBox(
+                  child: Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
                     height: 158,
                     width: MediaQuery.of(context).size.width,
                     child: PageView.builder(
+                        clipBehavior: Clip.antiAlias,
                         controller: pageController,
                         itemCount: imagePath.length,
                         onPageChanged: (value) {
@@ -133,24 +150,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: p24,
                 child: Row(
                   children: [
-                    const Text(
-                      AppLabels.getCategories,
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    CustomText(
+                      text: AppLabels.getCategories,
+                      style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
                     ),
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
                         Get.toNamed(AppRoutes.productListScreen);
                       },
-                      child: const Text(
-                        AppLabels.getViewAll,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.kPrimaryColor,
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.kPrimaryColor,
-                        ),
+                      child: CustomText(
+                        text: AppLabels.getViewAll,
+                        style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                            fontWeight: FontWeight.w400,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.kPrimaryColor),
                       ),
                     ),
                   ],
@@ -163,9 +177,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: p24,
                 child: Row(
                   children: [
-                    const Text(
-                      'Popular Furniture',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    CustomText(
+                      text: AppLabels.popularFurn,
+                      style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
                     ),
                     const Spacer(),
                     GestureDetector(
@@ -174,16 +188,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           Get.toNamed(AppRoutes.productListScreen);
                         },
-                        child: const Text(
-                          'View All',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.kPrimaryColor,
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.kPrimaryColor,
-                          ),
-                        ),
+                        child: CustomText(
+                            text: AppLabels.getViewAll,
+                            style: context.titleMedium.withColor(AppColors.kPrimaryColor).copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.kPrimaryColor,
+                                )),
                       ),
                     ),
                   ],
@@ -194,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: popularFurnitureList.length,
+                  itemCount: 2,
                   itemBuilder: (context, index) {
                     // Furniture item = popularFurnitureList[index];
                     return const Padding(
@@ -237,6 +248,7 @@ class ImagePlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(image: AssetImage(imagePath!), fit: BoxFit.cover)),

@@ -1,13 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
+import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/features/dashboard/category/controllers/category_data_provider.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
-import '../../core/constant/app_images.dart';
 import '../../core/routes/app_routes.dart';
 import 'colors_sources.dart';
 import 'extensions/widget_extensions.dart';
@@ -98,42 +100,64 @@ class BannerListing extends StatelessWidget {
   }
 }
 
-class CustomProducts extends StatelessWidget {
+class CustomProducts extends StatefulWidget {
   const CustomProducts({super.key});
+
+  @override
+  State<CustomProducts> createState() => _CustomProductsState();
+}
+
+class _CustomProductsState extends State<CustomProducts> {
+  late CategoryDataProvider provider;
+  @override
+  void initState() {
+    provider = Provider.of<CategoryDataProvider>(context, listen: false);
+    provider.getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 24),
       height: 100,
-      child: ListView.separated(
-        separatorBuilder: (context, index) {
-          return Gap.gapW20;
-        },
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(AppRoutes.productListScreen);
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.kGrey100),
-                  child: SvgPicture.asset(
-                    AppIcons.icChair,
-                    height: 30,
-                    // width: 30,
-                  ),
-                ),
-              ),
-              Gap.gapH8,
-              const Text('Chair'),
-            ],
-          );
+      child: Consumer<CategoryDataProvider>(
+        builder: (context, snapshot, _) {
+          return snapshot.categoryModel == null
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return Gap.gapW20;
+                  },
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: provider.categoryModel?.data?.categoryList?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.productListScreen);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.kGrey100),
+                            child: Image.network(
+                              provider.categoryModel!.data!.categoryList!.elementAt(index).categoryImage.toString(),
+                              height: 30,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Gap.gapH8,
+                        CustomText(
+                          text: provider.categoryModel!.data!.categoryList!.elementAt(index).categoryName.toString(),
+                          style: context.titleSmall.withColor(AppColors.kGrey200).copyWith(fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    );
+                  },
+                );
         },
       ),
     );
@@ -141,17 +165,68 @@ class CustomProducts extends StatelessWidget {
 }
 
 class CustomMobileTextField extends StatelessWidget {
-  const CustomMobileTextField({super.key});
+  const CustomMobileTextField({super.key, this.controller});
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Row(
+      children: [
+        Container(
+            height: 48,
+            width: 85,
+            decoration: BoxDecoration(
+                color: AppColors.kGrey100,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: AppColors.kGrey200.withOpacity(0.50),
+                )),
+            child: Center(
+              child: CustomText(
+                text: "+965",
+                style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w300),
+              ),
+            )),
+        Gap.gapW8,
+        Expanded(
+            child: SizedBox(
+          // color: AppColors.kGrey100,
+          // margin: const EdgeInsets.only(left: 24, right: 24),
+          // height: 44,
+          width: MediaQuery.of(context).size.width,
+          child: TextField(
+            controller: controller,
+            cursorColor: AppColors.kPrimaryColor,
+            enabled: true,
+            keyboardType: TextInputType.number,
+            textAlignVertical: TextAlignVertical.bottom,
+            decoration: InputDecoration(
+              fillColor: AppColors.kGrey100,
+              filled: true,
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.kGrey200)),
+              contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+              // border: OutlineInputBorder(
+              //     borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.kGrey200)),
+              hintText: 'Enter Mobile Number',
+              hintStyle: const TextStyle(color: AppColors.kGrey200),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.kGrey200)),
+            ),
+            onChanged: (value) {},
+          ),
+        )),
+        // Expanded(child: CustomMobileTextField()),
+      ],
+    );
+
+    /*SizedBox(
       // color: AppColors.kGrey100,
       // margin: const EdgeInsets.only(left: 24, right: 24),
       // height: 44,
       width: MediaQuery.of(context).size.width,
       child: TextField(
-        cursorColor: AppColors.kBlack400,
+        cursorColor: AppColors.kPrimaryColor,
         enabled: true,
         keyboardType: TextInputType.number,
         textAlignVertical: TextAlignVertical.bottom,
@@ -169,6 +244,6 @@ class CustomMobileTextField extends StatelessWidget {
         ),
         onChanged: (value) {},
       ),
-    );
+    );*/
   }
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
+import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/core/routes/app_routes.dart';
+import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
+import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
-import 'package:furniture/features/dashboard/cart/cart_screen.dart';
 import 'package:get/get.dart';
 
 class ProductListWidget extends StatelessWidget {
@@ -34,35 +37,36 @@ class ProductListWidget extends StatelessWidget {
             ),
           ),
           Gap.gapH16,
-          const CustomText(
-            title: "Vendor name",
-            color: AppColors.kGrey200,
+          CustomText(
+            text: AppLabels.vendorName,
+            maxLines: 1,
+            style: context.titleSmall.withColor(AppColors.kGrey200).copyWith(fontWeight: FontWeight.w400),
           ),
           Gap.gapH6,
-          const Text(
-            'Eames Plastic Iconic Chair\nin White Colour',
+          CustomText(
+            text: AppLabels.vendorMsg,
             maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w300),
           ),
-          // CustomText(title: 'Eames Plastic Iconic Chair in White Colour'),
           Gap.gapH10,
-          const Row(
+          Row(
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'KWD 620',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              CustomText(
+                text: "KWD 699",
+                maxLines: 2,
+                style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
               ),
-              SizedBox(
-                width: 10,
-              ),
+              Gap.gapW10,
               // Spacer(),
-              Text(
-                'KWD 677',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+              CustomText(
+                text: "KWD 599",
+                maxLines: 2,
+                style: context.titleMedium.withColor(AppColors.kGrey200).copyWith(
+                    fontWeight: FontWeight.w300,
                     decoration: TextDecoration.lineThrough,
-                    decorationColor: Colors.grey),
+                    decorationColor: AppColors.kGrey200),
               ),
             ],
           ),

@@ -16,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: TextFormField(
+        cursorColor: AppColors.kPrimaryColor,
         textCapitalization: textCapitalization,
         // textAlignVertical: TextAlignVertical.bottom,
         controller: controller,
@@ -25,13 +26,15 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
           // errorText: _validate ? "Value not empty" : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: AppColors.kGrey100)),
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(10),
+          // ),
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.kGrey200),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey)),
+              borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.kGrey100)),
         ),
         /*onChanged: (value) {
 

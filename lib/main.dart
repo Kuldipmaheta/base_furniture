@@ -2,7 +2,6 @@ import 'package:furniture/features/dashboard/products/review/provider/get_data_p
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'core/routes/app_routes.dart';
 import 'export.dart';
 import 'features/dashboard/category/controllers/category_data_provider.dart';
 
@@ -25,17 +24,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          // textTheme: const TextTheme(
-          //     bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), bodySmall: TextStyle(fontSize: 14)),
-          // dividerColor: Colors.transparent,
-          // primarySwatch: Colors.blue,
-          /*elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                backgroundColor: Color(0xFF95622D),
-                foregroundColor: Colors.white),
-          ),*/
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.kWhiteColor),
           useMaterial3: true,
         ),

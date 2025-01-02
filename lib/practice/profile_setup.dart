@@ -1,4 +1,3 @@
-import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 
 import '../export.dart';
@@ -79,7 +78,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                             ),
                           )),
                       Gap.gapW8,
-                      const Expanded(flex: 2, child: CustomMobileTextField()),
+                      Expanded(flex: 2, child: CustomMobileTextField()),
                     ],
                   ),
                   Gap.gapH24,

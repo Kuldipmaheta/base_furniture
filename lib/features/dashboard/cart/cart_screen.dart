@@ -1,8 +1,6 @@
 import 'package:furniture/design/utils/custom_text.dart';
-import 'package:furniture/design/utils/extensions/widget_extensions.dart';
 import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
 import 'package:furniture/export.dart';
-import 'package:furniture/practice/model.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});

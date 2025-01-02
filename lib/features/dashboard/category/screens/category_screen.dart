@@ -17,9 +17,10 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+  late CategoryDataProvider provider;
   @override
   void initState() {
-    final provider = Provider.of<CategoryDataProvider>(context, listen: false);
+    provider = Provider.of<CategoryDataProvider>(context, listen: false);
     provider.getData();
     super.initState();
   }
@@ -47,12 +48,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 : GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: Provider.of<CategoryDataProvider>(context, listen: false)
-                            .categoryModel
-                            ?.data
-                            ?.categoryList
-                            ?.length ??
-                        0,
+                    itemCount: provider.categoryModel?.data?.categoryList?.length ?? 0,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       childAspectRatio: .8,
@@ -60,7 +56,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       mainAxisSpacing: 5,
                     ),
                     itemBuilder: (context, index) {
-                      final provider = Provider.of<CategoryDataProvider>(context, listen: false);
+                      // final provider = Provider.of<CategoryDataProvider>(context, listen: false);
                       return Column(
                         children: [
                           Gap.gapH16,
@@ -74,8 +70,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               backgroundColor: AppColors.kGrey100,
                               child: Image.network(
                                 provider.categoryModel!.data!.categoryList!.elementAt(index).categoryImage.toString(),
-                                // fit: BoxFit.cover,
-                                height: 60,
+                                fit: BoxFit.cover,
+                                height: 55,
                               ),
                             ),
                           ),
