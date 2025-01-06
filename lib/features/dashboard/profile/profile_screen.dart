@@ -7,7 +7,9 @@ import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_button.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/design/utils/widgets/custom_svg.dart';
 import 'package:furniture/features/dashboard/profile/widget/custom_profile_item.dart';
 import 'package:get/get.dart';
 
@@ -145,19 +147,86 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: AppIcons.icContact,
             ),
             Gap.gapH30,
-            CustomButton(
-              onPress: () {},
-              text: 'Logout',
+            Padding(
+              padding: const EdgeInsets.only(right: 24.0),
+              child: CustomButton(
+                onPress: () {},
+                text: 'Logout',
+              ),
             ),
+            /*ContainerButton(
+                margin: p24,
+                borderColor: AppColors.kPrimaryColor,
+                background: Colors.transparent,
+                style: context.bodyLarge.w300.withColor(AppColors.kPrimaryColor),
+                title: "Logout",
+                onTap: () {}),*/
             Gap.gapH16,
-            const Text(
-              'Delete Account',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
-                  decorationColor: AppColors.kPrimaryColor,
-                  color: AppColors.kPrimaryColor),
+            GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        // width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 2.5,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(
+                                top: 16,
+                              ),
+                              height: 4,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.grey,
+                              ),
+                            ),
+                            Gap.gapH24,
+                            const CustomSvg(imgUrl: "assets/icons/ic_delete_acc.svg"),
+                            Gap.gapH16,
+                            CustomText(
+                              text: "Delete Account",
+                              style: context.titleMedium
+                                  .copyWith(fontSize: 18, color: AppColors.kBlack400, fontWeight: FontWeight.w700),
+                            ),
+                            Gap.gapH10,
+                            CustomText(
+                              textAlign: TextAlign.center,
+                              text:
+                                  "Are you sure want to delete your account \npermanently? You will not retrieve your data\n back.",
+                              style:
+                                  context.titleSmall.copyWith(color: AppColors.kGrey300, fontWeight: FontWeight.w300),
+                            ),
+                            Gap.gapH40,
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(child: CustomButton(onPress: () {}, text: "Cancel")),
+                                Gap.gapW20,
+                                Expanded(
+                                    child: CustomDarkButton(
+                                  onpress: () {},
+                                  text: "Delete",
+                                )),
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    });
+              },
+              child: Text(
+                'Delete Account',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.kPrimaryColor,
+                    color: AppColors.kPrimaryColor),
+              ),
             ),
             Gap.gapH24
           ],

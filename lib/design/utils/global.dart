@@ -61,3 +61,12 @@ class Global {
     },
   ];
 }
+
+T safeJson<T>(dynamic json, T Function(dynamic) parser) {
+  try {
+    return parser(json);
+  } catch (e, stacktrace) {
+    print("❎❎❎ Error in parsing ${T.toString()} Exception: $e\n$stacktrace");
+    rethrow;
+  }
+}

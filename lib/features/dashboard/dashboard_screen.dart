@@ -1,10 +1,8 @@
-import 'package:furniture/core/constant/app_images.dart';
-import 'package:furniture/design/utils/widgets/custom_svg.dart';
 import 'package:furniture/export.dart';
 import 'package:furniture/features/dashboard/category/screens/category_screen.dart';
 import 'package:furniture/features/dashboard/profile/profile_screen.dart';
 
-import 'cart/cart_screen.dart';
+import 'cart/screens/cart_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});

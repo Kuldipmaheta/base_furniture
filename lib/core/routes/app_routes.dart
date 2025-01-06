@@ -3,7 +3,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../../features/authentication/screens/login_screen.dart';
 import '../../features/authentication/screens/registration_screen.dart';
-import '../../features/dashboard/cart/cart_screen.dart';
+import '../../features/dashboard/cart/screens/cart_screen.dart';
 import '../../features/dashboard/category/screens/category_screen.dart';
 import '../../features/dashboard/dashboard_screen.dart';
 import '../../features/dashboard/products/review/customer_review_screen.dart';

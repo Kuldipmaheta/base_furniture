@@ -13,6 +13,7 @@ import 'package:furniture/design/utils/extensions/widget_extensions.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
 import 'package:furniture/features/dashboard/category/controllers/category_data_provider.dart';
+import 'package:furniture/features/dashboard/home/controller/home_data_provider.dart';
 import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   CategoryDataProvider? provider;
+  HomeDataProvider? homeProvider;
+
   @override
   void initState() {
     pages = List.generate(
@@ -46,6 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
     startTimer();
     provider = Provider.of<CategoryDataProvider>(context, listen: false);
     provider?.getData();
+
+    homeProvider = Provider.of<HomeDataProvider>(context, listen: false);
+    homeProvider?.homeResponseData();
   }
 
   @override
@@ -70,7 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.kWhiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.kWhiteColor,
-        forceMaterialTransparency: true,
+        scrolledUnderElevation: 0,
+        // forceMaterialTransparency: true,
         // surfaceTintColor: Colors.transparent,
         actions: [
           const CustomSvg(imgUrl: AppIcons.icSearch),
@@ -201,38 +208,69 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Gap.gapH16,
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    // Furniture item = popularFurnitureList[index];
-                    return const Padding(
-                      padding: EdgeInsets.only(
-                        bottom: 20,
-                      ),
-                      child: Row(
-                        // crossAxisAlignment: CrossAxisAlignment.start,
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 24.0, right: 10),
-                              child: ProductListWidget(),
-                            ),
-                          ),
-                          // Gap.gapW20,
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10.0, right: 24),
-                              child: ProductListWidget(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
+              Consumer<HomeDataProvider>(
+                builder: (context, snapshot, _) {
+                  return snapshot.homeResponseModel == null
+                      ? const CircularProgressIndicator()
+                      : ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: ((homeProvider?.homeResponseModel?.data?.productList?.length ?? 0) / 2).round(),
+                          // itemCount: (homeProvider!.homeResponseModel!.data!.productList!.length / 2).round(),
+
+                          // homeProvider!.homeResponseModel!.data?.productList?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            // ProductList item = homeProvider!.homeResponseModel!.data!.productList![index * 2];
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                bottom: 20,
+                              ),
+                              child: Row(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 24.0, right: 10),
+                                      child: Column(
+                                        children: [
+                                          // Text("index ${{index * 2}.toString()}"),
+                                          ProductListWidget(
+                                            model: homeProvider!.homeResponseModel!.data!.productList![index * 2],
+                                            index: index * 2,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  // Gap.gapW20,
+                                  // ((homeProvider!.homeResponseModel!.data!.productList!.length / 2).round() + 1 >
+                                  //         (index * 2 + 1))
+                                  //     ?
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 10.0, right: 24),
+                                      child: Column(
+                                        children: [
+                                          // Text("index${{index * 2 + 1}.toString()}"),
+                                          ProductListWidget(
+                                            model: homeProvider!.homeResponseModel!.data!.productList![index * 2 + 1],
+                                            index: index * 2 + 1,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                  // : Expanded(
+                                  //     child: SizedBox(),
+                                  //   )
+                                ],
+                              ),
+                            );
+                          });
+                },
+              ),
             ],
           ),
         ),

@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
-import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/features/dashboard/home/models/Home_response_model.dart';
+import 'package:furniture/features/dashboard/home/widget/star_widget.dart';
 import 'package:get/get.dart';
 
-class ProductListWidget extends StatelessWidget {
-  // final Furniture item;
-  const ProductListWidget({
-    super.key,
-    // required this.item,
-  });
+class ProductListWidget extends StatefulWidget {
+  final int? index;
+  final ProductList? model;
+  const ProductListWidget({super.key, this.index, this.model
+      // required this.item,
+      });
+  // final ProductList item;
+  @override
+  State<ProductListWidget> createState() => _ProductListWidgetState();
+}
+
+class _ProductListWidgetState extends State<ProductListWidget> {
+  // HomeDataProvider? homeProvider;
+
+  @override
+  void initState() {
+    // homeProvider = Provider.of<HomeDataProvider>(context, listen: false);
+    // homeProvider?.homeResponseData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // String? name;
@@ -29,22 +45,44 @@ class ProductListWidget extends StatelessWidget {
             onTap: () {
               Get.toNamed(AppRoutes.productDetailScreen);
             },
-            child: Image.asset(
-              'assets/images/image2.png',
-              fit: BoxFit.cover,
-              width: imageSize,
-              height: imageSize,
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Image.network(
+                widget.model?.productImage.toString() ?? "",
+                fit: BoxFit.cover,
+                width: imageSize,
+                height: imageSize,
+              ),
             ),
           ),
           Gap.gapH16,
-          CustomText(
-            text: AppLabels.vendorName,
-            maxLines: 1,
-            style: context.titleSmall.withColor(AppColors.kGrey200).copyWith(fontWeight: FontWeight.w400),
+          Row(
+            // crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Visibility(
+                // visible: widget.model?.vendorName != null,
+                child: Flexible(
+                  child: CustomText(
+                    text: widget.model?.vendorName ?? "",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.titleSmall.withColor(AppColors.kGrey200).copyWith(
+                          fontWeight: FontWeight.w400,
+                        ),
+                  ),
+                ),
+              ),
+              // const Spacer(),
+              Flexible(child: StarWidget()),
+            ],
           ),
           Gap.gapH6,
           CustomText(
-            text: AppLabels.vendorMsg,
+            text: widget.model?.productName ?? "",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w300),
@@ -54,14 +92,14 @@ class ProductListWidget extends StatelessWidget {
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: "KWD 699",
+                text: widget.model?.originalPrice.toString() ?? "",
                 maxLines: 2,
                 style: context.titleMedium.withColor(AppColors.kBlack400).copyWith(fontWeight: FontWeight.w600),
               ),
               Gap.gapW10,
               // Spacer(),
               CustomText(
-                text: "KWD 599",
+                text: widget.model?.discountedPrice.toString() ?? "",
                 maxLines: 2,
                 style: context.titleMedium.withColor(AppColors.kGrey200).copyWith(
                     fontWeight: FontWeight.w300,

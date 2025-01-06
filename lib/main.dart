@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'export.dart';
 import 'features/dashboard/category/controllers/category_data_provider.dart';
+import 'features/dashboard/home/controller/home_data_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => GetDataProvider()),
         ChangeNotifierProvider(create: (context) => CategoryDataProvider()),
+        ChangeNotifierProvider(create: (context) => HomeDataProvider()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

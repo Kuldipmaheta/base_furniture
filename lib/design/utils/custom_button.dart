@@ -27,11 +27,59 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 24, left: 24),
-      width: 382,
+      padding: const EdgeInsets.only(left: 24),
+      width: MediaQuery.of(context).size.width,
       height: 52,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return Container(
+                  // width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 3.5,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 16,
+                        ),
+                        height: 4,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Gap.gapH24,
+                      CustomText(
+                        text: "Logout",
+                        style: context.titleMedium
+                            .copyWith(fontSize: 18, color: AppColors.kBlack400, fontWeight: FontWeight.w700),
+                      ),
+                      Gap.gapH10,
+                      CustomText(
+                        text: "Are you sure you want to logout?",
+                        style: context.titleSmall.copyWith(color: AppColors.kGrey300, fontWeight: FontWeight.w300),
+                      ),
+                      Gap.gapH40,
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(child: CustomButton(onPress: () {}, text: "Cancel")),
+                          Gap.gapW20,
+                          Expanded(
+                              child: CustomDarkButton(
+                            onpress: () {},
+                            text: "Yes, Logout",
+                          )),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              });
+        },
         style: ElevatedButton.styleFrom(
           textStyle: CustomUiText.size16,
           shape: RoundedRectangleBorder(
@@ -47,13 +95,14 @@ class CustomButton extends StatelessWidget {
 @immutable
 class CustomDarkButton extends StatelessWidget {
   VoidCallback? onpress;
-  CustomDarkButton({super.key, required this.onpress});
+  String text;
+  CustomDarkButton({super.key, required this.onpress, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 24),
-      width: 382,
+      padding: const EdgeInsets.only(right: 24),
+      width: MediaQuery.of(context).size.width,
       height: 52,
       child: ElevatedButton(
         onPressed: () {},
@@ -63,7 +112,7 @@ class CustomDarkButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           foregroundColor: Colors.white,
         ),
-        child: const Text("Continue"),
+        child: Text(text),
       ),
     );
   }

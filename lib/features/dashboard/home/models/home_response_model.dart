@@ -1,3 +1,5 @@
+import 'package:furniture/design/utils/global.dart';
+
 /// success : true
 /// message : "success"
 /// data : {"product_list":[{"id":9,"product_name":"WardrobeAR","vendor_name":"Harry","original_price":112,"discounted_price":12,"product_rating":4,"product_image":"https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17356319246677.jpg","is_in_stock":false,"is_fav":0},{"id":1,"product_name":"Sofa","vendor_name":"Sakshi","original_price":1000,"discounted_price":100,"product_rating":3.20000000000000017763568394002504646778106689453125,"product_image":"https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17355670107063.png","is_in_stock":false,"is_fav":0},{"id":3,"product_name":"طاولة وسط مستديرة","vendor_name":"shivani","original_price":1500,"discounted_price":600,"product_rating":2.5,"product_image":"https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17356213807556.jpg","is_in_stock":false,"is_fav":0},{"id":10,"product_name":"Office ChairAR","vendor_name":"Harry","original_price":221,"discounted_price":22,"product_rating":0,"product_image":"https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17356320534081.jpg","is_in_stock":false,"is_fav":0}]}
@@ -98,49 +100,29 @@ class ProductList {
     this.isInStock,
     this.isFav,
   });
-
   ProductList.fromJson(dynamic json) {
-    id = json['id'];
-    productName = json['product_name'];
-    vendorName = json['vendor_name'];
-    originalPrice = json['original_price'];
-    discountedPrice = json['discounted_price'];
-    productRating = json['product_rating'];
-    productImage = json['product_image'];
-    isInStock = json['is_in_stock'];
-    isFav = json['is_fav'];
+    safeJson(json, (parsedJson) {
+      id = json['id'];
+      productName = json['product_name'];
+      vendorName = json['vendor_name'];
+      originalPrice = json['original_price'];
+      discountedPrice = json['discounted_price'];
+      productRating = double.parse((json['product_rating']).toString());
+      productImage = json['product_image'];
+      isInStock = json['is_in_stock'];
+      isFav = json['is_fav'];
+    });
   }
   int? id;
   String? productName;
   String? vendorName;
   int? originalPrice;
   int? discountedPrice;
-  int? productRating;
+  double? productRating;
   String? productImage;
   bool? isInStock;
-  int? isFav;
-  ProductList copyWith({
-    int? id,
-    String? productName,
-    String? vendorName,
-    int? originalPrice,
-    int? discountedPrice,
-    int? productRating,
-    String? productImage,
-    bool? isInStock,
-    int? isFav,
-  }) =>
-      ProductList(
-        id: id ?? this.id,
-        productName: productName ?? this.productName,
-        vendorName: vendorName ?? this.vendorName,
-        originalPrice: originalPrice ?? this.originalPrice,
-        discountedPrice: discountedPrice ?? this.discountedPrice,
-        productRating: productRating ?? this.productRating,
-        productImage: productImage ?? this.productImage,
-        isInStock: isInStock ?? this.isInStock,
-        isFav: isFav ?? this.isFav,
-      );
+  bool? isFav;
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;

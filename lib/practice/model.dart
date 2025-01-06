@@ -51,7 +51,7 @@ List<Furniture> popularFurnitureList = [
     "original_price": 1200.00,
     "discounted_price": 999.00,
     "product_rating": 4.5,
-    "product_image": "https://example.com/leather_sofa.jpg",
+    "product_image": "https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17356319246677.jpg",
     "is_in_stock": true,
     "is_fav": false
   },
@@ -62,7 +62,7 @@ List<Furniture> popularFurnitureList = [
     "original_price": 800.00,
     "discounted_price": 699.00,
     "product_rating": 4.2,
-    "product_image": "https://example.com/dining_table.jpg",
+    "product_image": "https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17355670107063.png",
     "is_in_stock": true,
     "is_fav": false
   },
@@ -73,7 +73,7 @@ List<Furniture> popularFurnitureList = [
     "original_price": 950.00,
     "discounted_price": 849.00,
     "product_rating": 4.8,
-    "product_image": "https://example.com/queen_bed.jpg",
+    "product_image": "https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17356213807556.jpg",
     "is_in_stock": true,
     "is_fav": false
   },
@@ -84,22 +84,22 @@ List<Furniture> popularFurnitureList = [
     "original_price": 350.00,
     "discounted_price": 299.00,
     "product_rating": 4.3,
-    "product_image": "https://th.bing.com/th/id/OIP.H-S3UVP5lFX0qclDmIYzOwHaHa?rs=1&pid=ImgDetMain",
+    "product_image": "https://athathi-dev.s3.ap-south-1.amazonaws.com/uploads/product/17356320534081.jpg",
     "is_in_stock": true,
     "is_fav": false
   },
-  {
+  /*{
     "id": 4,
     "product_name": "Stylish Office Chair",
     "vendor_name": "Work Essentials",
     "original_price": 250.00,
     "discounted_price": 199.00,
     "product_rating": 4.6,
-    "product_image": "https://example.com/office_chair.jpg",
+    "product_image": "https://th.bing.com/th/id/OIP.H-S3UVP5lFX0qclDmIYzOwHaHa?rs=1&pid=ImgDetMain",
     "is_in_stock": true,
     "is_fav": false
-  },
-  {
+  },*/
+  /*{
     "id": 5,
     "product_name": "Minimalist Bedroom Set",
     "vendor_name": "Home Haven",
@@ -153,5 +153,5 @@ List<Furniture> popularFurnitureList = [
     "product_image": "https://example.com/study_table.jpg",
     "is_in_stock": true,
     "is_fav": false
-  }
+  }*/
 ].map((item) => Furniture.fromJson(item)).toList();

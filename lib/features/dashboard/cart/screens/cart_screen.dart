@@ -1,6 +1,8 @@
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
 import 'package:furniture/export.dart';
+import 'package:furniture/features/dashboard/cart/controllers/cart_controller.dart';
+import 'package:get/get.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -10,6 +12,12 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    CartController.to;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -39,11 +47,12 @@ class _CartScreenState extends State<CartScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Gap.gapH16,
-              ListView.separated(
+              cartProductListing(),
+              /*ListView.separated(
+                padding: const EdgeInsets.only(top: 16),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
+                // scrollDirection: Axis.vertical,
                 itemCount: popularFurnitureList.length,
                 separatorBuilder: (context, index) {
                   return const Padding(
@@ -51,25 +60,31 @@ class _CartScreenState extends State<CartScreen> {
                     child: Divider(
                       // height: 4,
                       color: AppColors.kGrey100,
-                      thickness: 4,
+                      thickness: 2,
                     ),
                   );
                 },
                 itemBuilder: (context, index) {
                   Furniture item = popularFurnitureList[index];
                   return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 24.0,
-                      right: 24,
-                    ),
+                    padding: p24,
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Column(
+                        Column(
                           children: [
-                            Image(
-                              image: AssetImage('assets/images/image3.png'),
+                            //..container border radius
+                            Container(
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                              child: Image.network(
+                                item.productImage,
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width / 3,
+                                height: MediaQuery.of(context).size.width / 3,
+                              ),
+
                             ),
                           ],
                         ),
@@ -149,15 +164,16 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   );
                 },
-              ),
-              Gap.gapH20,
+              ),*/
+              /*Gap.gapH20,
               const Divider(
+                // height: 4,
                 color: AppColors.kGrey100,
-                thickness: 4,
+                thickness: 2,
               ),
               Gap.gapH20,
               Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24),
+                padding: p24,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -229,7 +245,7 @@ class _CartScreenState extends State<CartScreen> {
                     Gap.gapH16,
                   ],
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
@@ -249,6 +265,142 @@ class _CartScreenState extends State<CartScreen> {
         ],
       ),
     );
+  }
+
+  cartProductListing() {
+    return Obx(() => Container(
+          child: CartController.to.isCartLoading.value
+              ? const CircularProgressIndicator()
+              : CartController.to.cartResponseModel!.value.data == null
+                  ? Center(child: Text(CartController.to.cartResponseModel?.value.message ?? "custom data"))
+                  : ListView.separated(
+                      padding: const EdgeInsets.only(top: 16),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      // scrollDirection: Axis.vertical,
+                      itemCount: CartController.to.cartResponseModel!.value.data?.productList?.length ?? 0,
+                      separatorBuilder: (context, index) {
+                        return const Padding(
+                          padding: EdgeInsets.only(top: 20.0, bottom: 20),
+                          child: Divider(
+                            // height: 4,
+                            color: AppColors.kGrey100,
+                            thickness: 2,
+                          ),
+                        );
+                      },
+                      itemBuilder: (context, index) {
+                        // Furniture item = popularFurnitureList[index];
+                        final item = CartController.to.cartResponseModel!.value.data!.productList![index];
+
+                        return Padding(
+                          padding: p24,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: [
+                                  //..container border radius
+                                  Container(
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                                    child: Image.network(
+                                      item.productImage ?? "",
+                                      fit: BoxFit.cover,
+                                      width: MediaQuery.of(context).size.width / 3,
+                                      height: MediaQuery.of(context).size.width / 3,
+                                    ),
+                                    /*decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      item.productImage,
+                                    ),
+                                    fit: BoxFit.cover,
+                                  )
+                              ),*/
+                                  ),
+                                ],
+                              ),
+                              Gap.gapW16,
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomText(
+                                      title: item.vendorName,
+                                      color: AppColors.kGrey200,
+                                    ),
+                                    Gap.gapH6,
+                                    Text(
+                                      item.productName ?? "",
+                                      maxLines: 2,
+                                    ),
+                                    Gap.gapH8,
+                                    Row(
+                                      children: [
+                                        Text(
+                                          item.originalPrice.toString(),
+                                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                                        ),
+                                        Gap.gapW10,
+                                        Text(
+                                          item.discountedPrice.toString(),
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.grey,
+                                              decoration: TextDecoration.lineThrough,
+                                              decorationColor: Colors.grey),
+                                        ),
+                                      ],
+                                    ),
+                                    Gap.gapH16,
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 28,
+                                          width: 28,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5), color: AppColors.kGrey300),
+                                          child: const Icon(
+                                            Icons.remove,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Gap.gapW16,
+                                        const Text('1'),
+                                        Gap.gapW16,
+                                        Container(
+                                          height: 28,
+                                          width: 28,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(5), color: AppColors.kGrey300),
+                                          child: const Icon(
+                                            Icons.add,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        const Text(
+                                          'Remove',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            decoration: TextDecoration.underline,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+        ));
   }
 }
 

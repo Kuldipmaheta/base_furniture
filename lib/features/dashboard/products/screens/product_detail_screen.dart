@@ -4,10 +4,13 @@ import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/extensions/text_style_extension.dart';
+import 'package:furniture/design/utils/extensions/widget_extensions.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
+import 'package:furniture/features/dashboard/home/controller/home_data_provider.dart';
 import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/strings.dart';
@@ -23,13 +26,19 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   bool isExpanded = false;
   bool _visible = false;
-
+  HomeDataProvider? homeProvider;
   /* final String longText = "As a Flutter developer, crafting dynamic UIs is both fun and rewarding. "
       "This example demonstrates how you can toggle text visibility in your app. "
       "Click 'View More' to see the full content or 'View Less' to minimize.";*/
   final String text = "Accessories shown in the image are only for representation and are not part of the product "
       "Depending on your screen settings and resolution on your device there may be a  slight variance in "
       "fabric color and wood polish of the image and actual  product  Wood grains will vary from product to product. ";
+  @override
+  void initState() {
+    homeProvider = Provider.of<HomeDataProvider>(context, listen: false);
+    homeProvider?.homeResponseData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -420,8 +429,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
               Gap.gapH16,
               Container(
-                margin: const EdgeInsets.only(left: 24, right: 24),
-                height: MediaQuery.of(context).size.height / 2.98,
+                margin: p24,
+                height: MediaQuery.of(context).size.height / 3,
                 // width: MediaQuery.of(context).size.width,
                 child: ListView.separated(
                     separatorBuilder: (ctx, index) {
@@ -430,12 +439,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     shrinkWrap: true,
                     // physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 4,
+                    itemCount: homeProvider?.homeResponseModel?.data?.productList?.length ?? 0,
                     itemBuilder: (ctx, index) {
-                      return const SizedBox(width: 170, child: ProductListWidget());
+                      return SizedBox(
+                        width: 170,
+                        child: ProductListWidget(
+                          model: homeProvider!.homeResponseModel!.data!.productList![index],
+                          index: index,
+                        ),
+                      );
                     }),
               ),
-              Gap.gapH24,
+              Gap.gapH14,
               const Divider(
                 height: 4,
                 color: AppColors.kGrey100,
@@ -453,19 +468,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
               Gap.gapH16,
               Container(
-                margin: const EdgeInsets.only(left: 24, right: 24),
-                height: MediaQuery.of(context).size.height / 2.9,
+                margin: p24,
+                height: MediaQuery.of(context).size.height / 3,
                 // width: MediaQuery.of(context).size.width,
                 child: ListView.separated(
                     separatorBuilder: (ctx, index) {
+                      print("object..detail ${homeProvider?.homeResponseModel?.data?.productList?.length}");
                       return Gap.gapW20;
                     },
                     shrinkWrap: true,
                     // physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 4,
+                    itemCount: homeProvider?.homeResponseModel?.data?.productList?.length ?? 0,
                     itemBuilder: (ctx, index) {
-                      return const SizedBox(width: 170, child: ProductListWidget());
+                      return SizedBox(
+                          width: 170,
+                          child: ProductListWidget(
+                            model: homeProvider!.homeResponseModel!.data!.productList![index],
+                            index: index,
+                          ));
                     }),
               ),
             ],
