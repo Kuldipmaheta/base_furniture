@@ -4,7 +4,6 @@ import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_text_field.dart';
 
-import '../../../../../core/constant/app_colors.dart';
 import '../../../../welcome/screens/choose_language_screen.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -38,7 +37,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               Gap.gapH24,
               const Text("Mobile Number"),
               Gap.gapH6,
-              Row(
+              CustomMobileTextField(),
+              /* Row(
                 children: [
                   Container(
                       height: 50,
@@ -56,7 +56,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Gap.gapW8,
                   Expanded(child: CustomMobileTextField()),
                 ],
-              ),
+              ),*/
               Gap.gapH24,
               const Text("Email"),
               Gap.gapH6,

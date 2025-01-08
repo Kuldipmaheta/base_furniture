@@ -12,7 +12,6 @@ import 'package:furniture/design/utils/extensions/text_style_extension.dart';
 import 'package:furniture/design/utils/extensions/widget_extensions.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
-import 'package:furniture/features/dashboard/category/controllers/category_data_provider.dart';
 import 'package:furniture/features/dashboard/home/controller/home_data_provider.dart';
 import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:get/get.dart';
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  CategoryDataProvider? provider;
+  // CategoryDataProvider? provider;
   HomeDataProvider? homeProvider;
 
   @override
@@ -47,8 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ));
     super.initState();
     startTimer();
-    provider = Provider.of<CategoryDataProvider>(context, listen: false);
-    provider?.getData();
+    // provider = Provider.of<CategoryDataProvider>(context, listen: false);
+    // provider?.getData();
 
     homeProvider = Provider.of<HomeDataProvider>(context, listen: false);
     homeProvider?.homeResponseData();

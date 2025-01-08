@@ -34,9 +34,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         ),*/
         body: SafeArea(
           child: ListView.separated(
-            padding: const EdgeInsets.only(
-              top: 16.0,
-            ),
+            padding: const EdgeInsets.only(top: 16.0, bottom: 16),
             shrinkWrap: true,
             separatorBuilder: (context, index) {
               return const Padding(

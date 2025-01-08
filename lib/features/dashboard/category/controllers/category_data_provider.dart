@@ -12,7 +12,7 @@ class CategoryDataProvider extends ChangeNotifier {
           await dio.get("https://athathi.stag.vrinsoft.in/api/v1/category_list?language_id=1&page_no=1&per_page=10");
       if (response.statusCode == 200) {
         categoryModel = CategoryModel.fromJson(response.data);
-        print('API call successful: ${response.data}');
+        print('Category...: ${response.data}');
         notifyListeners();
       }
     } catch (e) {

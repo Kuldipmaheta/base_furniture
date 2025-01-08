@@ -1,6 +1,7 @@
 import 'package:furniture/design/utils/custom_text.dart';
 import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
 import 'package:furniture/export.dart';
+import 'package:furniture/features/dashboard/cart/controllers/add_cart_controller.dart';
 import 'package:furniture/features/dashboard/cart/controllers/cart_controller.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,8 @@ class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
     CartController.to;
+    AddCartController.to;
+    print("cart ddd... ${CartController.to.cartResponseModel}");
     super.initState();
   }
 
@@ -278,7 +281,7 @@ class _CartScreenState extends State<CartScreen> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       // scrollDirection: Axis.vertical,
-                      itemCount: CartController.to.cartResponseModel!.value.data?.productList?.length ?? 0,
+                      itemCount: CartController.to.cartResponseModel?.value.data?.productList?.length ?? 0,
                       separatorBuilder: (context, index) {
                         return const Padding(
                           padding: EdgeInsets.only(top: 20.0, bottom: 20),
@@ -290,6 +293,7 @@ class _CartScreenState extends State<CartScreen> {
                         );
                       },
                       itemBuilder: (context, index) {
+                        print("object..$CartController.to.cartResponseModel!.value.data!.productList![index]");
                         // Furniture item = popularFurnitureList[index];
                         final item = CartController.to.cartResponseModel!.value.data!.productList![index];
 
@@ -329,7 +333,7 @@ class _CartScreenState extends State<CartScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CustomText(
-                                      title: item.vendorName,
+                                      title: item.id.toString(),
                                       color: AppColors.kGrey200,
                                     ),
                                     Gap.gapH6,

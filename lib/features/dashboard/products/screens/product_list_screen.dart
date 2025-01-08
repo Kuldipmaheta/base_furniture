@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
 import 'package:furniture/features/dashboard/home/controller/home_data_provider.dart';
 import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:furniture/features/dashboard/products/filter/filter_screen.dart';
@@ -32,7 +34,18 @@ class _ProductListScreenState extends State<ProductListScreen> {
     return Theme(
       data: Theme.of(context).copyWith(dividerTheme: const DividerThemeData(color: Colors.transparent)),
       child: Scaffold(
-        appBar: AppBar(
+        backgroundColor: AppColors.kWhiteColor,
+        appBar: CustomAppBar(
+          title: AppLabels.chair,
+          // isTrailingPad: false,
+          actions: [
+            const CustomSvg(imgUrl: AppIcons.icSearch),
+            Gap.gapW16,
+            const CustomSvg(imgUrl: AppIcons.icWish),
+            Gap.gapW24,
+          ],
+        ),
+        /* AppBar(
             forceMaterialTransparency: true,
             titleSpacing: 0,
             title: Text(
@@ -44,7 +57,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
               Gap.gapW16,
               const CustomSvg(imgUrl: AppIcons.icWish),
               Gap.gapW24,
-            ]),
+            ]),*/
         body: SafeArea(
           child: SingleChildScrollView(
             child: Consumer<HomeDataProvider>(
@@ -54,38 +67,36 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 return snapshot.homeResponseModel == null
                     ? const CircularProgressIndicator()
                     : ListView.builder(
+                        padding: EdgeInsets.only(top: 16, left: 24.0, right: 24),
                         physics: const NeverScrollableScrollPhysics(),
                         // scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: ((homeProvider?.homeResponseModel?.data?.productList?.length ?? 0) / 2).round(),
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 20),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      ProductListWidget(
-                                        model: homeProvider!.homeResponseModel!.data!.productList![index * 2],
-                                        index: index * 2,
-                                      )
-                                    ],
-                                  ),
+                          return Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    ProductListWidget(
+                                      model: homeProvider!.homeResponseModel!.data!.productList![index * 2],
+                                      index: index * 2,
+                                    )
+                                  ],
                                 ),
-                                Gap.gapW20,
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      ProductListWidget(
-                                        model: homeProvider!.homeResponseModel!.data!.productList![index * 2 + 1],
-                                        index: index * 2 + 1,
-                                      )
-                                    ],
-                                  ),
+                              ),
+                              Gap.gapW20,
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    ProductListWidget(
+                                      model: homeProvider!.homeResponseModel!.data!.productList![index * 2 + 1],
+                                      index: index * 2 + 1,
+                                    )
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           );
                         });
               },

@@ -4,6 +4,7 @@ import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/core/routes/app_routes.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_svg.dart';
 import 'package:furniture/features/dashboard/category/controllers/category_data_provider.dart';
@@ -52,7 +53,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       childAspectRatio: .8,
-                      crossAxisSpacing: 5,
+                      crossAxisSpacing: 3,
                       mainAxisSpacing: 5,
                     ),
                     itemBuilder: (context, index) {
@@ -76,9 +77,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             ),
                           ),
                           Gap.gapH8,
-                          Text(
-                            provider.categoryModel!.data!.categoryList!.elementAt(index).categoryName.toString(),
-                            style: CustomUiText.size16,
+                          Expanded(
+                            child: CustomText(
+                              textAlign: TextAlign.center,
+                              text:
+                                  provider.categoryModel!.data!.categoryList!.elementAt(index).categoryName.toString(),
+                              style:
+                                  context.titleMedium.copyWith(color: AppColors.kBlack400, fontWeight: FontWeight.w300),
+                            ),
                           )
                         ],
                       );

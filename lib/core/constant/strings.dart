@@ -89,11 +89,12 @@ class AppLabels {
   static const String english = "English";
   static const String chooseLanguage = "Choose Language";
 
-  //
+  //product details
   static const String inStock = "In Stock";
   static const String accentChair = "Pashe Fabric Accent Chair";
   static const String quantity = "Quantity";
   static const String productDet = "Product Details";
+  static const String brand = "Brand";
 }
 
 /*class AppRoutes {

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/widget_extensions.dart';
+import 'package:furniture/design/utils/gap.dart';
+import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
 import 'package:furniture/features/dashboard/products/filter/category_check_screen.dart';
+import 'package:get/get.dart';
 
-import '../../../../design/utils/gap.dart';
 import 'discount_check_screen.dart';
 import 'price_range_screen.dart';
 
@@ -38,7 +41,32 @@ class _FilterScreenState extends State<FilterScreen> {
       data: Theme.of(context).copyWith(dividerTheme: const DividerThemeData(color: Colors.transparent)),
       child: Scaffold(
         backgroundColor: AppColors.kWhiteColor,
-        appBar: AppBar(
+        appBar: CustomAppBar(
+          backWidget: gap0,
+          isTrailingPad: false,
+          bottom: PreferredSize(
+              preferredSize: Size.fromHeight(1),
+              child: Divider(
+                color: AppColors.kGrey100,
+                thickness: 1,
+                // color: Colors.black,
+                height: 1,
+              )),
+          title: AppLabels.filter,
+          // isTrailingPad: false,
+          actions: [
+            Text(
+              AppLabels.reset,
+              style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.kPrimaryColor,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColors.kPrimaryColor),
+            ),
+            Gap.gapW24,
+          ],
+        ),
+        /*AppBar(
           titleSpacing: 0,
           forceMaterialTransparency: true,
           backgroundColor: AppColors.kWhiteColor,
@@ -69,7 +97,7 @@ class _FilterScreenState extends State<FilterScreen> {
             ),
             Gap.gapW24,
           ],
-        ),
+        ),*/
         body: SafeArea(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +220,9 @@ class CustomButton extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             side: const BorderSide(color: AppColors.kPrimaryColor)),
                         foregroundColor: AppColors.kPrimaryColor),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back(canPop: true);
+                    },
                     child: Text(
                       'Close',
                       style: CustomUiText.size16,

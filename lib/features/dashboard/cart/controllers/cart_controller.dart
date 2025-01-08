@@ -8,6 +8,7 @@ class CartController extends GetxController {
 
   RxBool isCartLoading = false.obs;
   Rx<CartResponseModel>? cartResponseModel;
+  // RxList<ProductList> popularFurnitureList = <ProductList>[].obs;
   @override
   void onInit() {
     super.onInit();
@@ -15,12 +16,13 @@ class CartController extends GetxController {
   }
 
   final Dio dio = Dio();
-  Future<CartResponseModel> getPopularCartList() async {
+  Future<CartResponseModel?> getPopularCartList() async {
     isCartLoading.value = true;
     delay3;
     try {
-      final response =
-          await dio.get("https://athathi.stag.vrinsoft.in/api/v1/get_cart_detail?language_id=1&device_id=1");
+      final response = await dio.get(
+          "https://athathi.stag.vrinsoft.in/api/v1/get_cart_detail?language_id=1&device_id=1",
+          data: {"language_id": "1", "device_id": "1"});
       if (response.statusCode == 200) {
         cartResponseModel = CartResponseModel.fromJson(response.data).obs;
         print('Cart...: ${response.data}');
@@ -29,6 +31,6 @@ class CartController extends GetxController {
     } catch (e) {
       print(e);
     }
-    return cartResponseModel!.value;
+    return cartResponseModel?.value;
   }
 }
