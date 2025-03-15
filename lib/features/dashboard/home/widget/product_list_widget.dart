@@ -21,8 +21,6 @@ class ProductListWidget extends StatefulWidget {
 }
 
 class _ProductListWidgetState extends State<ProductListWidget> {
-  // HomeDataProvider? homeProvider;
-
   @override
   void initState() {
     // homeProvider = Provider.of<HomeDataProvider>(context, listen: false);
@@ -43,7 +41,9 @@ class _ProductListWidgetState extends State<ProductListWidget> {
         children: [
           GestureDetector(
             onTap: () {
-              Get.toNamed(AppRoutes.productDetailScreen);
+              var id = widget.model?.id.toString() ?? "";
+              print("id... $id");
+              Get.toNamed(AppRoutes.productDetailScreen, arguments: id);
             },
             child: Container(
               clipBehavior: Clip.antiAlias,

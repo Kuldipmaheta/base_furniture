@@ -1,5 +1,10 @@
+import 'package:flutter/services.dart';
+import 'package:furniture/design/utils/global.dart';
 import 'package:furniture/export.dart';
+import 'package:furniture/features/dashboard/cart/screens/checkout_screen.dart';
+import 'package:furniture/features/dashboard/products/filter/filter_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get_navigation/src/routes/observers/route_observer.dart';
 
 import '../../features/authentication/screens/login_screen.dart';
 import '../../features/authentication/screens/registration_screen.dart';
@@ -39,6 +44,8 @@ class AppRoutes {
   static const String accAddAddressScreen = "/accAddAddressScreen";
   static const String changeLanguageScreen = "/changeLanguageScreen";
   static const String myOrdersScreen = "/myOrdersScreen";
+  static const String filterScreen = "/filterScreen";
+  static const String checkoutScreen = "/checkoutScreen";
 
   static List<GetPage> getPages = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -61,5 +68,22 @@ class AppRoutes {
     GetPage(name: accAddAddressScreen, page: () => const AccAddAddressScreen()),
     GetPage(name: changeLanguageScreen, page: () => const ChangeLanguageScreen()),
     GetPage(name: myOrdersScreen, page: () => const MyOrdersScreen()),
+    GetPage(name: filterScreen, page: () => const FilterScreen()),
+    GetPage(name: checkoutScreen, page: () => const CheckoutScreen()),
   ];
+
+  static void routingCallBack(Routing? routing) {
+    if (routing != null) {
+      // Logger.printer(title: "✳️ Current: ${routing.current}");
+      // Logger.printer(title: "❌ Previous: ${routing.previous}");
+      if (routing.current == AppRoutes.dashboardScreen) {
+        // Logger.printer(title: "Coloring :: 🌈🌈🌈🌈");
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          SystemChrome.setSystemUIOverlayStyle(
+            Global.customOverLay(color: AppColors.kBlack400, isLight: true),
+          );
+        });
+      }
+    }
+  }
 }

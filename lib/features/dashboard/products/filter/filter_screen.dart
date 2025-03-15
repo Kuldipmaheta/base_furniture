@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture/core/constant/app_colors.dart';
 import 'package:furniture/core/constant/strings.dart';
 import 'package:furniture/design/utils/custom_text.dart';
+import 'package:furniture/design/utils/extensions/build_context_extension.dart';
 import 'package:furniture/design/utils/extensions/widget_extensions.dart';
 import 'package:furniture/design/utils/gap.dart';
 import 'package:furniture/design/utils/widgets/custom_app_bar.dart';
@@ -19,7 +20,12 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  List filterName = ['Price Range', ''];
+  List filterName = [
+    'Price Range',
+    'Category',
+    'Discount',
+    'Vendor',
+  ];
   List<Widget> list = <Widget>[
     const PriceRangeScreen(),
     const CategoryCheckScreen(),
@@ -38,13 +44,16 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget build(BuildContext context) {
     return Theme(
       //bottom line disable
-      data: Theme.of(context).copyWith(dividerTheme: const DividerThemeData(color: Colors.transparent)),
+      data: Theme.of(context).copyWith(
+          dividerTheme: const DividerThemeData(
+        color: Colors.transparent,
+      )),
       child: Scaffold(
         backgroundColor: AppColors.kWhiteColor,
         appBar: CustomAppBar(
           backWidget: gap0,
           isTrailingPad: false,
-          bottom: PreferredSize(
+          bottom: const PreferredSize(
               preferredSize: Size.fromHeight(1),
               child: Divider(
                 color: AppColors.kGrey100,
@@ -55,14 +64,22 @@ class _FilterScreenState extends State<FilterScreen> {
           title: AppLabels.filter,
           // isTrailingPad: false,
           actions: [
-            Text(
+            CustomText(
+              text: AppLabels.reset,
+              style: context.titleMedium.copyWith(
+                  color: AppColors.kPrimaryColor,
+                  fontWeight: FontWeight.w400,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColors.kPrimaryColor),
+            ),
+            /*Text(
               AppLabels.reset,
               style: TextStyle(
                   fontSize: 16,
                   color: AppColors.kPrimaryColor,
                   decoration: TextDecoration.underline,
                   decorationColor: AppColors.kPrimaryColor),
-            ),
+            ),*/
             Gap.gapW24,
           ],
         ),
@@ -111,8 +128,8 @@ class _FilterScreenState extends State<FilterScreen> {
                       width: MediaQuery.of(context).size.width / 3,
                       // height: MediaQuery.of(context).size.height,
                       child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 4,
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemCount: filterName.length,
                         itemBuilder: (context, index) {
                           return Container(
                             color: index == selectedIndex ? AppColors.kWhiteColor : AppColors.kGrey100,
@@ -130,12 +147,14 @@ class _FilterScreenState extends State<FilterScreen> {
                                   controller.jumpToPage(index);
                                 });
                               },
-                              title: const Padding(
+                              title: Padding(
                                 padding: EdgeInsets.only(left: 24.0),
-                                child: Text(AppLabels.priceRange
-                                    // + index.toString(),
-                                    // selectionColor: Colors.white,
-                                    ),
+                                child: Text(
+                                  filterName[index],
+                                  // AppLabels.priceRange
+                                  // + index.toString(),
+                                  // selectionColor: Colors.white,
+                                ),
                               ),
                               // subtitle: Text('data'),
                             ),
@@ -195,8 +214,7 @@ class _FilterScreenState extends State<FilterScreen> {
           ),
         ),
         persistentFooterButtons: [
-          Container(
-              padding: const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24), child: const CustomButton())
+          Container(padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8, right: 16), child: CustomButton())
         ],
       ),
     );
@@ -209,6 +227,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Expanded(
             child: SizedBox(

@@ -84,7 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Gap.gapW16,
           GestureDetector(
             onTap: () {
-              Get.toNamed(AppRoutes.favoriteScreen);
+              Get.toNamed(
+                AppRoutes.favoriteScreen,
+              );
             },
             // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritesScreen())),
             child: const CustomSvg(imgUrl: AppIcons.icWish),
@@ -210,19 +212,18 @@ class _HomeScreenState extends State<HomeScreen> {
               Consumer<HomeDataProvider>(
                 builder: (context, snapshot, _) {
                   return snapshot.homeResponseModel == null
-                      ? const CircularProgressIndicator()
+                      ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           itemCount: ((homeProvider?.homeResponseModel?.data?.productList?.length ?? 0) / 2).round(),
-                          // itemCount: (homeProvider!.homeResponseModel!.data!.productList!.length / 2).round(),
-
                           // homeProvider!.homeResponseModel!.data?.productList?.length ?? 0,
                           itemBuilder: (context, index) {
+                            var item = homeProvider?.homeResponseModel?.data?.productList;
                             // ProductList item = homeProvider!.homeResponseModel!.data!.productList![index * 2];
                             return Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                 bottom: 20,
                               ),
                               child: Row(
@@ -231,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: 24.0, right: 10),
+                                      padding: const EdgeInsets.only(left: 24.0, right: 10),
                                       child: Column(
                                         children: [
                                           // Text("index ${{index * 2}.toString()}"),
@@ -249,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   //     ?
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: 10.0, right: 24),
+                                      padding: const EdgeInsets.only(left: 10.0, right: 24),
                                       child: Column(
                                         children: [
                                           // Text("index${{index * 2 + 1}.toString()}"),

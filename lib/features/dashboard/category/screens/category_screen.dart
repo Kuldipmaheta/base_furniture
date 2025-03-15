@@ -11,8 +11,11 @@ import 'package:furniture/features/dashboard/category/controllers/category_data_
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../../products/models/product_model.dart';
+
 class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({super.key});
+  final ProductList? model;
+  const CategoryScreen({super.key, this.model});
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
 }
@@ -63,7 +66,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           Gap.gapH16,
                           GestureDetector(
                             onTap: () {
-                              Get.toNamed(AppRoutes.productListScreen);
+                              var id = provider.categoryModel!.data!.categoryList!.elementAt(index).categoryId;
+                              print("category... id::: ${id}");
+                              Get.toNamed(AppRoutes.productListScreen, arguments: id);
                               // Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListScreen()));
                             },
                             child: CircleAvatar(

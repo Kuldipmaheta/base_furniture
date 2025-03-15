@@ -5,14 +5,13 @@ import 'package:get/get.dart';
 
 class CartController extends GetxController {
   static CartController get to => Get.isRegistered<CartController>() ? Get.find() : Get.put(CartController());
-
   RxBool isCartLoading = false.obs;
   Rx<CartResponseModel>? cartResponseModel;
   // RxList<ProductList> popularFurnitureList = <ProductList>[].obs;
   @override
   void onInit() {
     super.onInit();
-    getPopularCartList();
+    // getPopularCartList();
   }
 
   final Dio dio = Dio();

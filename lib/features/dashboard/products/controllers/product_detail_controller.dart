@@ -21,7 +21,7 @@ class ProductDetailController extends GetxController {
     delay3;
     try {
       final response = await dio.get(
-        "https://athathi.stag.vrinsoft.in/api/v1/product_detail?language_id=1&product_id=15&device_id=1",
+        "https://athathi.stag.vrinsoft.in/api/v1/product_detail?language_id=1&product_id=${Get.arguments}&device_id=1",
         // data: {"language_id": "1", "device_id": "1"}
       );
       if (response.statusCode == 200) {

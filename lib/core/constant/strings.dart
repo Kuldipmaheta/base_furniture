@@ -83,6 +83,7 @@ class AppLabels {
   //cart
   static const String cart = "Cart";
   static const String home = "Home";
+  static const String remove = "Remove";
 
   //
   static const String favorites = "Favorites";
@@ -90,6 +91,7 @@ class AppLabels {
   static const String chooseLanguage = "Choose Language";
 
   //product details
+  static const String outOfStock = "Out Of Stock";
   static const String inStock = "In Stock";
   static const String accentChair = "Pashe Fabric Accent Chair";
   static const String quantity = "Quantity";

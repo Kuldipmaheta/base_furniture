@@ -208,7 +208,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Gap.gapW20,
                                 Expanded(
                                     child: CustomDarkButton(
-                                  onpress: () {},
+                                  onPress: () {},
                                   text: "Delete",
                                 )),
                               ],

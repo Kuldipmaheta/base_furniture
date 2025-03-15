@@ -24,18 +24,7 @@ class ProductDetailsModel {
   String? message;
   Data? data;
   dynamic error;
-  ProductDetailsModel copyWith({
-    bool? success,
-    String? message,
-    Data? data,
-    dynamic error,
-  }) =>
-      ProductDetailsModel(
-        success: success ?? this.success,
-        message: message ?? this.message,
-        data: data ?? this.data,
-        error: error ?? this.error,
-      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['success'] = success;
@@ -72,15 +61,17 @@ class ProductDetails {
   });
 
   ProductDetails.fromJson(dynamic json) {
-    brand = json['brand'];
-    assembly = json['assembly'];
-    dimentionsInCm = json['dimentions_in_cm'];
-    dimentionsInInches = json['dimentions_in_inches'];
-    primaryMaterial = json['primary_material'];
-    roomType = json['room_type'];
-    seatingHeight = json['seating_height'];
-    warranty = json['warranty'];
-    weight = json['weight'];
+    safeJson(json, (parsedJson) {
+      brand = json['brand'];
+      assembly = json['assembly'];
+      dimentionsInCm = json['dimentions_in_cm'];
+      dimentionsInInches = json['dimentions_in_inches'];
+      primaryMaterial = json['primary_material'];
+      roomType = json['room_type'];
+      seatingHeight = json['seating_height'];
+      warranty = json['warranty'];
+      weight = json['weight'];
+    });
   }
   String? brand;
   String? assembly;
@@ -91,28 +82,7 @@ class ProductDetails {
   String? seatingHeight;
   String? warranty;
   String? weight;
-  ProductDetails copyWith({
-    String? brand,
-    String? assembly,
-    String? dimentionsInCm,
-    String? dimentionsInInches,
-    String? primaryMaterial,
-    String? roomType,
-    String? seatingHeight,
-    String? warranty,
-    String? weight,
-  }) =>
-      ProductDetails(
-        brand: brand ?? this.brand,
-        assembly: assembly ?? this.assembly,
-        dimentionsInCm: dimentionsInCm ?? this.dimentionsInCm,
-        dimentionsInInches: dimentionsInInches ?? this.dimentionsInInches,
-        primaryMaterial: primaryMaterial ?? this.primaryMaterial,
-        roomType: roomType ?? this.roomType,
-        seatingHeight: seatingHeight ?? this.seatingHeight,
-        warranty: warranty ?? this.warranty,
-        weight: weight ?? this.weight,
-      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['brand'] = brand;
@@ -326,39 +296,42 @@ class Data {
   });
 
   Data.fromJson(dynamic json) {
-    id = json['id'];
-    addedQuantity = json['added_quantity'];
-    productName = json['product_name'];
-    vendorName = json['vendor_name'];
-    categoryName = json['category_name'];
-    productImages = json['product_images'] != null ? json['product_images'].cast<String>() : [];
-    originalPrice = json['original_price'];
-    discountedPrice = json['discounted_price'];
-    availableQuantity = json['available_quantity'];
-    colorName = json['color_name'];
-    productRating = json['product_rating'];
-    isFav = json['is_fav'];
-    productDetails = json['product_details'] != null ? ProductDetails.fromJson(json['product_details']) : null;
-    if (json['size_list'] != null) {
-      sizeList = [];
-      json['size_list'].forEach((v) {
-        sizeList?.add(SizeList.fromJson(v));
-      });
-    }
-    specification = json['specification'];
-    if (json['other_vendors'] != null) {
-      otherVendors = [];
-      json['other_vendors'].forEach((v) {
-        otherVendors?.add(ProductList.fromJson(v));
-      });
-    }
-    if (json['related_products'] != null) {
-      relatedProducts = [];
-      json['related_products'].forEach((v) {
-        relatedProducts?.add(ProductList.fromJson(v));
-      });
-    }
+    safeJson(json, (parsedJson) {
+      id = json['id'];
+      addedQuantity = json['added_quantity'];
+      productName = json['product_name'];
+      vendorName = json['vendor_name'];
+      categoryName = json['category_name'];
+      productImages = json['product_images'] != null ? json['product_images'].cast<String>() : [];
+      originalPrice = json['original_price'];
+      discountedPrice = json['discounted_price'];
+      availableQuantity = json['available_quantity'];
+      colorName = json['color_name'];
+      productRating = double.parse((json['product_rating']).toString());
+      isFav = json['is_fav'];
+      productDetails = json['product_details'] != null ? ProductDetails.fromJson(json['product_details']) : null;
+      if (json['size_list'] != null) {
+        sizeList = [];
+        json['size_list'].forEach((v) {
+          sizeList?.add(SizeList.fromJson(v));
+        });
+      }
+      specification = json['specification'];
+      if (json['other_vendors'] != null) {
+        otherVendors = [];
+        json['other_vendors'].forEach((v) {
+          otherVendors?.add(ProductList.fromJson(v));
+        });
+      }
+      if (json['related_products'] != null) {
+        relatedProducts = [];
+        json['related_products'].forEach((v) {
+          relatedProducts?.add(ProductList.fromJson(v));
+        });
+      }
+    });
   }
+
   int? id;
   int? addedQuantity;
   String? productName;
@@ -369,7 +342,7 @@ class Data {
   int? discountedPrice;
   int? availableQuantity;
   String? colorName;
-  int? productRating;
+  double? productRating;
   bool? isFav;
   ProductDetails? productDetails;
   List<SizeList>? sizeList;

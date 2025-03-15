@@ -1,6 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:furniture/core/constant/app_images.dart';
 import 'package:furniture/export.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

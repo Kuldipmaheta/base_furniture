@@ -18,18 +18,31 @@ class AddCartController extends GetxController {
 
   final Dio dio = Dio();
   var headers = {'Content-Type': 'application/json', 'Accept': 'application/json'};
+
   Future<AddCartModel?> addToCart(
-      String product_id, String qty, String attribute_id, String language_id, String device_id) async {
+    String productId,
+    String qty,
+    String attributeId,
+    String languageId,
+    String deviceId,
+  ) async {
     isAddCartLoading.value = true;
     delay3;
-    var data =
-        json.encode({"product_id": product_id, "qty": "1", "attribute_id": "1", "language_id": "1", "device_id": "1"});
-    var dio = Dio();
+    var data = json.encode({
+      "product_id": productId,
+      "qty": "1",
+      "attribute_id": attributeId,
+      "language_id": "1",
+      "device_id": "1",
+    });
+    // var dio = Dio();
+    print("data... $data");
     var response = await dio.post(
       'https://athathi.stag.vrinsoft.in/api/v1/add_to_cart',
       options: Options(headers: headers),
       data: data,
     );
+    print("response... $response");
     if (response.statusCode == 200) {
       print('Add.to.Cart...: ${response.data}');
     } else {

@@ -4,6 +4,15 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 
 class NetworkService {
+  bool isApiCalling = false;
+
+  NetworkService._();
+  factory NetworkService() => _instance;
+  static final NetworkService _instance = NetworkService._();
+
+  static String? accessToken;
+  static String? refreshToken;
+
   final Dio dio = Dio();
   void logRequest(String method, String url, String? queryParameters) {
     log(

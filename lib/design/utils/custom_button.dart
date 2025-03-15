@@ -14,15 +14,14 @@ import '../../core/routes/app_routes.dart';
 import 'colors_sources.dart';
 import 'extensions/widget_extensions.dart';
 
-@immutable
 class CustomButton extends StatelessWidget {
-  CustomButton({
+  const CustomButton({
     super.key,
     required this.onPress,
     required this.text,
   });
-  VoidCallback? onPress;
-  String text;
+  final VoidCallback? onPress;
+  final String text;
   // Color hexColor;
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,7 @@ class CustomButton extends StatelessWidget {
                           Gap.gapW20,
                           Expanded(
                               child: CustomDarkButton(
-                            onpress: () {},
+                            onPress: () {},
                             text: "Yes, Logout",
                           )),
                         ],
@@ -94,9 +93,9 @@ class CustomButton extends StatelessWidget {
 
 @immutable
 class CustomDarkButton extends StatelessWidget {
-  VoidCallback? onpress;
-  String text;
-  CustomDarkButton({super.key, required this.onpress, required this.text});
+  final VoidCallback? onPress;
+  final String text;
+  const CustomDarkButton({super.key, required this.onPress, required this.text});
 
   @override
   Widget build(BuildContext context) {

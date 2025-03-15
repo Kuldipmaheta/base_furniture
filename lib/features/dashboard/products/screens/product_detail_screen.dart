@@ -12,6 +12,7 @@ import 'package:furniture/features/dashboard/cart/controllers/add_cart_controlle
 import 'package:furniture/features/dashboard/home/controller/home_data_provider.dart';
 import 'package:furniture/features/dashboard/home/widget/product_list_widget.dart';
 import 'package:furniture/features/dashboard/products/controllers/product_detail_controller.dart';
+import 'package:furniture/features/dashboard/products/models/product_details_model.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constant/app_colors.dart';
@@ -19,27 +20,25 @@ import '../../../../core/constant/strings.dart';
 import '../../../../core/routes/app_routes.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({super.key});
+  const ProductDetailScreen({
+    super.key,
+  });
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  String? id;
   bool isExpanded = false;
   bool _visible = false;
   HomeDataProvider? homeProvider;
 
-  final String text = "Accessories shown in the image are only for representation and are not part of the product "
-      "Depending on your screen settings and resolution on your device there may be a  slight variance in "
-      "fabric color and wood polish of the image and actual  product  Wood grains will vary from product to product. ";
+  ProductDetailController controller = ProductDetailController.to;
 
   @override
   void initState() {
-    // homeProvider = Provider.of<HomeDataProvider>(context, listen: false);
-    // homeProvider?.homeResponseData();
-    // AddCartController.to;
-    ProductDetailController.to.getProDuctDetail();
+    controller.getProDuctDetail();
     super.initState();
   }
 
@@ -51,7 +50,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         backgroundColor: AppColors.kWhiteColor,
         appBar: CustomAppBar(
           actions: [
-            CustomSvg(
+            const CustomSvg(
               imgUrl: AppIcons.icWish,
             ),
             Gap.gapW24
@@ -110,11 +109,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               style: TextStyle(fontSize: 14, color: AppColors.kGrey200)),*/
                           ),
                       const Spacer(),
-                      SvgPicture.asset('assets/icons/ic_checked.svg'),
+                      SvgPicture.asset(
+                        'assets/icons/ic_checked.svg',
+                        colorFilter: ColorFilter.mode(
+                            item.availableQuantity == 0 ? AppColors.kRed : AppColors.kGreen, BlendMode.srcIn),
+                      ),
                       Gap.gapW4,
                       CustomText(
-                        text: AppLabels.inStock,
-                        style: context.titleSmall.withColor(AppColors.kGreen),
+                        text: item.availableQuantity == 0 ? AppLabels.outOfStock : AppLabels.inStock,
+                        style: context.titleSmall
+                            .withColor(item.availableQuantity == 0 ? AppColors.kRed : AppColors.kGreen),
                       )
                     ],
                   ),
@@ -376,7 +380,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       CustomText(
                         maxLines: 14,
                         // text: item.specification,
-                        text: isExpanded ? item.specification : "${item.specification?.substring(0, 100)}...",
+                        text: isExpanded
+                            ? item.specification
+                            : "${item.specification?.substring(
+                                0,
+                              )}...",
                         // "Accessories shown in the image are only for representation and are not part of the product  Depending on your screen settings and resolution on your device there may be a  slight variance in fabric color and wood polish of the image and actual  product  Wood grains will vary from product to product ",
                         style: context.titleMedium.withColor(AppColors.kGrey300).copyWith(fontWeight: FontWeight.w300),
                         // overflow: TextOverflow.ellipsis,
@@ -604,20 +612,26 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           );
         }),
         persistentFooterButtons: [
-          Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 16),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 52,
-              child: CustomElevateBtn(
-                attributeId: "1",
-                deviceId: "1",
-                languageId: "1",
-                productId: "1",
-                qty: "1",
-              ),
-            ),
-          ),
+          Obx(() {
+            final item = ProductDetailController.to.productDetailsModel?.value.data;
+            return ProductDetailController.to.isProductLoading.value
+                ? const SizedBox()
+                : Padding(
+                    padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: 52,
+                      child: CustomElevateBtn(
+                        item: item,
+                        attributeId: "8",
+                        deviceId: "1",
+                        languageId: "1",
+                        productId: Get.arguments,
+                        qty: "1",
+                      ),
+                    ),
+                  );
+          }),
         ],
         /*floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Padding(
@@ -662,29 +676,35 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 }*/
 
 class CustomElevateBtn extends StatelessWidget {
-  String productId;
-  String qty;
-  String attributeId;
-  String languageId;
-  String deviceId;
+  final String productId;
+  final String qty;
+  final String attributeId;
+  final String languageId;
+  final String deviceId;
+  final Data? item;
 
-  CustomElevateBtn({
+  const CustomElevateBtn({
     super.key,
     required this.productId,
     required this.qty,
     required this.attributeId,
     required this.deviceId,
     required this.languageId,
+    this.item,
   });
 
   @override
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        AddCartController.to.addToCart(productId, qty, attributeId, languageId, deviceId);
-        // print("AAA..${AddCartController.to.addToCart(productId, qty, attributeId, languageId, deviceId)}");
-      },
+      onPressed: item?.availableQuantity == 0
+          ? null
+          : () {
+              print("product id... ${productId}");
+              AddCartController.to.addToCart((item?.id ?? 0).toString(), qty,
+                  (item?.sizeList?.first.attributeId ?? 0).toString(), languageId, deviceId);
+              // print("AAA..${AddCartController.to.addToCart(productId, qty, attributeId, languageId, deviceId)}");
+            },
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.kPrimaryColor,
         textStyle: CustomUiText.size16,
